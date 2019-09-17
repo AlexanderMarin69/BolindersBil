@@ -6,14 +6,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Shared\_Layout.cshtml" />
+    <Content Remove="Views\Shared\_ViewStart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Controllers\HomeController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\_ViewStart.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
 
 </Project>

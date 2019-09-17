@@ -19,7 +19,7 @@ namespace BolindersBil.web.DB
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<BolindersBil.web.Models.Vehicle> Brand { get; set; }
+        public DbSet<BolindersBil.web.Models.Brand> Brand { get; set; }
         public DbSet<BolindersBil.web.Models.Dealership> Dealership { get; set; }
         public DbSet<BolindersBil.web.Models.FileUpload> FileUpload { get; set; }
         public DbSet<BolindersBil.web.Models.Vehicle> Vehicle { get; set; }
