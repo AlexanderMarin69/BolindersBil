@@ -1,0 +1,112 @@
+﻿@model BolindersBil.web.Models.Vehicle
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Index</h1>
+<br />
+
+<button class="btn btn-primary">Lägg till bil +</button>
+<hr />
+
+
+
+
+
+<div class="addnewcar-custom-design">
+    <form asp-action="AddNewCar" method="post">
+
+        <div asp-validation-summary="All"></div>
+
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+            <label asp-for="Model">Model:</label>
+            <input class="form-control" asp-for="Model" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ModelDescription">ModelDescription:</label>
+            <input class="form-control" asp-for="ModelDescription" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="RegistrationNumber">RegistrationNumber:</label>
+            <input class="form-control" asp-for="RegistrationNumber" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Mileage">Mileage :</label>
+            <input class="form-control" asp-for="Mileage" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price">Price:</label>
+            <input class="form-control" asp-for="Price" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Body">Body:</label>
+            <input class="form-control" asp-for="Body" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Color">Color:</label>
+            <input class="form-control" asp-for="Color" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Transmission">Transmission:</label>
+            <input class="form-control" asp-for="Transmission" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Fuel">Fuel:</label>
+            <input class="form-control" asp-for="Fuel" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Horsepower">Horsepower:</label>
+            <input class="form-control" asp-for="Horsepower" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Lease">Lease:</label>
+            <input class="form-control checkbox-custom" asp-for="Lease" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Attributes">Attributes:</label>
+            <input class="form-control" asp-for="Attributes" />
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="Dealership">Dealership:</label>
+            <input class="form-control" asp-for="Dealership" />
+        </div>
+
+        <br />
+
+        <button class="btn btn-primary" type="submit">Lägg till ny bil</button>
+
+
+    </form>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
