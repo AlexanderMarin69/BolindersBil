@@ -13,7 +13,11 @@ body {
     background: #fff;
     color: #444;
     font-family: 'Open Sans', sans-serif;
+   
+
+
 }
+
 
 
 
@@ -79,7 +83,7 @@ a {
   h4,
   h5,
   h6 {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Cabin", sans-serif;
     font-weight: 400;
     margin: 0 0 20px 0;
     padding: 0;
@@ -1485,3 +1489,4 @@ a {
       padding: 100px 0 20px 0;
     }
   }
+
