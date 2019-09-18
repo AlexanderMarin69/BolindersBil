@@ -14,12 +14,11 @@
                       <label>Filtrera</label>
                       <br />
                       <div class="row">
-                          <div class="col-lg-3">Fordonstyp</div>
-                          <div class="col-lg-3">Märken</div>
-                          <div class="col-lg-3">Modeller</div>
-                          <div class="col-lg-3">Fritext</div>
+                          <div class="col-lg-3">Årsmodell - från</div>
+                          <div class="col-lg-3">Pris - från</div>
+                          <div class="col-lg-3">Mil - från</div>
+                          <div class="col-lg-3">Bränsle</div>
                       </div>
-                      <br />
                       <div class="row">
                           <div class="col-lg-3">
                               <select class="form-control">
@@ -62,6 +61,12 @@
                           </div>
                       </div>
                       <br />
+                      <div class="row">
+                          <div class="col-lg-3">Årsmodell - till</div>
+                          <div class="col-lg-3">Pris - till</div>
+                          <div class="col-lg-3">Mil - till</div>
+                          <div class="col-lg-3">Växellåda</div>
+                      </div>
                       <div class="row">
                           <div class="col-lg-3">
                               <select class="form-control">
@@ -112,147 +117,80 @@
                           </div>
                       </div>
                       <div class="row">
-                         <div class="col-lg-1">
-                             <div class="form-check">
-                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                 <label class="form-check-label" for="exampleCheck1">Alla</label>
-                                 <br />
-                                 <i class="fas fa-car"></i>
-                             </div>
+                          <div class="col-lg-1">
+                              <div class="form-check">
+                                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                  <label class="form-check-label" for="exampleCheck1">Alla</label>
+                                  <br />
+                                  <i class="fas fa-car"></i>
+                              </div>
                           </div>
-                         <div class="col-lg-1">
-                             <div class="form-check">
-                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                 <label class="form-check-label" for="exampleCheck1">Cab</label>
-                                 <br />
-                                 <i class="fas fa-car"></i>
-                             </div>
-                             
+                          <div class="col-lg-1">
+                              <div class="form-check">
+                                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                  <label class="form-check-label" for="exampleCheck1">Cab</label>
+                                  <br />
+                                  <i class="fas fa-car"></i>
+                              </div>
 
-                         </div>
-                         <div class="col-lg-1">
-                             <div class="form-check">
-                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                 <label class="form-check-label" for="exampleCheck1">Halvkombi</label>
-                                 <br />
-                                 <i class="fas fa-car"></i>
-                             </div>
-                             
-                         </div>
-                         <div class="col-lg-1">
-                             <div class="form-check">
-                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                 <label class="form-check-label" for="exampleCheck1">Kombi</label>
-                                 <br />
-                                 <i class="fas fa-car"></i>
-                             </div>
-                         </div>
-                         <div class="col-lg-1">
-                             <div class="form-check">
-                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                 <label class="form-check-label" for="exampleCheck1">Minibuss</label>
-                                 <br />
-                                 <i class="fas fa-car"></i>
-                             </div>
-                         </div>
-                         <div class="col-lg-1">
-                             <div class="form-check">
-                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                 <label class="form-check-label" for="exampleCheck1">SUV</label>
-                                 <br />
-                                 <i class="fas fa-car"></i>
-                             </div>
-                         </div>
-                         <div class="col-lg-1">
-                             <div class="form-check">
-                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                 <label class="form-check-label" for="exampleCheck1">Sedan</label>
-                                 <br />
-                                 <i class="fas fa-car"></i>
-                             </div>
-                         </div>
-                         <div class="col-lg-1">
-                             <div class="form-check">
-                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                 <label class="form-check-label" for="exampleCheck1">Sportkupe</label>
-                                 <br />
-                                 <i class="fas fa-car"></i>
-                             </div>
-                         </div>
+
+                          </div>
+                          <div class="col-lg-1">
+                              <div class="form-check">
+                                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                  <label class="form-check-label" for="exampleCheck1">Halvkombi</label>
+                                  <br />
+                                  <i class="fas fa-car"></i>
+                              </div>
+
+                          </div>
+                          <div class="col-lg-1">
+                              <div class="form-check">
+                                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                  <label class="form-check-label" for="exampleCheck1">Kombi</label>
+                                  <br />
+                                  <i class="fas fa-car"></i>
+                              </div>
+                          </div>
+                          <div class="col-lg-1">
+                              <div class="form-check">
+                                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                  <label class="form-check-label" for="exampleCheck1">Minibuss</label>
+                                  <br />
+                                  <i class="fas fa-car"></i>
+                              </div>
+                          </div>
+                          <div class="col-lg-1">
+                              <div class="form-check">
+                                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                  <label class="form-check-label" for="exampleCheck1">SUV</label>
+                                  <br />
+                                  <i class="fas fa-car"></i>
+                              </div>
+                          </div>
+                          <div class="col-lg-1">
+                              <div class="form-check">
+                                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                  <label class="form-check-label" for="exampleCheck1">Sedan</label>
+                                  <br />
+                                  <i class="fas fa-car"></i>
+                              </div>
+                          </div>
+                          <div class="col-lg-1">
+                              <div class="form-check">
+                                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                  <label class="form-check-label" for="exampleCheck1">Sportkupe</label>
+                                  <br />
+                                  <i class="fas fa-car"></i>
+                              </div>
+                          </div>
 
                       </div>
 
                       <br />
 
-                      <div class="row">
-                          <div class="col-lg-3">
-                              <select class="form-control">
-                                  <option>Default select</option>
-                                  <option>Second select</option>
-                                  <option>Third select</option>
-                                  <option>Fourth select</option>
-                              </select>
 
-                          </div>
-
-                          <div class="col-lg-3">
-                              <select class="form-control">
-                                  <option>Default select</option>
-                                  <option>Second select</option>
-                                  <option>Third select</option>
-                                  <option>Fourth select</option>
-                              </select>
-
-                          </div>
-
-                          <div class="col-lg-3">
-                              <select class="form-control">
-                                  <option>Default select</option>
-                                  <option>Second select</option>
-                                  <option>Third select</option>
-                                  <option>Fourth select</option>
-                              </select>
-
-                          </div>
-
-                          <div class="col-lg-3">
-                              <select class="form-control">
-                                  <option>Default select</option>
-                                  <option>Second select</option>
-                                  <option>Third select</option>
-                                  <option>Fourth select</option>
-                              </select>
-
-                          </div>
-                      </div>
-
-                      <br />
-
-                      <div class="row">
-                          <div class="col-lg-3">
-
-                              <select class="form-control">
-                                  <option>Default select</option>
-                                  <option>Second select</option>
-                                  <option>Third select</option>
-                                  <option>Fourth select</option>
-                              </select>
-
-                          </div>
-
-                          <div class="col-lg-10">
-
-                              
-                          </div>
-
-                          <div class="col-lg-2">
-
-                              <button class="btn btn-danger"> X - Rensa filter</button>
-                          </div>
-
-                      </div>
-                      <br />
-                      </div>
+                  </div>
                   <br />
 
 
