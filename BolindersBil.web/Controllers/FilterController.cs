@@ -12,5 +12,7 @@ namespace BolindersBil.web.Controllers
         {
             return View();
         }
+
+        
     }
 }

@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <Content Remove="Views\Shared\_Layout.cshtml" />
-    <Content Remove="Views\Shared\_ViewStart.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\_ViewStart.cshtml" />
+    <None Include="Views\Shared\_ViewStart.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
 
