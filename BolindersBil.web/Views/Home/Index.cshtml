@@ -1,4 +1,4 @@
-﻿
+﻿@model BolindersBil.web.ViewModels.VehicleListViewModel;
 @{
     ViewData["Title"] = "HomeView";
 }
@@ -18,17 +18,17 @@
 <section>
     @*<div class="container">
 
-        <div class="front-page-header-custom">
+            <div class="front-page-header-custom">
 
-            <div class="row">
-                <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12">
 
-                    <img src="~/img/volvo-front.jpg" class="custom-test-class">
+                        <img src="~/img/volvo-front.jpg" class="custom-test-class">
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </div>*@
+        </div>*@
 
 
 
@@ -50,8 +50,8 @@
             </div>
         </div>
 
-        
-       
+
+
     </div>
 
 
@@ -118,7 +118,7 @@
 
                 <div class="col-lg-3 col-md-4 col-xs-6">
                     <div class="client-logo">
-                        <img src="~/img/car-logos/Honda-logo-1920x1080.png"class="img-fluid" alt="">
+                        <img src="~/img/car-logos/Honda-logo-1920x1080.png" class="img-fluid" alt="">
                     </div>
                 </div>
 
@@ -148,7 +148,32 @@
 
 
     <br />
-    
+
+
+
+
+    <h2>Nyheter</h2>
+    <hr />
+
+
+    @if (Model.ArticlesResults != null)
+    {
+       
+
+        @foreach (var article in Model.ArticlesResults.Articles.Take(3))
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@article.Title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">@article.Author - <i><small>@article.PublishedAt</small></i></h6>
+                    <p class="card-text">@BolindersBil.web.Infrastructure.NewsApiExtension.ShortenString(article.Description, 50)...</p>
+                    <a href="@article.Url" target="_blank" class="card-link">Läs mer</a>
+                    <br />
+                </div>
+            </div>
+            <br />
+        }
+    }
 
 
 
@@ -156,10 +181,10 @@
         <div class="container">
             <header class="section-header">
                 <h3>Lager</h3>
-                
+
             </header>
 
-          
+
             <div class="row counters">
 
                 <div class="col-lg-4 col-6 text-center">
