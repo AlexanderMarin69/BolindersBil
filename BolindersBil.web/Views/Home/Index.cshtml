@@ -1,0 +1,24 @@
+﻿@model BolindersBil.web.ViewModels.VehicleListViewModel;
+
+<h2>Nyheter</h2>
+<hr />
+
+
+@if (Model.ArticlesResults != null)
+    {
+        <h3>Nyheter</h3>
+
+        @foreach (var article in Model.ArticlesResults.Articles.Take(3))
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@article.Title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">@article.Author - <i><small>@article.PublishedAt</small></i></h6>
+                    <p class="card-text">@BolindersBil.web.Infrastructure.NewsApiExtension.ShortenString(article.Description, 50)...</p>
+                    <a href="@article.Url" target="_blank" class="card-link">Läs mer</a>
+                    <br />
+                </div>
+            </div>
+            <br />
+        }
+    }
