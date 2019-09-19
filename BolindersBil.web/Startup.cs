@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using BolindersBil.web.DB;
+using BolindersBil.web.Infrastructure;
 
 namespace BolindersBil.web
 {
@@ -39,6 +40,8 @@ namespace BolindersBil.web
                    options.UseSqlServer(
                        Configuration.GetConnectionString("BolindersBilDatabaseContextConnection")));
 
+            //add services for Dependency Injection - Florin!!
+            services.AddSingleton<NewsHelper>(); 
 
             services.AddMvc();
         }
