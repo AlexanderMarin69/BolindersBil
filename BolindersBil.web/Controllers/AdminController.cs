@@ -4,21 +4,26 @@ using System.Linq;
 using System.Threading.Tasks;
 using BolindersBil.web.DB;
 using BolindersBil.web.Models;
+using BolindersBil.web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BolindersBil.web.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly BolindersBilDatabaseContext _context;
+        private readonly BolindersBilDatabaseContext ctx;
         public AdminController(BolindersBilDatabaseContext context)
         {
-            _context = context;
+            ctx = context;
 
         }
         public IActionResult Index()
         {
-            return View();
+           
+
+
+          return View();
+
         }
         [HttpPost]
         public async Task<IActionResult> Index(Vehicle car)
@@ -27,8 +32,8 @@ namespace BolindersBil.web.Controllers
             if (ModelState.IsValid)
             {
 
-                _context.Vehicle.Add(car);
-                await _context.SaveChangesAsync();
+                ctx.Vehicle.Add(car);
+                await ctx.SaveChangesAsync();
 
             }
 
