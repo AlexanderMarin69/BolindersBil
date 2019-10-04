@@ -19,7 +19,7 @@ namespace BolindersBil.web.Controllers
 
 
         [HttpPost]
-        public IActionResult Contact(ContactViewModel contactViewModel)
+        public IActionResult SendForm(ContactViewModel contactViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -43,12 +43,12 @@ namespace BolindersBil.web.Controllers
 
                     //configure the email
                     //    using (var emailClient = new SmtpClient())
-                    //    {
-                    //        emailClient.Connect("smtp.gmail.com", 587, false);
-                    //        emailClient.Authenticate("emailadress@gmail.com", "password");
-                    //        emailClient.Send(message);
-                    //        emailClient.Disconnect(true);
-                    //    }
+                    //{
+                    //    emailClient.Connect("smtp.gmail.com", 587, false);
+                    //    emailClient.Authenticate("emailadress@gmail.com", "password");
+                    //    emailClient.Send(message);
+                    //    emailClient.Disconnect(true);
+                    //}
                 }
                 catch (Exception ex)
                 {
