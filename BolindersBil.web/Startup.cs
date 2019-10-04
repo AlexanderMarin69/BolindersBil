@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using BolindersBil.web.DB;
 using BolindersBil.web.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 
 namespace BolindersBil.web
 {
@@ -36,18 +37,33 @@ namespace BolindersBil.web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            var conn = Configuration.GetConnectionString("BolindersBilDatabaseContextConnection");
+
+            services.AddDbContext<BolindersBilDatabaseContext>(options => options.UseSqlServer(conn));
+
             services.AddDbContext<BolindersBilDatabaseContext>(options =>
-                   options.UseSqlServer(
-                       Configuration.GetConnectionString("BolindersBilDatabaseContextConnection")));
+                   options.UseSqlServer(conn));
+
+            services.AddIdentity<IdentityUser, IdentityRole>().
+                AddEntityFrameworkStores<BolindersBilDatabaseContext>().
+                AddDefaultTokenProviders();
+
+            
 
             //add services for Dependency Injection - Florin!!
-            services.AddSingleton<NewsHelper>(); 
+            services.AddSingleton<NewsHelper>();
+
+            services.AddTransient<IIdentitySeeder, IdentitySeeder>();
 
             services.AddMvc();
         }
 
+        
+
+
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IIdentitySeeder identitySeeder)
         {
             if (env.IsDevelopment())
             {
@@ -61,6 +77,9 @@ namespace BolindersBil.web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseAuthentication();
+            app.UseIdentity();
+            //AuthAppBuilderExtensions.UseAuthentication(app);
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>
@@ -69,6 +88,10 @@ namespace BolindersBil.web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            identitySeeder.CreateAdminAccountIFEmpty();
+
+            
         }
     }
 }

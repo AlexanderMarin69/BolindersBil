@@ -42,10 +42,23 @@ body {
 }
 
 
+.custom-car-info-super-container {
+    border: 1px solid #e1dada;
+    padding: 10px;
+}
 
+.custom-login-container {
+    border: 1px solid #eee6e6;
+    border-radius: 4px;
+    padding: 20px;
+}
 
-
-
+.custom-form-style-login {
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 24px;
+}
 
 
 

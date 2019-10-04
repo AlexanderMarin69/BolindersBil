@@ -11,6 +11,8 @@ namespace BolindersBil.web.Controllers
     public class HomeController : Controller
     {
         private readonly NewsHelper _newsHelper;
+
+       
         public HomeController(NewsHelper newsHelper)
         {
             _newsHelper = newsHelper;
