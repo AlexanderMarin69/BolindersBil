@@ -26,5 +26,18 @@ namespace BolindersBil.web.Controllers
 
             return View(vm);
         }
+
+        public IActionResult Error(int? statusCode = null)
+        {
+            if (statusCode.HasValue)
+            {
+                if (statusCode.Value == 404)
+                {
+                    var viewName = statusCode.Value.ToString();
+                    return View(viewName);
+                }
+            }
+            return View();
+        }
     }
 }
