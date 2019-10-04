@@ -20,17 +20,20 @@ namespace BolindersBil.web.DB
             _userManager = userManager;
         }
       
-        public async Task<bool> CreateAdminAccountIFEmpty()
+        public bool CreateAdminAccountIFEmpty()
         {
             if (!_context.Users.Any(u => u.UserName == _admin))
             {
-                await _userManager.CreateAsync(new IdentityUser
+               var result =  _userManager.CreateAsync(new IdentityUser
                 {
                     UserName = _admin,
                     Email = "admin@example.com",
                     EmailConfirmed = true
                 }, _password);
+                var test = result.Status;
             }
+
+            
 
             return true;
         }

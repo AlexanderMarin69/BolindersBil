@@ -7,6 +7,6 @@ namespace BolindersBil.web.DB
 {
     public interface IIdentitySeeder
     {
-        Task<bool> CreateAdminAccountIFEmpty();
+        bool CreateAdminAccountIFEmpty();
     }
 }

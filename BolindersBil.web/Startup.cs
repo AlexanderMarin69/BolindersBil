@@ -48,7 +48,14 @@ namespace BolindersBil.web
                 AddEntityFrameworkStores<BolindersBilDatabaseContext>().
                 AddDefaultTokenProviders();
 
-            
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 3;
+            });
 
             //add services for Dependency Injection - Florin!!
             services.AddSingleton<NewsHelper>();
@@ -78,7 +85,7 @@ namespace BolindersBil.web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
-            app.UseIdentity();
+           
             //AuthAppBuilderExtensions.UseAuthentication(app);
             app.UseCookiePolicy();
 
