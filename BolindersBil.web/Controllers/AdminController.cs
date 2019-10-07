@@ -42,7 +42,7 @@ namespace BolindersBil.web.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateNewCar(CreateCarViewModel vm)
         {
-
+            
             if (ModelState.IsValid)
             {
                 vm.Vehicle.DateAdded = DateTime.Now;

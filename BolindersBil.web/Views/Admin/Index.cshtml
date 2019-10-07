@@ -23,76 +23,81 @@
 
 
         <div class="form-group">
-            <label asp-for="Model">Model:</label>
-            <input class="form-control" asp-for="Model" />
+            <label asp-for="Vehicle.Model">Model:</label>
+            <input class="form-control" asp-for="Vehicle.Model" />
         </div>
 
         <div class="form-group">
-            <label asp-for="ModelDescription">ModelDescription:</label>
-            <input class="form-control" asp-for="ModelDescription" />
+            <label asp-for="Vehicle.ModelDescription">ModelDescription:</label>
+            <input class="form-control" asp-for="Vehicle.ModelDescription" />
         </div>
 
         <div class="form-group">
-            <label asp-for="RegistrationNumber">RegistrationNumber:</label>
-            <input class="form-control" asp-for="RegistrationNumber" />
+            <label asp-for="Vehicle.RegistrationNumber">RegistrationNumber:</label>
+            <input class="form-control" asp-for="Vehicle.RegistrationNumber" />
         </div>
 
         <div class="form-group">
-            <label asp-for="Brand">Brand:</label>
+            <label asp-for="Vehicle.Year">Year:</label>
+            <input asp-items="Model.Year" asp-for="Vehicle.Year" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Vehicle.Brand">Brand:</label>
             <select asp-items="Model.Brands" asp-for="Vehicle.BrandId"></select>
         </div>
 
         <div class="form-group">
-            <label asp-for="Mileage">Mileage :</label>
-            <input class="form-control" asp-for="Mileage" />
+            <label asp-for="Vehicle.Mileage">Mileage :</label>
+            <input class="form-control" asp-for="Vehicle.Mileage" />
         </div>
 
         <div class="form-group">
-            <label asp-for="Price">Price:</label>
-            <input class="form-control" asp-for="Price" />
+            <label asp-for="Vehicle.Price">Price:</label>
+            <input class="form-control" asp-for="Vehicle.Price" />
         </div>
 
         <div class="form-group">
-            <label asp-for="Body">Body:</label>
-            <input class="form-control" asp-for="Body" />
+            <label asp-for="Vehicle.Body">Body:</label>
+            <input class="form-control" asp-for="Vehicle.Body" />
         </div>
 
         <div class="form-group">
-            <label asp-for="Color">Color:</label>
-            <input class="form-control" asp-for="Color" />
+            <label asp-for="Vehicle.Color">Color:</label>
+            <input class="form-control" asp-for="Vehicle.Color" />
         </div>
 
         <div class="form-group">
-            <label asp-for="Transmission">Transmission:</label>
-            <input class="form-control" asp-for="Transmission" />
+            <label asp-for="Vehicle.Transmission">Transmission:</label>
+            <input class="form-control" asp-for="Vehicle.Transmission" />
         </div>
 
         <div class="form-group">
-            <label asp-for="Fuel">Fuel:</label>
-            <input class="form-control" asp-for="Fuel" />
+            <label asp-for="Vehicle.Fuel">Fuel:</label>
+            <input class="form-control" asp-for="Vehicle.Fuel" />
         </div>
 
         <div class="form-group">
-            <label asp-for="Horsepower">Horsepower:</label>
-            <input class="form-control" asp-for="Horsepower" />
+            <label asp-for="Vehicle.Horsepower">Horsepower:</label>
+            <input class="form-control" asp-for="Vehicle.Horsepower" />
         </div>
 
         <div class="form-group">
-            <label asp-for="Lease">Lease:</label>
-            <input class="form-control checkbox-custom" asp-for="Lease" />
+            <label asp-for="Vehicle.Lease">Lease:</label>
+            <input class="form-control checkbox-custom" asp-for="Vehicle.Lease" />
         </div>
 
         <div class="form-group">
-            <label asp-for="Attributes">Attributes:</label>
-            <input class="form-control" asp-for="Attributes" />
+            <label asp-for="Vehicle.Attributes">Attributes:</label>
+            <input class="form-control" asp-for="Vehicle.Attributes" />
         </div>
 
 
         <div class="form-group">
-            <label asp-for="Dealership">Dealership:</label>
+            <label asp-for="Vehicle.Dealership">Dealership:</label>
             <select asp-items="Model.Dealerships" asp-for="Vehicle.DealerShipId"></select>
         </div>
-     
+
 
 
         @*<div class="form-group">
