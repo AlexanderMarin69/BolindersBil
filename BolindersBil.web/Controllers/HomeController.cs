@@ -22,7 +22,7 @@ namespace BolindersBil.web.Controllers
         {
             // Florin: force an exception here of type 500
             //if we change i = 0, we'll have an exception of type 500. See error.html static file
-            int i = 0;
+            int i = 1;
             try
             {
                 var value = 5 / i;
