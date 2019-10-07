@@ -30,13 +30,10 @@ namespace BolindersBil.web.DB
                     Email = "admin@example.com",
                     EmailConfirmed = true
                 }, _password);
+
                 var test = result.Status;
             }
-
-            
-
             return true;
         }
-
     }
 }
