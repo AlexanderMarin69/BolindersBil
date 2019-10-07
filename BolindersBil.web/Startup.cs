@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using BolindersBil.web.DB;
 using BolindersBil.web.Infrastructure;
 using Microsoft.AspNetCore.Identity;
+using BolindersBil.web.Repositories;
 
 namespace BolindersBil.web
 {
@@ -37,6 +38,8 @@ namespace BolindersBil.web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+          
+
             var conn = Configuration.GetConnectionString("BolindersBilDatabaseContextConnection");
 
             services.AddDbContext<BolindersBilDatabaseContext>(options => options.UseSqlServer(conn));
@@ -59,6 +62,8 @@ namespace BolindersBil.web
 
             //add services for Dependency Injection - Florin!!
             services.AddSingleton<NewsHelper>();
+
+            services.AddTransient<IVehicleRepository, VehicleRepository>();
 
             services.AddTransient<IIdentitySeeder, IdentitySeeder>();
 
@@ -100,7 +105,7 @@ namespace BolindersBil.web
 
             identitySeeder.CreateAdminAccountIFEmpty();
 
-            
+
         }
     }
 }

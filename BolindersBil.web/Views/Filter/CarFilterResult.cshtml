@@ -1,0 +1,12 @@
+﻿@model VehicleResultsViewModel
+
+@{
+    ViewData["Title"] = "CarFilterResult";
+}
+
+
+@foreach (var v in Model.Vehicles)
+{
+    <partial name="CarResultBlock" model="v"/>
+}
+

@@ -1,4 +1,4 @@
-﻿@model BolindersBil.web.Models.Vehicle;
+﻿@model BolindersBil.web.ViewModels.CreateCarViewModel;
 
 
 @*@{
@@ -16,7 +16,7 @@
 
 
 <div class="addnewcar-custom-design">
-    <form asp-action="Index" method="post">
+    <form asp-action="CreateNewCar" asp-controller="admin" method="post">
 
         <div asp-validation-summary="All"></div>
 
@@ -39,11 +39,8 @@
 
         <div class="form-group">
             <label asp-for="Brand">Brand:</label>
-            <input class="form-control" asp-for="Brand" />
+            <select asp-items="Model.Brands" asp-for="Vehicle.BrandId"></select>
         </div>
-
-      
-      
 
         <div class="form-group">
             <label asp-for="Mileage">Mileage :</label>
@@ -93,8 +90,10 @@
 
         <div class="form-group">
             <label asp-for="Dealership">Dealership:</label>
-            <input class="form-control" asp-for="Dealership" />
+            <select asp-items="Model.Dealerships" asp-for="Vehicle.DealerShipId"></select>
         </div>
+     
+
 
         @*<div class="form-group">
             <label asp-for="FileUpload">FileUpload:</label>

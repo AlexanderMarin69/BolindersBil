@@ -4,14 +4,16 @@ using BolindersBil.web.DB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BolindersBil.web.Migrations
 {
     [DbContext(typeof(BolindersBilDatabaseContext))]
-    partial class BolindersBilDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20191007101214_efdgsdfghsdfg")]
+    partial class efdgsdfghsdfg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
