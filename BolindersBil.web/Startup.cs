@@ -38,7 +38,7 @@ namespace BolindersBil.web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-          
+
 
             var conn = Configuration.GetConnectionString("BolindersBilDatabaseContextConnection");
 
@@ -70,7 +70,7 @@ namespace BolindersBil.web
             services.AddMvc();
         }
 
-        
+
 
 
 
@@ -92,12 +92,20 @@ namespace BolindersBil.web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
-           
+
             //AuthAppBuilderExtensions.UseAuthentication(app);
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>
             {
+
+                //routes.MapRoute(
+                //name: "carResultsRoute",
+                //template: "{controller=Filter}/{action=CarPage}/{id?}" /*,*/
+                ///*defaults: new { Controller = "Filter", action = "CarPage" */);
+
+
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

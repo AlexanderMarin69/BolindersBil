@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BolindersBil.web.DB;
+using BolindersBil.web.Models;
 using BolindersBil.web.Repositories;
 using BolindersBil.web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -34,7 +35,16 @@ namespace BolindersBil.web.Controllers
 
             return View(vm);
         }
-        
+
+        [Route("Filter/CarPage/{id:int}")]
+        public IActionResult CarPage(int id)
+        {
+            var carElement = _context.Vehicles.FirstOrDefault(x => x.Id.Equals(id));
+           
+
+            return View(carElement);
+        }
+
     }
 }
 

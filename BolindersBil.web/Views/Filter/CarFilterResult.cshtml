@@ -7,33 +7,8 @@
 
 @foreach (var v in Model.Vehicles)
 {
-    @*<partial name="CarResultBlock" model="v"/>*@
+    <partial name="_CarResultBlock" model="v"/>
 
-    <div class="container car-result-custom-container">
-        <div class="row">
-            <div class="col-lg-3"><img src="~/img/CarResultPlaceholderImage.jpg" height="160" width="200" alt="Alternate Text" /></div>
-            <div class="col-lg-4">
-                <div class="custom-car-result-heading">@v.Brand</div>
-
-                <br />
-
-                <div class="custom-car-result-subheading"> @($"{v.Year} - {v.Mileage} - {v.Dealership}")</div>
-                <br />
-                <br />
-                <br />
-
-
-
-                <div class="custom-car-result-heading">@v.Price</div>
-                <br />
-                <div class="custom-car-result-subheading">
-                    535 200 kr exkl. moms
-                </div>
-            </div>
-
-
-
-        </div>
-    </div>
+    
 }
 
