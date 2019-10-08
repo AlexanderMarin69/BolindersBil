@@ -55,7 +55,7 @@ namespace BolindersBil.web.Controllers
             }
             else
             {
-                 return View(vm);
+                 return View("index", vm);
             }
            
         }
