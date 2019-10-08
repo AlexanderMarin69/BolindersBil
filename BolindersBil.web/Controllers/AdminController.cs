@@ -46,6 +46,7 @@ namespace BolindersBil.web.Controllers
             if (ModelState.IsValid)
             {
                 vm.Vehicle.DateAdded = DateTime.Now;
+
                 ctx.Vehicles.Add(vm.Vehicle);
 
                 await ctx.SaveChangesAsync();
