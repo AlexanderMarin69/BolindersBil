@@ -51,13 +51,28 @@ namespace BolindersBil.web.Controllers
 
                 await ctx.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-
             }
             else
             {
-                 return View(vm);
+                var vm1 = new CreateCarViewModel
+                {
+                    Vehicle = new Vehicle(),
+
+                    Brands = ctx.Brands.Select(x => new SelectListItem
+                    {
+                        Text = x.Name,
+                        Value = x.Id.ToString()
+                    }),
+
+                    Dealerships = ctx.Dealerships.Select(x => new SelectListItem
+                    {
+                        Text = x.City,
+                        Value = x.Id.ToString(),
+                    })
+                };
+
+                return View("index", vm1);
             }
-           
         }
     }
 }
