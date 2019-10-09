@@ -16,18 +16,13 @@
 
 
 <div class="addnewcar-custom-design">
-    <form asp-action="CreateNewCar" asp-controller="admin" method="post">
+    <form asp-action="CreateNewCar" asp-controller="Admin" method="post">
 
         <div asp-validation-summary="All"></div>
 
         <div class="form-group">
             <label asp-for="Vehicle.Model">Model:</label>
             <input class="form-control" asp-for="Vehicle.Model" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Vehicle.ModelDescription">ModelDescription:</label>
-            <input class="form-control" asp-for="Vehicle.ModelDescription" />
         </div>
 
         <div class="form-group">
@@ -38,6 +33,11 @@
         <div class="form-group">
             <label asp-for="Vehicle.Year">Year:</label>
             <input asp-items="Model.Year" asp-for="Vehicle.Year" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Vehicle.Body">Body:</label>
+            <select asp-items="Model.Bodies" asp-for="Vehicle.BodyId"></select>
         </div>
 
         <div class="form-group">
@@ -55,10 +55,10 @@
             <input class="form-control" asp-for="Vehicle.Price" />
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             <label asp-for="Vehicle.Body">Body:</label>
             <input class="form-control" asp-for="Vehicle.Body" />
-        </div>
+        </div>*@
 
         <div class="form-group">
             <label asp-for="Vehicle.Color">Color:</label>
@@ -99,9 +99,9 @@
 
 
         @*<div class="form-group">
-                <label asp-for="FileUpload">FileUpload:</label>
-                <input class="form-control" asp-for="FileUpload" />
-            </div>*@
+            <label asp-for="FileUpload">FileUpload:</label>
+            <input class="form-control" asp-for="FileUpload" />
+        </div>*@
 
 
         <label for="FileUpload">Upload Image:</label>

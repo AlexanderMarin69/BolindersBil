@@ -32,7 +32,8 @@ namespace BolindersBil.web.Controllers
         // Florin implemented - ok
         public IActionResult Index()
         {
-            return View(nameof(Index), repo.Vehicles);
+            var vm = repo.Vehicles;
+            return View(nameof(Index), vm);
         }
 
 
@@ -109,7 +110,13 @@ namespace BolindersBil.web.Controllers
                     Value = x.Id.ToString()
                 }),
 
-                 Dealerships = ctx.Dealerships.Select(x => new SelectListItem
+                Bodies = ctx.Bodies.Select(x => new SelectListItem
+                {
+                    Text = x.BodyName,
+                    Value = x.Id.ToString()
+                }),
+
+                Dealerships = ctx.Dealerships.Select(x => new SelectListItem
                  {
                      Text = x.City,
                      Value = x.Id.ToString(),
@@ -142,6 +149,12 @@ namespace BolindersBil.web.Controllers
                     Brands = ctx.Brands.Select(x => new SelectListItem
                     {
                         Text = x.Name,
+                        Value = x.Id.ToString()
+                    }),
+
+                    Bodies = ctx.Bodies.Select(x => new SelectListItem
+                    {
+                        Text = x.BodyName,
                         Value = x.Id.ToString()
                     }),
 
