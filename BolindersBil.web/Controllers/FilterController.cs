@@ -22,7 +22,7 @@ namespace BolindersBil.web.Controllers
         {
             _context = context;
         }
-
+  
         public IActionResult Index()
         {
             return View();
@@ -36,7 +36,7 @@ namespace BolindersBil.web.Controllers
             return View(vm);
         }
 
-        [Route("Filter/CarPage/{id:int}")]
+        //[Route("Filter/CarPage/{id:int}")]
         public IActionResult CarPage(int id)
         {
             var carElement = _context.Vehicles.FirstOrDefault(x => x.Id.Equals(id));

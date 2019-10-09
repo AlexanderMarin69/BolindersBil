@@ -1,9 +1,9 @@
 ﻿@model Vehicle
 
 
-@*<a asp-controller="Filter" asp-action="CarPage" asp-route-id="@Model.Id" >*@
+<a asp-controller="Filter" asp-action="CarPage" asp-route-id="@Model.Id" >
 
-<form asp-controller="Filter" asp-action="CarPage" asp-route-id="@Model.Id" >
+@*<form asp-controller="Filter" asp-action="CarPage" asp-route-id="@Model.Id" >*@
     <div class="container car-result-custom-container">
         <div class="row">
             <div class="col-lg-3"><img src="~/img/CarResultPlaceholderImage.jpg" height="160" width="200" alt="Alternate Text" /></div>
@@ -31,6 +31,6 @@
         </div>
     </div>
 
-    <button type="submit" >skicka</button>
-</form>
-@*</a>*@
+    @*<button type="submit" >skicka</button>*@
+@*</form>*@
+</a>

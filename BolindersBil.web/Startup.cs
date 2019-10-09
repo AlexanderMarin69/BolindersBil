@@ -99,16 +99,18 @@ namespace BolindersBil.web
             app.UseMvc(routes =>
             {
 
-                //routes.MapRoute(
-                //name: "carResultsRoute",
-                //template: "{controller=Filter}/{action=CarPage}/{id?}" /*,*/
-                ///*defaults: new { Controller = "Filter", action = "CarPage" */);
-
-
 
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                name: "carResultsRoute",
+                template: "{controller=Filter}/{action=CarPage}/{id:int?}");
+                
+
+
+
             });
 
             identitySeeder.CreateAdminAccountIFEmpty();
