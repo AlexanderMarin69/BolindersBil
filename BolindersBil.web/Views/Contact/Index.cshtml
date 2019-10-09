@@ -152,14 +152,14 @@
 
             <div class="panel-body" style="align-content: center;">
                 <h4>Fyll i kontakt formuläret!</h4>
-                <form @*asp-action="SendForm"*@ method="post">
+                <form asp-action="SendForm" method="post">
                     <div asp-validation-summary="All"></div>
                     <div class="form-group">
-                        <label asp-for="Name">Namn: </label>
+                        <label asp-for="Name">Namn:* </label>
                         <input class="form-control" asp-for="Name" required />
                     </div>
                     <div class="form-group">
-                        <label asp-for="Email">Email: </label>
+                        <label asp-for="Email">Email:* </label>
                         <input class="form-control" asp-for="Email" required />
                     </div>
                     <div class="form-group">
@@ -167,11 +167,11 @@
                         <input class="form-control" asp-for="PhoneNumber" />
                     </div>
                     <div class="form-group">
-                        <label asp-for="Title">Ärende: </label>
+                        <label asp-for="Title">Ärende:* </label>
                         <input class="form-control" asp-for="Title" required />
                     </div>
                     <div class="form-group">
-                        <label asp-for="Message">Meddelande: </label>
+                        <label asp-for="Message">Meddelande:* </label>
                         <input class="form-control" asp-for="Message" required />
                     </div>
 

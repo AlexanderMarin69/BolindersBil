@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mail;
+//using System.Net.Mail;
 using System.Threading.Tasks;
 using BolindersBil.web.ViewModels;
+using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
 using MimeKit.Text;
@@ -21,42 +22,34 @@ namespace BolindersBil.web.Controllers
         [HttpPost]
         public IActionResult SendForm(ContactViewModel contactViewModel)
         {
-            if (ModelState.IsValid)
+            //här ska jag få med namn, tele nr och meddelande.
+            var theBody = $"<strong>Namn: </strong> {contactViewModel.Name} <br> " +
+                $"<strong>Telefonnummer: </strong> {contactViewModel.PhoneNumber} <br> " +
+                $"<strong>Meddelande: </strong> { contactViewModel.Message}";
+
+            var message = new MimeMessage
             {
-                try
-                {
-                    
-                    //instansiate new MimeMessage
-                    var message = new MimeMessage();
-                    //setting to email adress
-                    message.To.Add(new MailboxAddress("Bolinders Bil", contactViewModel.DealerShipMail));
-                    //setting the from email adress
-                    message.From.Add(new MailboxAddress(contactViewModel.Name, contactViewModel.Email));
-                    //E-mail subject
-                    message.Subject = contactViewModel.Title;
-                    //email message body
-                    message.Body = new TextPart(TextFormat.Html)
-                    {
-                        Text = contactViewModel.Message + " Message was sent by: " + contactViewModel.Name + " E-mail: " + contactViewModel.Email
-                    };
+                //Sender = new MailboxAddress(contactViewModel.Email),
+                Subject = contactViewModel.Title,
+                //här använder jag min theBody variabel för meddelandet med namn, nummer och meddelande. Samt contenttransferEncodig som gör att t.ex åäö kan användas i mailet.
+                Body = new TextPart(TextFormat.Html) { Text = theBody, ContentTransferEncoding = ContentEncoding.QuotedPrintable  }
+
+            };
 
 
-                    //configure the email
-                    //    using (var emailClient = new SmtpClient())
-                    //{
-                    //    emailClient.Connect("smtp.gmail.com", 587, false);
-                    //    emailClient.Authenticate("emailadress@gmail.com", "password");
-                    //    emailClient.Send(message);
-                    //    emailClient.Disconnect(true);
-                    //}
-                }
-                catch (Exception ex)
-                {
-                    ModelState.Clear();
-                    ViewBag.Message = $" Oops! we have a problem here {ex.Message}";
-                }
+            message.From.Add(new MailboxAddress(contactViewModel.Email));
+            message.To.Add(new MailboxAddress(contactViewModel.DealerShipMail));
+            
+            using (var client = new SmtpClient())
+            {
+                client.Connect("localhost", 25, false);
+                client.Send(message);
+                client.Disconnect(true);
             }
-            return View();
+            //när man klickar på skicka knappen så returnernar den index filen i -/view/contacts/index.cshtml
+            return View("Index");
+
         }
+        
     }
 }
