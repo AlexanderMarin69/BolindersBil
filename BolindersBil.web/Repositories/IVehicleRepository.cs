@@ -9,5 +9,11 @@ namespace BolindersBil.web.Repositories
     public interface IVehicleRepository
     {
         IEnumerable<Vehicle> Vehicles { get; }
+
+        // Florin implemented - ok
+        void SaveVehicle(Vehicle v);
+
+        // Florin implemented - ok
+        Vehicle DeleteVehicle(int vehicleId);
     }
 }

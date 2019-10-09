@@ -1,14 +1,14 @@
-﻿@model BolindersBil.web.ViewModels.CreateCarViewModel;
+﻿@model BolindersBil.web.ViewModels.CreateCarViewModel
 
 
-@*@{
+@{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-}*@
+}
 
 <h1>Index</h1>
 <br />
 
-<button class="btn btn-primary">Lägg till bil +</button>
+<button class="btn btn-primary">Lägg till bil</button>
 <hr />
 
 
@@ -19,8 +19,6 @@
     <form asp-action="CreateNewCar" asp-controller="admin" method="post">
 
         <div asp-validation-summary="All"></div>
-
-
 
         <div class="form-group">
             <label asp-for="Vehicle.Model">Model:</label>
