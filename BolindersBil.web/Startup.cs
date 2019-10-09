@@ -9,6 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using BolindersBil.web.DB;
+using BolindersBil.web.Infrastructure;
+using Microsoft.AspNetCore.Identity;
+using BolindersBil.web.Repositories;
 
 namespace BolindersBil.web
 {
@@ -35,37 +38,84 @@ namespace BolindersBil.web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<BolindersBilDatabaseContext>(options =>
-                   options.UseSqlServer(
-                       Configuration.GetConnectionString("BolindersBilDatabaseContextConnection")));
 
+
+            var conn = Configuration.GetConnectionString("BolindersBilDatabaseContextConnection");
+
+            services.AddDbContext<BolindersBilDatabaseContext>(options => options.UseSqlServer(conn));
+
+            services.AddDbContext<BolindersBilDatabaseContext>(options =>
+                   options.UseSqlServer(conn));
+
+            services.AddIdentity<IdentityUser, IdentityRole>().
+                AddEntityFrameworkStores<BolindersBilDatabaseContext>().
+                AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 3;
+            });
+
+            //add services for Dependency Injection - Florin!!
+            services.AddSingleton<NewsHelper>();
+
+            services.AddTransient<IVehicleRepository, VehicleRepository>();
+
+            services.AddTransient<IIdentitySeeder, IdentitySeeder>();
 
             services.AddMvc();
         }
 
+
+
+
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IIdentitySeeder identitySeeder)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseStatusCodePages(); // felhantering implementation Florin
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/error.html");
+                app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseAuthentication();
+
+            //AuthAppBuilderExtensions.UseAuthentication(app);
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>
             {
+
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                name: "carResultsRoute",
+                template: "{controller=Filter}/{action=CarPage}/{id:int?}");
+                
+
+
+
             });
+
+            identitySeeder.CreateAdminAccountIFEmpty();
+
+
         }
     }
 }

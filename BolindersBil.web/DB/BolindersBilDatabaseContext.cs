@@ -1,9 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BolindersBil.web.DB;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System;
 
 namespace BolindersBil.web.DB
 {
-    public class BolindersBilDatabaseContext : DbContext
+    public class BolindersBilDatabaseContext : IdentityDbContext<IdentityUser>
     {
   
         public BolindersBilDatabaseContext(DbContextOptions<BolindersBilDatabaseContext> options)
@@ -19,10 +24,11 @@ namespace BolindersBil.web.DB
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<BolindersBil.web.Models.Vehicle> Brand { get; set; }
-        public DbSet<BolindersBil.web.Models.Dealership> Dealership { get; set; }
-        public DbSet<BolindersBil.web.Models.FileUpload> FileUpload { get; set; }
-        public DbSet<BolindersBil.web.Models.Vehicle> Vehicle { get; set; }
+        public DbSet<BolindersBil.web.Models.Brand> Brands { get; set; }
+        public DbSet<BolindersBil.web.Models.Dealership> Dealerships { get; set; }
+        public DbSet<BolindersBil.web.Models.FileUpload> FileUploads { get; set; }
+        public DbSet<BolindersBil.web.Models.Vehicle> Vehicles { get; set; }
+        
     }
 }
 
