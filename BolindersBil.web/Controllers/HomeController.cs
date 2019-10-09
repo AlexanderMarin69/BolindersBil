@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using BolindersBil.web.Infrastructure;
 using BolindersBil.web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BolindersBil.web.Controllers
@@ -11,33 +13,28 @@ namespace BolindersBil.web.Controllers
     public class HomeController : Controller
     {
         private readonly NewsHelper _newsHelper;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-       
-        public HomeController(NewsHelper newsHelper)
+        public HomeController(NewsHelper newsHelper, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _newsHelper = newsHelper;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
-            // Florin: force an exception here of type 500
-            //if we change i = 0, we'll have an exception of type 500. See error.html static file
-            int i = 1;
-            try
-            {
-                var value = 5 / i;
-            }
-            catch (Exception ex)
-            {
-                //TODO: Log this error for easier bug hunt
-                throw ex;
-            }
+            
+                var response = _newsHelper.GetNews();
+                var vm = new HomeViewModel();
+                vm.ArticlesResults = response;
 
-            var response = _newsHelper.GetNews();
-            var vm = new VehicleListViewModel();
-            vm.ArticlesResults = response;
+                return View("Index", vm);
+           
 
-            return View(vm);
+            
         }
 
         public IActionResult Error(int? statusCode = null)
@@ -51,6 +48,30 @@ namespace BolindersBil.web.Controllers
                 }
             }
             return View();
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(HomeViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(vm.UserName);
+                if (user != null)
+                {
+                    await _signInManager.SignOutAsync();
+                    if ((await _signInManager.PasswordSignInAsync(user, vm.Password, false, false)).Succeeded)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+            return View("Index");
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

@@ -42,7 +42,7 @@ namespace BolindersBil.web.Controllers
             
             using (var client = new SmtpClient())
             {
-                client.Connect("localhost", 25, false);
+                client.Connect("localhost", 2525, false);
                 client.Send(message);
                 client.Disconnect(true);
             }

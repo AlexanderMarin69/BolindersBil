@@ -30,21 +30,22 @@
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
                 <a href="#intro" class="scrollto">
-                    <div class="custom-logo-style">Bolinders Bil AB</div></a>
+                    <div class="custom-logo-style">Bolinders Bil AB</div>
+                </a>
             </div>
 
-            
+
 
             <nav class="main-nav float-right d-none d-lg-block">
                 <ul>
 
-                    <li><a href="Filter/index"><div class="custom-navlink-style">Nya bilar</div></a></li>
-                    <li><a href="Filter/index"><div class="custom-navlink-style">Begagnade bilar</div></a></li>
-                    <li><a href="Filter/index"><div class="custom-navlink-style">Kontakt</div></a></li>
-                    <li><input class="form-control" type="text" placeholder="Sök bil här..." /></li>
-                </ul>
-            </nav><!-- .main-nav -->
-
+                    <li><a asp-controller="´Filter" asp-action="Index"><div class="custom-navlink-style">Nya bilar</div></a></li>
+                    <li><a asp-controller="Filter" asp-action="Index"><div class="custom-navlink-style">Begagnade bilar</div></a></li>
+                    @*<li><a href="Contact/index"><div class="custom-navlink-style">Kontakt</div></a></li>*@
+                    <li><a asp-controller="Contact" asp-action="Index"> <div class="custom-navlink-style">Kontakt</div></a></li>
+        <li><input class="form-control" type="text" placeholder="Sök bil här..." /></li>
+        </ul>
+        </nav><!-- .main-nav -->
         </div>
     </header><!-- #header -->
     <div class="container body-content">
