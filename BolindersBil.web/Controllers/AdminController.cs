@@ -30,9 +30,9 @@ namespace BolindersBil.web.Controllers
 
 
         // Florin implemented - ok
-        public IActionResult IndexFlorin()
+        public IActionResult Index()
         {
-            return View("IndexFlorin", repo.Vehicles);
+            return View(nameof(Index), repo.Vehicles);
         }
 
 
@@ -69,7 +69,7 @@ namespace BolindersBil.web.Controllers
             {
                 vm.Vehicle.DateUpdated = DateTime.Now;
                 repo.SaveVehicle(vm.Vehicle);
-                return RedirectToAction(nameof(IndexFlorin));
+                return RedirectToAction(nameof(Index));
             }
             else
             {
@@ -92,12 +92,12 @@ namespace BolindersBil.web.Controllers
                 //TODO
                 //product was not found - show error
             }
-            return RedirectToAction(nameof(IndexFlorin));
+            return RedirectToAction(nameof(Index));
         }
 
 
         // Alex & Florin implemented
-        public IActionResult Index()
+        public IActionResult Create()
         {
             var vm = new CreateCarViewModel
             {
@@ -152,7 +152,7 @@ namespace BolindersBil.web.Controllers
                     })
                 };
 
-                return View("index", vm1);
+                return View(nameof(Create), vm1);
             }
         }
     }
