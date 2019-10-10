@@ -1,5 +1,5 @@
-﻿@model BolindersBil.web.ViewModels.VehicleListViewModel;
-@*@model BolindersBil.web.ViewModels.LoginViewModel *;*@
+﻿@model BolindersBil.web.ViewModels.HomeViewModel;
+
 
 
 
@@ -64,11 +64,11 @@
         @if (User.Identity.IsAuthenticated)
         {
             <h3>Du är inloggad</h3>
-            <a asp-conroller="Account" asp-action="Logout" class="btn btn-danger">Logga ut</a>
+            <a asp-action="Logout" asp-controller="Home" class="btn btn-danger">Logga ut</a>
         }
         else
         {
-            <form asp-action="Login" asp-controller="Account" method="post">
+            <form asp-action="Login" asp-controller="Home" method="post">
               
                 <div class="row">
 
@@ -76,7 +76,7 @@
                         <center>
                             <label>E-postadress</label>
                             <br />
-                            <input @*asp-for="UserName" Ställ in efter viewmodel!!!*@ class="custom-form-style-login" type="email" name="email" placeholder="Ange e-postadress" />
+                            <input asp-for="UserName" type="text" class="custom-form-style-login" placeholder="Ange användarnamn" />
                         </center>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                         <center>
                             <label>Lösenord</label>
                             <br />
-                            <input @*asp-for="Password"*@ class="custom-form-style-login" type="password" name="password" placeholder="Ange lösenord" />
+                            <input asp-for="Password" class="custom-form-style-login" type="password" name="password" placeholder="Ange lösenord" />
                         </center>
                     </div>
                 </div>
@@ -239,7 +239,7 @@
     <hr />
 
 
-    @*@if (Model.ArticlesResults != null)
+    @if (Model.ArticlesResults != null)
     {
 
 
@@ -256,7 +256,8 @@
             </div>
             <br />
         }
-    }*@
+    }
+
 
     <br />
 

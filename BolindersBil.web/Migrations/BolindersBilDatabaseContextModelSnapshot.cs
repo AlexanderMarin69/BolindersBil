@@ -19,6 +19,19 @@ namespace BolindersBil.web.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("BolindersBil.web.Models.Body", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BodyName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bodies");
+                });
+
             modelBuilder.Entity("BolindersBil.web.Models.Brand", b =>
                 {
                     b.Property<int>("Id")
@@ -80,8 +93,7 @@ namespace BolindersBil.web.Migrations
 
                     b.Property<string>("Attributes");
 
-                    b.Property<string>("Body")
-                        .IsRequired();
+                    b.Property<int>("BodyId");
 
                     b.Property<int>("BrandId");
 
@@ -111,9 +123,6 @@ namespace BolindersBil.web.Migrations
                     b.Property<string>("Model")
                         .IsRequired();
 
-                    b.Property<string>("ModelDescription")
-                        .IsRequired();
-
                     b.Property<decimal>("Price");
 
                     b.Property<string>("RegistrationNumber")
@@ -127,6 +136,8 @@ namespace BolindersBil.web.Migrations
                     b.Property<int>("Year");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BodyId");
 
                     b.HasIndex("BrandId");
 
@@ -306,6 +317,11 @@ namespace BolindersBil.web.Migrations
 
             modelBuilder.Entity("BolindersBil.web.Models.Vehicle", b =>
                 {
+                    b.HasOne("BolindersBil.web.Models.Body", "Body")
+                        .WithMany()
+                        .HasForeignKey("BodyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("BolindersBil.web.Models.Brand", "Brand")
                         .WithMany()
                         .HasForeignKey("BrandId")

@@ -13,6 +13,7 @@ namespace BolindersBil.web.ViewModels
         public Vehicle Vehicle { get; set; }
 
         public IEnumerable<SelectListItem> Brands { get; set; }
+        public IEnumerable<SelectListItem> Bodies { get; set; }
         public IEnumerable<SelectListItem> Dealerships { get; internal set; }
     }
 }

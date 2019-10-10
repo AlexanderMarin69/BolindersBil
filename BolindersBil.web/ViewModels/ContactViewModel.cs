@@ -21,6 +21,8 @@ namespace BolindersBil.web.ViewModels
         public string Message { get; set; }
 
         public string DealerShipMail { get; set; }
+        public string Url { get; set; }
+       
 
     }
 }

@@ -28,7 +28,7 @@ namespace BolindersBil.web.Infrastructure
                 Q = "Trump",
                 SortBy = SortBys.PublishedAt,
                 Language = Languages.EN,
-                From = new DateTime(2019, 09, 01)
+                From = new DateTime(2019, 10, 01)
             });
 
             return articlesResponse;

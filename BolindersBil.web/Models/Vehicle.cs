@@ -11,8 +11,8 @@ namespace BolindersBil.web.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Du måste välja en bilmodell!")]
         public string Model { get; set; }
-        [Required(ErrorMessage = "Du måste välja modellbeskrivning!")]
-        public string ModelDescription { get; set; }
+        //[Required(ErrorMessage = "Du måste välja modellbeskrivning!")]
+        //public string ModelDescription { get; set; }
         [Required(ErrorMessage = "Fordonet måste ha registeringsnummer!")]
         public string RegistrationNumber { get; set; }
         [Required(ErrorMessage = "Fordonet måste ha en årsmodell!")]
@@ -21,8 +21,7 @@ namespace BolindersBil.web.Models
         public double Mileage { get; set; }
         [Required(ErrorMessage = "Fordonet måste ha ett pris!")]
         public decimal Price { get; set; }
-        [Required(ErrorMessage = "Du måste välja vilken kaross bilen har!")]
-        public string Body { get; set; }
+   
         [Required(ErrorMessage = "Fordonet måste ha en färg!")]
         public string Color { get; set; }
         [Required(ErrorMessage = "Du måste välja växellåda!")]
@@ -43,6 +42,10 @@ namespace BolindersBil.web.Models
         public virtual Dealership Dealership { get; set; }
         public int FileUploadId { get; set; }
         public virtual List<FileUpload> FileUpload { get; set; }
+        public int BodyId { get; set; }
+        public virtual Body Body { get; set; }
+
+
 
     }
 }

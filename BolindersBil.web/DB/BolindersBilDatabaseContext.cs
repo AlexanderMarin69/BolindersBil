@@ -25,6 +25,7 @@ namespace BolindersBil.web.DB
         }
 
         public DbSet<BolindersBil.web.Models.Brand> Brands { get; set; }
+        public DbSet<BolindersBil.web.Models.Body> Bodies { get; set; }
         public DbSet<BolindersBil.web.Models.Dealership> Dealerships { get; set; }
         public DbSet<BolindersBil.web.Models.FileUpload> FileUploads { get; set; }
         public DbSet<BolindersBil.web.Models.Vehicle> Vehicles { get; set; }

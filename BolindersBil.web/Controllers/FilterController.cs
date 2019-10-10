@@ -7,6 +7,7 @@ using BolindersBil.web.Models;
 using BolindersBil.web.Repositories;
 using BolindersBil.web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BolindersBil.web.Controllers
 {
@@ -39,7 +40,10 @@ namespace BolindersBil.web.Controllers
         //[Route("Filter/CarPage/{id:int}")]
         public IActionResult CarPage(int id)
         {
-            var carElement = _context.Vehicles.FirstOrDefault(x => x.Id.Equals(id));
+            //var carElement = _context.Brands.Where(x => x.Id.Equals(id));
+
+
+            var carElement = _context.Vehicles.Include(x => x.Brand).FirstOrDefault(x => x.Id.Equals(id));
            
 
             return View(carElement);
