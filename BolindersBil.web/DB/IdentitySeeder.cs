@@ -19,19 +19,19 @@ namespace BolindersBil.web.DB
             _context = context;
             _userManager = userManager;
         }
-      
+
         public bool CreateAdminAccountIFEmpty()
         {
             if (!_context.Users.Any(u => u.UserName == _admin))
             {
-               var result =  _userManager.CreateAsync(new IdentityUser
+                var result = _userManager.CreateAsync(new IdentityUser
                 {
                     UserName = _admin,
                     Email = "admin@example.com",
                     EmailConfirmed = true
-                }, _password);
+                }, _password).Result;
 
-                var test = result.Status;
+             
             }
             return true;
         }

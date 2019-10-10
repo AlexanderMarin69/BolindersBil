@@ -35,7 +35,7 @@ namespace BolindersBil.web.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginViewModel vm)
+        public async Task<IActionResult> Login(HomeViewModel vm)
         {
             if (ModelState.IsValid)
             {
@@ -45,7 +45,7 @@ namespace BolindersBil.web.Controllers
                     await _signInManager.SignOutAsync();
                     if((await _signInManager.PasswordSignInAsync(user, vm.Password, false, false)).Succeeded)
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Index", "HomeController");
                     }
                 }
             }

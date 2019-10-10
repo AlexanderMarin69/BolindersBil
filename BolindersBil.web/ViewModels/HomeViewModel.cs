@@ -2,12 +2,13 @@
 using BolindersBil.web.ViewModels.NewsModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace BolindersBil.web.ViewModels
 {
-    public class VehicleListViewModel
+    public class HomeViewModel
     {
         public IEnumerable<Vehicle> Vehicles { get; set; }
         public List<Brand> BrandsInStock { get; set; }
@@ -17,5 +18,15 @@ namespace BolindersBil.web.ViewModels
         public ArticlesResult ArticlesResults { get; set; }
         public bool ShowButton { get; set; }
         public int NextPage { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        [Required]
+
+        public string UserName { get; set; }
+
+        [DataType(DataType.Password)]
+        [Required]
+
+        public string Password { get; set; }
     }
 }

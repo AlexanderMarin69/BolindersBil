@@ -38,7 +38,7 @@ namespace BolindersBil.web.Repositories
                         if (ctxDealership != null)
                         {
                             ctxVehicle.Model = v.Model;
-                            ctxVehicle.ModelDescription = v.ModelDescription;
+                            //ctxVehicle.ModelDescription = v.ModelDescription;
                             ctxVehicle.RegistrationNumber = v.RegistrationNumber;
                             ctxVehicle.Year = v.Year;
                             ctxVehicle.Mileage = v.Mileage;

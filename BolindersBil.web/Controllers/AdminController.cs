@@ -30,9 +30,10 @@ namespace BolindersBil.web.Controllers
 
 
         // Florin implemented - ok
-        public IActionResult IndexFlorin()
+        public IActionResult Index()
         {
-            return View("IndexFlorin", repo.Vehicles);
+            var vm = repo.Vehicles;
+            return View(nameof(Index), vm);
         }
 
 
@@ -69,7 +70,7 @@ namespace BolindersBil.web.Controllers
             {
                 vm.Vehicle.DateUpdated = DateTime.Now;
                 repo.SaveVehicle(vm.Vehicle);
-                return RedirectToAction(nameof(IndexFlorin));
+                return RedirectToAction(nameof(Index));
             }
             else
             {
@@ -92,12 +93,12 @@ namespace BolindersBil.web.Controllers
                 //TODO
                 //product was not found - show error
             }
-            return RedirectToAction(nameof(IndexFlorin));
+            return RedirectToAction(nameof(Index));
         }
 
 
         // Alex & Florin implemented
-        public IActionResult Index()
+        public IActionResult Create()
         {
             var vm = new CreateCarViewModel
             {
@@ -109,7 +110,13 @@ namespace BolindersBil.web.Controllers
                     Value = x.Id.ToString()
                 }),
 
-                 Dealerships = ctx.Dealerships.Select(x => new SelectListItem
+                Bodies = ctx.Bodies.Select(x => new SelectListItem
+                {
+                    Text = x.BodyName,
+                    Value = x.Id.ToString()
+                }),
+
+                Dealerships = ctx.Dealerships.Select(x => new SelectListItem
                  {
                      Text = x.City,
                      Value = x.Id.ToString(),
@@ -145,6 +152,12 @@ namespace BolindersBil.web.Controllers
                         Value = x.Id.ToString()
                     }),
 
+                    Bodies = ctx.Bodies.Select(x => new SelectListItem
+                    {
+                        Text = x.BodyName,
+                        Value = x.Id.ToString()
+                    }),
+
                     Dealerships = ctx.Dealerships.Select(x => new SelectListItem
                     {
                         Text = x.City,
@@ -152,7 +165,7 @@ namespace BolindersBil.web.Controllers
                     })
                 };
 
-                return View("index", vm1);
+                return View(nameof(Create), vm1);
             }
         }
     }
