@@ -11,6 +11,7 @@ namespace BolindersBil.web.ViewModels
     public class HomeViewModel
     {
         public IEnumerable<Vehicle> Vehicles { get; set; }
+        public Vehicle Vehicle { get; }
         public List<Brand> BrandsInStock { get; set; }
         public IEnumerable<Brand> Brands { get; set; }
         public IEnumerable<Dealership> Dealerships { get; set; }

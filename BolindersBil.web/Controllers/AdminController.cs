@@ -6,6 +6,8 @@ using BolindersBil.web.DB;
 using BolindersBil.web.Models;
 using BolindersBil.web.Repositories;
 using BolindersBil.web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -14,26 +16,70 @@ namespace BolindersBil.web.Controllers
     public class AdminController : Controller
     {
         private readonly BolindersBilDatabaseContext ctx;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-
-        // Florin implemented - ok
+      
         private IVehicleRepository repo;
 
 
-        // Florin implemented - ok
-        public AdminController(BolindersBilDatabaseContext context, IVehicleRepository repository)
+       
+        public AdminController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, BolindersBilDatabaseContext context, IVehicleRepository repository)
         {
             ctx = context;
             repo = repository;
+            _userManager = userManager;
+            _signInManager = signInManager;
 
         }
 
 
-        // Florin implemented - ok
+
+        [AllowAnonymous]
         public IActionResult Index()
         {
-            var vm = repo.Vehicles;
-            return View(nameof(Index), vm);
+          
+            if (User.Identity.IsAuthenticated)
+            {
+                var vehicleList = ctx.Vehicles.OrderBy(x => x.Id);
+                var vm = new HomeViewModel { Vehicles = vehicleList };
+
+                return View(vm);
+            }
+            else
+            {
+
+            return View();
+
+            }
+        }
+
+      
+        public async Task<IActionResult> Login(HomeViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(vm.UserName);
+                if (user != null)
+                {
+                    await _signInManager.SignOutAsync();
+                    if ((await _signInManager.PasswordSignInAsync(user, vm.Password, false, false)).Succeeded)
+                    {
+
+                    }
+
+                    
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(Index));
         }
 
 
@@ -47,6 +93,12 @@ namespace BolindersBil.web.Controllers
                 Brands = ctx.Brands.Select(x => new SelectListItem
                 {
                     Text = x.Name,
+                    Value = x.Id.ToString()
+                }),
+
+                Bodies = ctx.Bodies.Select(x => new SelectListItem
+                {
+                    Text = x.BodyName,
                     Value = x.Id.ToString()
                 }),
 
@@ -138,7 +190,7 @@ namespace BolindersBil.web.Controllers
                 ctx.Vehicles.Add(vm.Vehicle);
 
                 await ctx.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("index", "Admin");
             }
             else
             {
