@@ -19,11 +19,11 @@ namespace BolindersBil.web.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
 
-      
+
         private IVehicleRepository repo;
 
 
-       
+
         public AdminController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, BolindersBilDatabaseContext context, IVehicleRepository repository)
         {
             ctx = context;
@@ -38,23 +38,22 @@ namespace BolindersBil.web.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
-          
+
             if (User.Identity.IsAuthenticated)
             {
                 var vehicleList = ctx.Vehicles.OrderBy(x => x.Id);
                 var vm = new HomeViewModel { Vehicles = vehicleList };
-
                 return View(vm);
             }
             else
             {
 
-            return View();
+                return View();
 
             }
         }
 
-      
+
         public async Task<IActionResult> Login(HomeViewModel vm)
         {
             if (ModelState.IsValid)
@@ -68,7 +67,7 @@ namespace BolindersBil.web.Controllers
 
                     }
 
-                    
+
                     return RedirectToAction(nameof(Index));
                 }
             }
@@ -149,13 +148,27 @@ namespace BolindersBil.web.Controllers
         }
 
 
+        //Florin inserted for Search function - ok
+        public IActionResult Search(HomeViewModel vm)
+        {
+            //var VehicleSearchResults = repo.Vehicles.Where(x => x.Model.Equals(vm.SearchString) || vm.SearchString == null).ToList();
+            var VehicleSearchResults = repo.Vehicles.Where(x => x.Model.Contains(vm.SearchString) || vm.SearchString == "").ToList();
+            vm.VehiclesResults = VehicleSearchResults;
+            vm.Vehicles = ctx.Vehicles.OrderBy(x => x.Id);
+
+            //var vm = new HomeViewModel { SearchString = searchedVehicle };
+
+            return View(nameof(Index), vm);
+        }
+
+
         // Alex & Florin implemented
         public IActionResult Create()
         {
             var vm = new CreateCarViewModel
             {
                 Vehicle = new Vehicle(),
-                
+
                 Brands = ctx.Brands.Select(x => new SelectListItem
                 {
                     Text = x.Name,
@@ -169,20 +182,20 @@ namespace BolindersBil.web.Controllers
                 }),
 
                 Dealerships = ctx.Dealerships.Select(x => new SelectListItem
-                 {
-                     Text = x.City,
-                     Value = x.Id.ToString(),
-                 })
+                {
+                    Text = x.City,
+                    Value = x.Id.ToString(),
+                })
             };
 
-                return View(vm);
+            return View(vm);
         }
 
         // Alex & Florin implemented
         [HttpPost]
         public async Task<IActionResult> CreateNewCar(CreateCarViewModel vm)
         {
-            
+
             if (ModelState.IsValid)
             {
                 vm.Vehicle.DateAdded = DateTime.Now;
@@ -220,5 +233,59 @@ namespace BolindersBil.web.Controllers
                 return View(nameof(Create), vm1);
             }
         }
+
+        // Delete Bulk - Florin implemented ????
+        //[HttpPost]
+        //public IActionResult DeleteBulk(string vehiclesIdToDelete)
+        //{
+        //    if (vehiclesIdToDelete != null)
+        //    {
+        //        int[] vehiclesIdToDeleteArray = Array.ConvertAll(vehiclesIdToDelete.Split(','), int.Parse);
+
+        //        foreach (var item in vehiclesIdToDeleteArray)
+        //        {
+        //            //Delete(item);
+        //        }
+        //    }
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+
+        //public IActionResult DeleteBulk(IEnumerable<int> carIdToDelete)
+        //{
+        //    var objectToDelete = ctx.Vehicles.Where(x => carIdToDelete.Contains(x.Id)).ToList();
+        //    foreach (var v in objectToDelete)
+        //    {
+        //        ctx.Remove(v);
+        //    }
+        //    ctx.SaveChanges();
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+        //// O alta metoda
+        //[HttpPost]
+        //public IActionResult DelSelEmp(string[] empids)
+        //{
+        //    int[] getid = null;
+        //    if (empids != null)
+        //    {
+        //        getid = new int[empids.Length];
+        //        int j = 0;
+        //        foreach(string i in empids)
+        //        {
+        //            int.TryParse(i, out getid[j++]);
+        //        }
+        //        List<Vehicle> getempids = new List<Vehicle>();
+
+        //        var vehicle = ctx.Vehicles.Where(x => x.Id.Equals(empids));
+
+        //        foreach(var v in vehicle)
+        //        {
+        //            ctx.Remove(v);
+        //        }
+        //        ctx.SaveChanges();
+        //    }
+        //    return RedirectToAction(nameof(Index));
+        //}
     }
 }
