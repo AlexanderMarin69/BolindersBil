@@ -115,12 +115,13 @@
 <br />
 <br /><br />
 
+@*
 
 @foreach (var item in Model.Results)
 {
       <partial name="_CarResultBlock" model="item" />
 }
-
+*@
 <div class="container car-result-custom-container">
     <div class="row">
         <div class="col-lg-3"><img src="~/img/CarResultPlaceholderImage.jpg" height="160" width="200" alt="Alternate Text" /></div>
