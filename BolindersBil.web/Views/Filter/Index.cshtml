@@ -1,4 +1,4 @@
-﻿
+﻿@model FilterDataViewModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -14,98 +14,79 @@
                       <label>Filtrera</label>
                       <br />
                       <div class="row">
-                          <div class="col-lg-3">Årsmodell - från</div>
-                          <div class="col-lg-3">Pris - från</div>
-                          <div class="col-lg-3">Mil - från</div>
-                          <div class="col-lg-3">Bränsle</div>
+                          <div class="col-lg-3">Mil</div>
+                          <div class="col-lg-3">År</div>
+                          <div class="col-lg-3">Pris</div>
+                          <div class="col-lg-3"></div>
                       </div>
                       <div class="row">
                           <div class="col-lg-3">
-                              <select class="form-control">
-                                  <option>Default select</option>
-                                  <option>Second select</option>
-                                  <option>Third select</option>
-                                  <option>Fourth select</option>
-                              </select>
+                              <div class="form-group">
+                                  <label asp-for="Vehicle.Mileage">från:</label>
+                                  <select asp-items="Model.MileageDataStart" asp-for="Vehicle.Mileage"></select>
+                              </div>
 
                           </div>
 
                           <div class="col-lg-3">
-                              <select class="form-control">
-                                  <option>Default select</option>
-                                  <option>Second select</option>
-                                  <option>Third select</option>
-                                  <option>Fourth select</option>
-                              </select>
-
+                              <div class="form-group">
+                                  <label asp-for="Vehicle.Year">från:</label>
+                                  <select asp-items="Model.YearDataStart" asp-for="Vehicle.Year"></select>
+                              </div>
                           </div>
 
                           <div class="col-lg-3">
-                              <select class="form-control">
-                                  <option>Default select</option>
-                                  <option>Second select</option>
-                                  <option>Third select</option>
-                                  <option>Fourth select</option>
-                              </select>
-
+                              <div class="form-group">
+                                  <label asp-for="Vehicle.Price">från:</label>
+                                  <select asp-items="Model.PriceDataStart" asp-for="MinPrice"></select>
+                              </div>
                           </div>
 
                           <div class="col-lg-3">
-                              <select class="form-control">
-                                  <option>Default select</option>
-                                  <option>Second select</option>
-                                  <option>Third select</option>
-                                  <option>Fourth select</option>
-                              </select>
-
+                              <div class="form-group">
+                                  <label asp-for="Vehicle.Body">Karoserri:</label>
+                                  <select asp-items="Model.BodiesData" asp-for="Vehicle.Body"></select>
+                              </div>
                           </div>
                       </div>
                       <br />
                       <div class="row">
-                          <div class="col-lg-3">Årsmodell - till</div>
-                          <div class="col-lg-3">Pris - till</div>
-                          <div class="col-lg-3">Mil - till</div>
-                          <div class="col-lg-3">Växellåda</div>
+                          <div class="col-lg-3">Mil till</div>
+                          <div class="col-lg-3">År till</div>
+                          <div class="col-lg-3">Pris till</div>
+                          <div class="col-lg-3"></div>
                       </div>
                       <div class="row">
                           <div class="col-lg-3">
-                              <select class="form-control">
-                                  <option>Default select</option>
-                                  <option>Second select</option>
-                                  <option>Third select</option>
-                                  <option>Fourth select</option>
-                              </select>
+                              <div class="form-group">
+                                  <label asp-for="Vehicle.Mileage">från:</label>
+                                  <select asp-items="Model.MileageDataEnd" asp-for="Vehicle.Mileage"></select>
+                              </div>
+
+                          </div>
+
+
+                          <div class="col-lg-3">
+                              <div class="form-group">
+                                  <label asp-for="Vehicle.Year">från:</label>
+                                  <select asp-items="Model.YearDataEnd" asp-for="Vehicle.Year"></select>
+                              </div>
 
                           </div>
 
                           <div class="col-lg-3">
-                              <select class="form-control">
-                                  <option>Default select</option>
-                                  <option>Second select</option>
-                                  <option>Third select</option>
-                                  <option>Fourth select</option>
-                              </select>
+                              <div class="form-group">
+                                  <label asp-for="Vehicle.Price">till:</label>
+                                  <select asp-items="Model.PriceDataEnd" asp-for="MaxPrice"></select>
+                              </div>
 
                           </div>
 
                           <div class="col-lg-3">
-                              <select class="form-control">
-                                  <option>Default select</option>
-                                  <option>Second select</option>
-                                  <option>Third select</option>
-                                  <option>Fourth select</option>
-                              </select>
-
-                          </div>
-
-                          <div class="col-lg-3">
-                              <select class="form-control">
-                                  <option>Default select</option>
-                                  <option>Second select</option>
-                                  <option>Third select</option>
-                                  <option>Fourth select</option>
-                              </select>
-
+                              <div class="form-group">
+                                  <label asp-for="Vehicle.Fuel">Bränsle</label>
+                                  <select asp-items="Model.FuelData" asp-for="Vehicle.Fuel"></select>
+                              </div>
                           </div>
                       </div>
 
@@ -123,90 +104,9 @@
                       <br />
                       <br />
 
-                      <div class="row">
-                          <div class="col-lg-1">
-                              Karosserier
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-lg-1">
-                              <div class="form-check">
-                                  
-                                  <label class="pure-material-checkbox">
-                                      <input type="checkbox">
-                                      <span>Alla</span>
-                                  </label>
-                                  <br />
-                                  <i class="fas fa-car"></i>
-                              </div>
-                          </div>
-                          <div class="col-lg-1">
-                              <div class="form-check">
-                                  
-                                  <label class="pure-material-checkbox">
-                                      <input type="checkbox">
-                                      <span>Cab</span>
-                                  </label>
-                                  <br />
-                                  <i class="fas fa-car"></i>
-                              </div>
-
-
-                          </div>
-                          <div class="col-lg-1">
-                              <div class="form-check">
-                                  <label class="pure-material-checkbox">
-                                      <input type="checkbox">
-                                      <span>Halvkombi</span>
-                                  </label>
-                                  <br />
-                                  <i class="fas fa-car"></i>
-                              </div>
-
-                          </div>
-                          <div class="col-lg-1">
-                              <div class="form-check">
-                                  <label class="pure-material-checkbox">
-                                      <input type="checkbox">
-                                      <span>Kombi</span>
-                                  </label>
-                                  <br />
-                                  <i class="fas fa-car"></i>
-                              </div>
-                          </div>
-                       
-                          <div class="col-lg-1">
-                              <div class="form-check">
-                                  <label class="pure-material-checkbox">
-                                      <input type="checkbox">
-                                      <span>SUV</span>
-                                  </label>
-                                  <br />
-                                  <i class="fas fa-car"></i>
-                              </div>
-                          </div>
-                          <div class="col-lg-1">
-                              <div class="form-check">
-                                  <label class="pure-material-checkbox">
-                                      <input type="checkbox">
-                                      <span>Sedan</span>
-                                  </label>
-                                  <br />
-                                  <i class="fas fa-car"></i>
-                              </div>
-                          </div>
-                          <div class="col-lg-1">
-                              <div class="form-check">
-                                  <label class="pure-material-checkbox">
-                                      <input type="checkbox">
-                                      <span>Sportkupe</span>
-                                  </label>
-                                  <br />
-                                  <i class="fas fa-car"></i>
-                              </div>
-                          </div>
-
-                      </div>
+                    
+               
+                  
 
                       <br />
 
@@ -216,7 +116,10 @@
 <br /><br />
 
 
-
+@foreach (var item in Model.Results)
+{
+      <partial name="_CarResultBlock" model="item" />
+}
 
 <div class="container car-result-custom-container">
     <div class="row">
