@@ -20,8 +20,14 @@ namespace BolindersBil.web.ViewModels
         public IEnumerable<SelectListItem> MileageDataEnd { get; internal set; }
         public IEnumerable<SelectListItem> FuelData { get; internal set; }
         public IEnumerable<SelectListItem> BodiesData { get; internal set; }
-        public decimal MaxPrice { get; set; }
-        public decimal MinPrice { get; set; }
+        public string MaxPrice { get; set; }
+        public string MinPrice { get; set; }
+        public double MaxMileage { get; set; }
+        public double MinMileage { get; set; }
+        public int MaxYear{ get; set; }
+        public int MinYear { get; set; }
+        public int SelectedBody { get; set; }
+        public string SelectedFuel { get; set; }
         public IEnumerable<Vehicle> Results { get; set; }
 
 

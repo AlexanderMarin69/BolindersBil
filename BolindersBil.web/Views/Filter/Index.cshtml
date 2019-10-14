@@ -9,202 +9,133 @@
 }
 
 <br /><br /><br /><br />
-                  <div class="container filter-wrapper-custom">
-                      <br />
-                      <label>Filtrera</label>
-                      <br />
-                      <div class="row">
-                          <div class="col-lg-3">Mil</div>
-                          <div class="col-lg-3">År</div>
-                          <div class="col-lg-3">Pris</div>
-                          <div class="col-lg-3"></div>
-                      </div>
-                      <div class="row">
-                          <div class="col-lg-3">
-                              <div class="form-group">
-                                  <label asp-for="Vehicle.Mileage">från:</label>
-                                  <select asp-items="Model.MileageDataStart" asp-for="Vehicle.Mileage"></select>
-                              </div>
+<div class="container filter-wrapper-custom">
+    <br />
+    <label>Filtrera</label>
+    <br />
+    <div class="row">
+        <div class="col-lg-3">Mil</div>
+        <div class="col-lg-3">År</div>
+        <div class="col-lg-3">Pris</div>
+        <div class="col-lg-3"></div>
+    </div>
+    <form asp-controller="Filter" asp-action="FilterAction">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label asp-for="Vehicle.Mileage">från:</label>
+                    <select asp-items="Model.MileageDataStart" asp-for="MinMileage"></select>
+                </div>
 
-                          </div>
+            </div>
 
-                          <div class="col-lg-3">
-                              <div class="form-group">
-                                  <label asp-for="Vehicle.Year">från:</label>
-                                  <select asp-items="Model.YearDataStart" asp-for="Vehicle.Year"></select>
-                              </div>
-                          </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label asp-for="Vehicle.Year">från:</label>
+                    <select asp-items="Model.YearDataStart" asp-for="MinYear"></select>
+                </div>
+            </div>
 
-                          <div class="col-lg-3">
-                              <div class="form-group">
-                                  <label asp-for="Vehicle.Price">från:</label>
-                                  <select asp-items="Model.PriceDataStart" asp-for="MinPrice"></select>
-                              </div>
-                          </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label asp-for="Vehicle.Price">från:</label>
+                    <select asp-items="Model.PriceDataStart" asp-for="MinPrice"></select>
+                </div>
+            </div>
 
-                          <div class="col-lg-3">
-                              <div class="form-group">
-                                  <label asp-for="Vehicle.Body">Karoserri:</label>
-                                  <select asp-items="Model.BodiesData" asp-for="Vehicle.Body"></select>
-                              </div>
-                          </div>
-                      </div>
-                      <br />
-                      <div class="row">
-                          <div class="col-lg-3">Mil till</div>
-                          <div class="col-lg-3">År till</div>
-                          <div class="col-lg-3">Pris till</div>
-                          <div class="col-lg-3"></div>
-                      </div>
-                      <div class="row">
-                          <div class="col-lg-3">
-                              <div class="form-group">
-                                  <label asp-for="Vehicle.Mileage">från:</label>
-                                  <select asp-items="Model.MileageDataEnd" asp-for="Vehicle.Mileage"></select>
-                              </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label asp-for="Vehicle.Body">Karoserri:</label>
+                    <select asp-items="Model.BodiesData" asp-for="SelectedBody"></select>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-3">Mil till</div>
+            <div class="col-lg-3">År till</div>
+            <div class="col-lg-3">Pris till</div>
+            <div class="col-lg-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label asp-for="Vehicle.Mileage">till:</label>
+                    <select asp-items="Model.MileageDataEnd" asp-for="MaxMileage"></select>
+                </div>
 
-                          </div>
-
-
-                          <div class="col-lg-3">
-                              <div class="form-group">
-                                  <label asp-for="Vehicle.Year">från:</label>
-                                  <select asp-items="Model.YearDataEnd" asp-for="Vehicle.Year"></select>
-                              </div>
-
-                          </div>
-
-                          <div class="col-lg-3">
-                              <div class="form-group">
-                                  <label asp-for="Vehicle.Price">till:</label>
-                                  <select asp-items="Model.PriceDataEnd" asp-for="MaxPrice"></select>
-                              </div>
-
-                          </div>
-
-                          <div class="col-lg-3">
-                              <div class="form-group">
-                                  <label asp-for="Vehicle.Fuel">Bränsle</label>
-                                  <select asp-items="Model.FuelData" asp-for="Vehicle.Fuel"></select>
-                              </div>
-                          </div>
-                      </div>
-
-                      <br />
-                      <label class="pure-material-checkbox">
-                          <input type="checkbox">
-                          <span>Nya bilar</span>
-                      </label>
-
-                      <label class="pure-material-checkbox">
-                          <input type="checkbox">
-                          <span>Begagnade bilar</span>
-                      </label>
-
-                      <br />
-                      <br />
-
-                    
-               
-                  
-
-                      <br />
+            </div>
 
 
-                  </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label asp-for="Vehicle.Year">från:</label>
+                    <select asp-items="Model.YearDataEnd" asp-for="MaxYear"></select>
+                </div>
+
+            </div>
+
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label asp-for="Vehicle.Price">till:</label>
+                    <select asp-items="Model.PriceDataEnd" asp-for="MaxPrice"></select>
+                </div>
+
+            </div>
+
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label asp-for="Vehicle.Fuel">Bränsle</label>
+                    <select asp-items="Model.FuelData" asp-for="SelectedFuel"></select>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary">Filtrera sökning</button>
+    </form>
+    <br />
+    <label class="pure-material-checkbox">
+        <input type="checkbox">
+        <span>Nya bilar</span>
+    </label>
+
+    <label class="pure-material-checkbox">
+        <input type="checkbox">
+        <span>Begagnade bilar</span>
+    </label>
+
+    <br />
+    <br />
+
+
+
+
+
+    <br />
+
+
+</div>
 <br />
 <br /><br />
 
 @*
 
-@foreach (var item in Model.Results)
-{
-      <partial name="_CarResultBlock" model="item" />
-}
+    @foreach (var item in Model.Results)
+    {
+          <partial name="_CarResultBlock" model="item" />
+    }
 *@
-<div class="container car-result-custom-container">
-    <div class="row">
-        <div class="col-lg-3"><img src="~/img/CarResultPlaceholderImage.jpg" height="160" width="200" alt="Alternate Text" /></div>
-        <div class="col-lg-4">
-            <div class="custom-car-result-heading">Volvo V90</div>
 
-            <br />
-
-            <div class="custom-car-result-subheading"> 1997 - 100K mil - Jönköping</div>
-            <br />
-            <br />
-            <br />
-
-
-
-            <div class="custom-car-result-heading">699 000 kr</div>
-            <br />
-            <div class="custom-car-result-subheading">
-                535 200 kr exkl. moms
-            </div>
-        </div>
-
-
-
-    </div>
-</div>
-
-
-
-
-<div class="container car-result-custom-container">
-    <div class="row">
-        <div class="col-lg-3"><img src="~/img/CarResultPlaceholderImage.jpg" height="160" width="200" alt="Alternate Text" /></div>
-        <div class="col-lg-4">
-            <div class="custom-car-result-heading">Volvo V90</div>
-
-            <br />
-
-            <div class="custom-car-result-subheading"> 1997 - 100K mil - Jönköping</div>
-            <br />
-            <br />
-            <br />
-
-
-
-            <div class="custom-car-result-heading">699 000 kr</div>
-            <br />
-            <div class="custom-car-result-subheading">
-                535 200 kr exkl. moms
-            </div>
-        </div>
-
-
-
-    </div>
-</div>
-
-<div class="container car-result-custom-container">
-    <div class="row">
-        <div class="col-lg-3"><img src="~/img/CarResultPlaceholderImage.jpg" height="160" width="200" alt="Alternate Text" /></div>
-        <div class="col-lg-4">
-            <div class="custom-car-result-heading">Volvo V90</div>
-
-            <br />
-
-            <div class="custom-car-result-subheading"> 1997 - 100K mil - Jönköping</div>
-            <br />
-            <br />
-            <br />
-
-
-
-            <div class="custom-car-result-heading">699 000 kr</div>
-            <br />
-            <div class="custom-car-result-subheading">
-                535 200 kr exkl. moms
-            </div>
-        </div>
-
-
-
-    </div>
-</div>
+ @if (!Model.Results.Any())
+        {
+            <p>no results</p>
+        }
+         else
+         {
+                @foreach (var resultItem in Model.Results)
+                {
+                <partial name="_CarResultBlock" model="resultItem" />
+                 }
+        }
 
 
 
