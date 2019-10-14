@@ -11,6 +11,9 @@ namespace BolindersBil.web.ViewModels
     public class HomeViewModel
     {
         public IEnumerable<Vehicle> Vehicles { get; set; }
+        //public Dictionary<int, string> Values { get; set; }
+        public IEnumerable<Vehicle> VehiclesResults { get; set; }
+        public string SearchString { get; set; }
         public Vehicle Vehicle { get; }
         public List<Brand> BrandsInStock { get; set; }
         public IEnumerable<Brand> Brands { get; set; }
@@ -29,5 +32,6 @@ namespace BolindersBil.web.ViewModels
         [Required]
 
         public string Password { get; set; }
+        
     }
 }

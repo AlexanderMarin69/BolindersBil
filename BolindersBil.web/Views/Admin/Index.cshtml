@@ -19,42 +19,78 @@
                 <h2>Vehicle administration</h2>
             </div>
             <div class="col-md-6">
-                <span class="pull-right"></span>
+                <div class="pull-right">
+                    <div class="text-center">
+                        <a asp-action="Create" class="btn btn-primary">Skapa ny produkt</a>
+                    </div>
+                </div>
             </div>
         </div>
 
+
+        <form asp-controller="Admin" asp-action="Search">
+
+            <div class="form-group">
+                <label asp-for="SearchString">Search:</label>
+                <input asp-for="SearchString" />
+            </div>
+            <button input type="submit">goooooooo</button>
+        </form>
+
+
+
+
+        if (Model.VehiclesResults == null)
+        {
+            <p>no results</p>
+        }
+        else
+        {
+            @foreach (var sv in Model.VehiclesResults)
+            {
+                <partial name="_CarResultBlock" model="sv" />
+
+
+            }
+        }
+
+
+        <br />
+
         <table class="table table-striped table-bordered table-condensed">
             <tr>
+                @*<th class="text-center">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="checkAll">
+                        <label class="custom-control-label" for="checkAll">Select all</label>
+                    </div>
+                </th>*@
+
                 <th class="text-right">Id</th>
                 <th>Model</th>
                 <th class="text-right">Price</th>
                 <th class="text-center">Hantera</th>
+
             </tr>
 
             @foreach (var v in Model.Vehicles)
             {
-                <tr>
-                    <td class="text-right">@v.Id</td>
-                    <td>@v.Model</td>
-                    <td class="text-right">@v.Price.ToString("c")</td>
-                    <td class="text-center">
-                        <form asp-action="Delete" method="post">
-                            <a asp-action="Edit" class="btn btn-sm btn-warning"
-                               asp-route-productId="@v.Id">
-                                Redigera
-                            </a>
-                            <input type="hidden" name="VehicleID" value="@v.Id" />
-                            <button type="submit" class="btn btn-danger btn-sm">
-                                Ta bort
-                            </button>
-                        </form>
-                    </td>
-                </tr>
+                <partial name="_CarBlockAdmin" model="v" />
             }
         </table>
-        <div class="text-center">
-            <a asp-action="Create" class="btn btn-primary">Skapa ny produkt</a>
-        </div>
+
+
+        @*<div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <form id="bulkDeleteForm" asp-controller="Admin" asp-action="DeleteBulk" onsubmit="return confirm('Do you want to delete all cars?')" method="post">
+                        <input type="hidden" id="vehiclesIdToDelete" name="vehiclesIdToDelete" value="" />
+                        <button type="submit" class="btn btn-danger" id="deleteBulk">Delete selected cars</button>
+                    </form>
+                </div>
+            </div>
+        </div>*@
+        <br />
 
 
         <h3>Du är inloggad</h3>

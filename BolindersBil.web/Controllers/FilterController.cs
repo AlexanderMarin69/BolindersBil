@@ -24,7 +24,7 @@ namespace BolindersBil.web.Controllers
         {
             ctx = context;
         }
-  
+
         public IActionResult Index()
         {
             //år ft, prisft, milft bränsle, växellåda
@@ -38,94 +38,83 @@ namespace BolindersBil.web.Controllers
 
             //var vm = new FilterDataViewModel { Vehicles. = vehicleList };
 
+
+            var vm = GetFilterVm();
+            return View(vm);
+        }
+
+        private FilterDataViewModel GetFilterVm(IEnumerable<Vehicle> results = null)
+        {
             var vm = new FilterDataViewModel
             {
                 Vehicle = new Vehicle(),
 
-                PriceDataStart = ctx.Vehicles.Select(x => new SelectListItem
+                PriceDataStart = ctx.Vehicles.OrderBy(x => x.Price).Select(x => new SelectListItem
                 {
                     Text = x.Price.ToString(),
-                    Value = x.Id.ToString()
+                    Value = x.Price.ToString()
                 }),
-                
 
-                YearDataStart = ctx.Vehicles.Select(x => new SelectListItem
+
+                YearDataStart = ctx.Vehicles.OrderBy(x => x.Year).Select(x => new SelectListItem
                 {
                     Text = x.Year.ToString(),
-                    Value = x.Id.ToString()
+                    Value = x.Year.ToString()
                 }),
 
-                MileageDataStart = ctx.Vehicles.Select(x => new SelectListItem
+                MileageDataStart = ctx.Vehicles.OrderBy(x => x.Mileage).Select(x => new SelectListItem
                 {
                     Text = x.Mileage.ToString(),
-                    Value = x.Id.ToString(),
+                    Value = x.Mileage.ToString()
                 }),
 
-                PriceDataEnd = ctx.Vehicles.Select(x => new SelectListItem
+                PriceDataEnd = ctx.Vehicles.OrderBy(x => x.Price).Select(x => new SelectListItem
                 {
                     Text = x.Price.ToString(),
-                    Value = x.Id.ToString()
-                }),
+                    Value = x.Price.ToString()
+                }).OrderBy(x => x.Value),
 
-                YearDataEnd = ctx.Vehicles.Select(x => new SelectListItem
+                YearDataEnd = ctx.Vehicles.OrderBy(x => x.Year).Select(x => new SelectListItem
                 {
                     Text = x.Year.ToString(),
-                    Value = x.Id.ToString()
+                    Value = x.Year.ToString()
                 }),
 
-                MileageDataEnd = ctx.Vehicles.Select(x => new SelectListItem
+                MileageDataEnd = ctx.Vehicles.OrderBy(x => x.Mileage).Select(x => new SelectListItem
                 {
                     Text = x.Mileage.ToString(),
-                    Value = x.Id.ToString(),
+                    Value = x.Mileage.ToString()
                 }),
 
                 FuelData = ctx.Vehicles.Select(x => new SelectListItem
                 {
                     Text = x.Fuel,
-                    Value = x.Id.ToString(),
-                }),
+                    Value = x.Fuel,
+                }).Distinct().OrderBy(x => x.Value),
 
                 BodiesData = ctx.Bodies.Select(x => new SelectListItem
                 {
                     Text = x.BodyName,
-                    Value = x.Id.ToString(),
+                    Value = x.Id.ToString()
                 })
             };
 
-            return View(vm);
+            vm.Results = results ?? new List<Vehicle>();
+
+            return vm;
         }
 
         public IActionResult FilterAction(FilterDataViewModel vm)
         {
 
-           var result = ctx.Vehicles.Where(x => x.Price >= vm.MinPrice && x.Price <= vm.MaxPrice);
-            result = result.Where(x => x.Mileage >= 100 && x.Mileage <= 900);
-
-            //ctx.Vehicles.Where(vm.PriceDataStart => x.Price >= PriceDataEnd && x.Price <= filter.MaxPrice && x.Milage >= filter.MinKm && x.Milage <= filter.MaxKm) etc
-
-
-
-
-
-
-
-
-
-
-            //var vehicleList = 
-
-            //var resultVm = new FilterResultDataViewModel { Vehicles = vehicleList };
-
-
-
-
-            vm.Results = result;
-
-
-
-
-
-            return View(vm);
+            var result = ctx.Vehicles.Where(x => x.Price >= Convert.ToDecimal(vm.MinPrice.Replace(".", ",")) && x.Price <= Convert.ToDecimal(vm.MaxPrice.Replace(".", ",")));
+            result = result.Where(x => x.Mileage >= vm.MinMileage && x.Mileage <= vm.MaxMileage);
+            result = result.Where(x => x.BodyId == vm.SelectedBody);
+            result = result.Where(x => x.Fuel == vm.SelectedFuel);
+            result = result.Where(x => x.Year >= vm.MinYear && x.Year <= vm.MaxYear);
+            var finalResult = result.ToList();
+            vm = GetFilterVm(finalResult);
+            return View("index", vm);
         }
 
 
@@ -145,7 +134,7 @@ namespace BolindersBil.web.Controllers
 
 
             var carElement = ctx.Vehicles.Include(x => x.Brand).FirstOrDefault(x => x.Id.Equals(id));
-           
+
 
             return View(carElement);
         }
