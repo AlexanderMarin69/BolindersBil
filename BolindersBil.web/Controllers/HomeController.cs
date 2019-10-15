@@ -1,9 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net.Mail;
+using System.Threading.Tasks;
 using BolindersBil.web.Infrastructure;
 using BolindersBil.web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MimeKit;
+using MailKit.Net.Smtp;
 
 namespace BolindersBil.web.Controllers
 {
@@ -23,15 +26,15 @@ namespace BolindersBil.web.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
-            
-                var response = _newsHelper.GetNews();
-                var vm = new HomeViewModel();
-                vm.ArticlesResults = response;
 
-                return View("Index", vm);
-           
+            var response = _newsHelper.GetNews();
+            var vm = new HomeViewModel();
+            vm.ArticlesResults = response;
 
-            
+            return View("Index", vm);
+
+
+
         }
 
         public IActionResult Error(int? statusCode = null)
@@ -86,14 +89,12 @@ namespace BolindersBil.web.Controllers
         //    msg.Body = MsgBody.ToMessageBody();
 
 
-        //    using (var client = new SmtpClient())
-        //    {
-        //        client.Connect("localhost", 25, false);
-        //        client.Send(msg);
-        //        client.Disconnect(true);
-        //    }
+        //    var client = new MailKit.Net.Smtp.SmtpClient();
 
-            
-        
-    }   
+        //    client.Connect("localhost", 25, false);
+        //    client.Send(msg);
+        //    client.Disconnect(true);
+
+        //}
+    }
 }
