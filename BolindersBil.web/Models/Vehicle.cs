@@ -45,5 +45,7 @@ namespace BolindersBil.web.Models
         public int BodyId { get; set; }
         public virtual Body Body { get; set; }
 
+
+
     }
 }

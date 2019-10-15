@@ -13,15 +13,17 @@ namespace BolindersBil.web.Controllers
     public class HomeController : Controller
     {
         private readonly NewsHelper _newsHelper;
-        
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public HomeController(NewsHelper newsHelper)
+        public HomeController(NewsHelper newsHelper, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _newsHelper = newsHelper;
-          
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
-        
+        [AllowAnonymous]
         public IActionResult Index()
         {
             
@@ -47,8 +49,48 @@ namespace BolindersBil.web.Controllers
             }
             return View();
         }
-        
 
-        
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(HomeViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(vm.UserName);
+                if (user != null)
+                {
+                    await _signInManager.SignOutAsync();
+                    if ((await _signInManager.PasswordSignInAsync(user, vm.Password, false, false)).Succeeded)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+            return View("Index");
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        //[HttpPost]
+        //public IActionResult Link(ContactViewModel model)
+        //{
+        //    var msg = new MimeMessage();
+        //    var bodymsg = new BodyBuilder();
+
+
+        //    msg.From.Add(new MailboxAddress("Kontakt@Bolindersbil.se"));
+        //    msg.To.Add(new MailboxAddress(model.Email));
+
+
+        //    using (var client = new SmtpClient())
+        //    {
+        //        client.Connect("localhost", 25, false);
+        //        client.Send(msg);
+        //        client.Disconnect(true);
+        //    }
+        //}
     }
 }
