@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using BolindersBil.web.Infrastructure;
 using BolindersBil.web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -78,11 +75,15 @@ namespace BolindersBil.web.Controllers
         //public IActionResult Link(ContactViewModel model)
         //{
         //    var msg = new MimeMessage();
-        //    var bodymsg = new BodyBuilder();
+        //    var MsgBody = new BodyBuilder();
 
 
         //    msg.From.Add(new MailboxAddress("Kontakt@Bolindersbil.se"));
         //    msg.To.Add(new MailboxAddress(model.Email));
+
+        //    msg.Subject = "Kolla in bilen från BolindersBil";
+        //    MsgBody.HtmlBody = "html body";
+        //    msg.Body = MsgBody.ToMessageBody();
 
 
         //    using (var client = new SmtpClient())
@@ -91,6 +92,8 @@ namespace BolindersBil.web.Controllers
         //        client.Send(msg);
         //        client.Disconnect(true);
         //    }
-        //}
-    }
+
+            
+        
+    }   
 }
