@@ -21,7 +21,6 @@ namespace BolindersBil.web.Models
         public double Mileage { get; set; }
         [Required(ErrorMessage = "Fordonet måste ha ett pris!")]
         public decimal Price { get; set; }
-   
         [Required(ErrorMessage = "Fordonet måste ha en färg!")]
         public string Color { get; set; }
         [Required(ErrorMessage = "Du måste välja växellåda!")]
@@ -40,6 +39,7 @@ namespace BolindersBil.web.Models
         public virtual Brand Brand { get; set; }
         public int DealerShipId { get; set; }
         public virtual Dealership Dealership { get; set; }
+        public string PhoneNumber { get; set; }
         public int FileUploadId { get; set; }
         public virtual List<FileUpload> FileUpload { get; set; }
         public int BodyId { get; set; }
