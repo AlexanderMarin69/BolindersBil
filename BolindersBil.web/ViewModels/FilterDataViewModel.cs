@@ -30,6 +30,8 @@ namespace BolindersBil.web.ViewModels
         public string SelectedFuel { get; set; }
         public IEnumerable<Vehicle> Results { get; set; }
         public string SearchString { get; set; }
+        public bool NewCar { get; set; }
+        public bool OldCar { get; set; }
 
 
     }

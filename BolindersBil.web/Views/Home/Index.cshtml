@@ -17,44 +17,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<!--==========================
-  Intro Section
-============================-->
 <section>
-    @*<div class="container">
 
-            <div class="front-page-header-custom">
-
-                <div class="row">
-                    <div class="col-lg-12">
-
-                        <img src="~/img/volvo-front.jpg" class="custom-test-class">
-                    </div>
-                </div>
-            </div>
-
-        </div>*@
-
-
-    <br />
-    <br />
-    <br />
-    <a asp-controller="Admin" asp-action="Index"><div class="custom-navlink-style">Administration</div></a>
-
-    
-
-
-
-    <br />
-    <br />
-
-
-
-    <hr />
-
-
-   
 
     <div class="jumbotron set-background-image">
 
@@ -70,6 +34,14 @@
                 <p class="lead">
                     <a class="btn btn-primary" href="#" role="button">Hitta min bil</a>
                 </p>
+                <form asp-controller="Filter" asp-action="Search">
+
+                    <div class="form-group">
+                        <input asp-for="SearchString" class="custom-seatch-input" placeholder="Sök bil här..." />
+                        <button class="btn pull-right btn-outline-primary" type="submit">Sök</button>
+                    </div>
+                    
+                </form>
             </div>
         </div>
 

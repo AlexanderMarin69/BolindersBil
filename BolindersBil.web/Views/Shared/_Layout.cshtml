@@ -1,6 +1,4 @@
-﻿@model BolindersBil.web.ViewModels.FilterDataViewModel;
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -45,20 +43,6 @@
                     <li><a asp-controller="Filter" asp-action="Index"><div class="custom-navlink-style">Begagnade bilar</div></a></li>
                     @*<li><a href="Contact/index"><div class="custom-navlink-style">Kontakt</div></a></li>*@
                     <li><a asp-controller="Contact" asp-action="Index"> <div class="custom-navlink-style">Kontakt</div></a></li>
-                    <li>
-
-                        <form asp-controller="Filter" asp-action="Search">
-
-                            <div class="form-group">
-                                <label asp-for="SearchString">Sök:</label>
-                                <input asp-for="SearchString" placeholder="Sök bil här..." />
-                            </div>
-                            <button input type="submit">Sök</button>
-                        </form>
-
-
-
-                    </li>
                 </ul>
             </nav><!-- .main-nav -->
         </div>

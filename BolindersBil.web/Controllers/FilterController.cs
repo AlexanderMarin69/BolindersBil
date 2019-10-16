@@ -44,6 +44,26 @@ namespace BolindersBil.web.Controllers
             return View(vm);
         }
 
+        public IActionResult Search(HomeViewModel vm)
+        {
+            try { 
+            var VehicleSearchResults = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.Model.Contains(vm.SearchString) || vm.SearchString == "").ToList();
+           
+
+
+
+            var hej = new FilterDataViewModel { Results = VehicleSearchResults };
+
+            var heh = GetFilterVm(VehicleSearchResults);
+
+            return View(nameof(Index), heh);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
         private FilterDataViewModel GetFilterVm(IEnumerable<Vehicle> results = null)
         {
             var vm = new FilterDataViewModel
@@ -73,7 +93,7 @@ namespace BolindersBil.web.Controllers
                 {
                     Text = x.Price.ToString(),
                     Value = x.Price.ToString()
-                }).OrderBy(x => x.Value),
+                })/*.OrderBy(x => x.Value)*/,
 
                 YearDataEnd = ctx.Vehicles.OrderBy(x => x.Year).Select(x => new SelectListItem
                 {
@@ -114,6 +134,14 @@ namespace BolindersBil.web.Controllers
             result = result.Where(x => x.Fuel == vm.SelectedFuel);
             result = result.Where(x => x.Year >= vm.MinYear && x.Year <= vm.MaxYear);
 
+            if(vm.NewCar == true)
+            {
+                return View();
+            }
+           
+
+
+
             var finalResult = result.ToList();
             vm = GetFilterVm(finalResult);
             return View("index", vm);
@@ -126,15 +154,7 @@ namespace BolindersBil.web.Controllers
 
             return View(vm);
         }
-        public IActionResult Search(FilterDataViewModel vm)
-        {
-
-            var VehicleSearchResults = repo.Vehicles.Where(x => x.Model.Contains(vm.SearchString) || vm.SearchString == "").ToList();
-            var finalResult = VehicleSearchResults;
-
-            vm = GetFilterVm(finalResult);
-            return View(vm);
-        }
+    
         //[Route("Filter/CarPage/{id:int}")]
         public IActionResult CarPage(int id)
         {
