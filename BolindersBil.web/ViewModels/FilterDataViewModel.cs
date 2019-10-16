@@ -28,7 +28,6 @@ namespace BolindersBil.web.ViewModels
         public int MinYear { get; set; }
         public int SelectedBody { get; set; }
         public string SelectedFuel { get; set; }
-        public string PhoneNumber { get; set; }
         public IEnumerable<Vehicle> Results { get; set; }
 
 

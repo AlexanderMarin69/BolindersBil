@@ -112,6 +112,7 @@ namespace BolindersBil.web.Controllers
             result = result.Where(x => x.BodyId == vm.SelectedBody);
             result = result.Where(x => x.Fuel == vm.SelectedFuel);
             result = result.Where(x => x.Year >= vm.MinYear && x.Year <= vm.MaxYear);
+
             var finalResult = result.ToList();
             vm = GetFilterVm(finalResult);
             return View("index", vm);
@@ -135,6 +136,9 @@ namespace BolindersBil.web.Controllers
 
 
             var carElement = ctx.Vehicles.Include(x => x.Brand).FirstOrDefault(x => x.Id.Equals(id));
+            var dealershipIdForPhoneNumber = carElement.DealerShipId;
+            ViewBag.DealershipSpecificPhoneNumber = ctx.Dealerships.FirstOrDefault(x => x.Id == dealershipIdForPhoneNumber).Phone;
+
 
 
             return View(carElement);
