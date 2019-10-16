@@ -20,9 +20,10 @@ namespace BolindersBil.web.Controllers
         private BolindersBilDatabaseContext ctx;
         public int PageLimit = 4;
 
-        public FilterController(BolindersBilDatabaseContext context)
+        public FilterController(BolindersBilDatabaseContext context, IVehicleRepository repository)
         {
             ctx = context;
+            repo = repository;
         }
 
         public IActionResult Index()
@@ -118,9 +119,6 @@ namespace BolindersBil.web.Controllers
             return View("index", vm);
         }
 
-        //hej
-
-
         public IActionResult CarFilterResult()
         {
             var carInfo = ctx.Vehicles.OrderBy(x => x.Id).Take(PageLimit);
@@ -128,7 +126,15 @@ namespace BolindersBil.web.Controllers
 
             return View(vm);
         }
+        public IActionResult Search(FilterDataViewModel vm)
+        {
 
+            var VehicleSearchResults = repo.Vehicles.Where(x => x.Model.Contains(vm.SearchString) || vm.SearchString == "").ToList();
+            var finalResult = VehicleSearchResults;
+
+            vm = GetFilterVm(finalResult);
+            return View(vm);
+        }
         //[Route("Filter/CarPage/{id:int}")]
         public IActionResult CarPage(int id)
         {
@@ -137,6 +143,7 @@ namespace BolindersBil.web.Controllers
 
             var carElement = ctx.Vehicles.Include(x => x.Brand).FirstOrDefault(x => x.Id.Equals(id));
             var dealershipIdForPhoneNumber = carElement.DealerShipId;
+
             ViewBag.DealershipSpecificPhoneNumber = ctx.Dealerships.FirstOrDefault(x => x.Id == dealershipIdForPhoneNumber).Phone;
 
 

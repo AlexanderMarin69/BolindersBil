@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
 using MailKit.Net.Smtp;
+using BolindersBil.web.DB;
+using BolindersBil.web.Repositories;
+using System.Linq;
 
 namespace BolindersBil.web.Controllers
 {
@@ -15,6 +18,7 @@ namespace BolindersBil.web.Controllers
         private readonly NewsHelper _newsHelper;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+
 
         public HomeController(NewsHelper newsHelper, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
@@ -32,8 +36,6 @@ namespace BolindersBil.web.Controllers
             vm.ArticlesResults = response;
 
             return View("Index", vm);
-
-
 
         }
 

@@ -54,14 +54,48 @@
             <br />
 
 
-            @*<div class="col-lg-12">
-                    <button class="btn btn-block btn-primary custom-call-seller-link">
-                        <form asp-action="Vehicle" asp-controller="Contact" method="post">
+            <div class="col-lg-4">
+                <h4>Billån</h4>
+                <strong>Kontantinsats:</strong> @($" {(int)Model.Price * 0.2:C0} (inkl. moms)")<br />
+                <strong>Ränta:</strong> 4,5%<br />
+                <input id="amount" type="number" value="@Math.Round((int)Model.Price * 0.8)" min="0" max="10000000" step="any" onchange="carLoan();" hidden />
+                <input class="form-control w-50" id="interest_rate" type="number" min="0" max="100" value="4.5" step=".1" onchange="carLoan();" hidden>
+                <strong>Avbetalningstid: </strong>
+                <select class="form-control w-50" id="months" onchange="carLoan();">
+                    <option value="12">12 månader</option>
+                    <option value="24">24 månader</option>
+                    <option value="36">36 månader</option>
+                    <option value="48">48 månader</option>
+                    <option value="60">60 månader</option>
+                    <option value="72">72 månader</option>
+                </select>
+                <p id="payment"></p>
+            </div>
 
-                        </form>
-                        <a href="#">Dela</a>
-                    </button>
-                </div>*@
+
+
+
+            <script>
+                 function carLoan() {
+                 var amount = document.getElementById('amount').value;
+                 var interest_rate = document.getElementById('interest_rate').value;
+                 var months = document.getElementById('months').value;
+                 var interest = amount * (interest_rate * .01) / months;
+                 var payment = (amount / months + interest).toFixed(2);
+                 payment = payment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                 document.getElementById('payment').innerHTML = "<strong>Månadskostnad från:</strong> " + payment+ " Kr (inkl. moms)";
+                }
+            </script>
+
+
+            @*<div class="col-lg-12">
+            <button class="btn btn-block btn-primary custom-call-seller-link">
+                <form asp-action="Vehicle" asp-controller="Contact" method="post">
+
+                </form>
+                <a href="#">Dela</a>
+            </button>
+        </div>*@
 
 
 

@@ -29,6 +29,7 @@ namespace BolindersBil.web.ViewModels
         public int SelectedBody { get; set; }
         public string SelectedFuel { get; set; }
         public IEnumerable<Vehicle> Results { get; set; }
+        public string SearchString { get; set; }
 
 
     }
