@@ -50,6 +50,34 @@ namespace BolindersBil.web.Controllers
             return View("Index");
 
         }
+
         
+        [HttpPost]
+        public IActionResult Link(ShareViewModel model)
+        {
+            var msg = new MimeMessage();
+
+            msg.From.Add(new MailboxAddress("kontakt@bolindersbil.se"));
+            msg.To.Add(new MailboxAddress(model.Email));
+
+            msg.Subject = "kolla in bilen från bolindersbil";
+            msg.Body = new TextPart("Html")
+            {
+                Text = "<strong>Här Kommer ett medelande></strong>"
+            };
+
+
+            var client = new MailKit.Net.Smtp.SmtpClient();
+
+            client.Connect("localhost", 25, false);
+            client.Send(msg);
+            client.Disconnect(true);
+
+            //ModelState.Clear();
+            return RedirectToAction("CarPage"  + "{" + 10 + "}", "filter");
+           // return RedirectToAction("CarPage" + "/" + "10", "Filter");
+
+        }
+
     }
 }

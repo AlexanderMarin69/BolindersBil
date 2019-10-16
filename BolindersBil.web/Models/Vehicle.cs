@@ -44,11 +44,6 @@ namespace BolindersBil.web.Models
         public virtual List<FileUpload> FileUpload { get; set; }
         public int BodyId { get; set; }
         public virtual Body Body { get; set; }
-        public string Email { get; set; }
-        public string Message { get; set; }
-        public string Title { get; set; }
-
-
 
     }
 }

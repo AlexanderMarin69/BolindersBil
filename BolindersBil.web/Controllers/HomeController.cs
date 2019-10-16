@@ -74,29 +74,6 @@ namespace BolindersBil.web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //[HttpPost]
-        //public IActionResult Link(ContactViewModel model)
-        //{
-        //    var msg = new MimeMessage();
-        //    var MsgBody = new BodyBuilder();
-
-
-        //    msg.From.Add(new MailboxAddress("Kontakt@Bolindersbil.se"));
-        //    msg.To.Add(new MailboxAddress(model.Email));
-
-        //    msg.Subject = "Kolla in bilen från BolindersBil";
-        //    MsgBody.HtmlBody = "html body";
-        //    msg.Body = MsgBody.ToMessageBody();
-
-
-        //    var client = new MailKit.Net.Smtp.SmtpClient();
-
-        //    client.Connect("localhost", 25, false);
-        //    client.Send(msg);
-        //    client.Disconnect(true);
-
-        //    return View();
-
-        //}
+ 
     }
 }

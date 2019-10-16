@@ -107,11 +107,10 @@ namespace BolindersBil.web
                 routes.MapRoute(
                 name: "carResultsRoute",
                 template: "{controller=Filter}/{action=CarPage}/{id:int?}");
+
                 
 
-
-
-            });
+        });
 
             identitySeeder.CreateAdminAccountIFEmpty();
 
