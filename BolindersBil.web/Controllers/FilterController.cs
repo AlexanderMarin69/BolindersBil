@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BolindersBil.web.Controllers
 {
+    [Route("bilar")]
     public class FilterController : Controller
     {
         private IVehicleRepository repo;
@@ -26,7 +27,8 @@ namespace BolindersBil.web.Controllers
             repo = repository;
         }
 
-        public IActionResult Index()
+        [Route("{state}")]
+        public IActionResult Index(string state)
         {
             //år ft, prisft, milft bränsle, växellåda
 

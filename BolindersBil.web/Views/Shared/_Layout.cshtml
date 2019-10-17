@@ -39,8 +39,8 @@
             <nav class="main-nav float-right d-none d-lg-block">
                 <ul>
 
-                    <li><a asp-controller="´Filter" asp-action="Index"><div class="custom-navlink-style">Nya bilar</div></a></li>
-                    <li><a asp-controller="Filter" asp-action="Index"><div class="custom-navlink-style">Begagnade bilar</div></a></li>
+                    <li><a asp-controller="Filter" asp-action="Index" asp-route-state="nya"><div class="custom-navlink-style">Nya bilar</div></a></li>
+                    <li><a asp-controller="Filter" asp-action="Index" asp-route-state="begagnade"><div class="custom-navlink-style">Begagnade bilar</div></a></li>
                     @*<li><a href="Contact/index"><div class="custom-navlink-style">Kontakt</div></a></li>*@
                     <li><a asp-controller="Contact" asp-action="Index"> <div class="custom-navlink-style">Kontakt</div></a></li>
                 </ul>
