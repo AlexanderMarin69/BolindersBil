@@ -53,28 +53,44 @@
             <br />
             <br />
 
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h4>Billån</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <strong>Kontantinsats:</strong> @($" {(int)Model.Price * 0.2:C0} (inkl. moms)")
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <strong>Ränta:</strong> 4,5%
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input id="amount" type="number" value="@Math.Round((int)Model.Price * 0.8)" min="0" max="10000000" step="any" onchange="carLoan();" hidden />
+                        <input class="form-control w-50" id="interest_rate" type="number" min="0" max="100" value="4.5" step=".1" onchange="carLoan();" hidden>
+                    
+                        <input id="amount" type="number" value="@Math.Round((int)Model.Price * 0.8)" min="0" max="10000000" step="any" onchange="carLoan();" hidden />
+                        <input class="form-control w-50" id="interest_rate" type="number" min="0" max="100" value="4.5" step=".1" onchange="carLoan();" hidden>
+                        <strong>Avbetalningstid: </strong>
+                        <select class="form-control w-50" id="months" onchange="carLoan();">
+                            <option value="12">12 månader</option>
+                            <option value="24">24 månader</option>
+                            <option value="36">36 månader</option>
+                            <option value="48">48 månader</option>
+                            <option value="60">60 månader</option>
+                            <option value="72">72 månader</option>
+                        </select>
+                        <p id="payment"></p>
+                    </div>
+                </div>
 
-            <div class="col-lg-4">
-                <h4>Billån</h4>
-                <strong>Kontantinsats:</strong> @($" {(int)Model.Price * 0.2:C0} (inkl. moms)")<br />
-                <strong>Ränta:</strong> 4,5%<br />
-                <input id="amount" type="number" value="@Math.Round((int)Model.Price * 0.8)" min="0" max="10000000" step="any" onchange="carLoan();" hidden />
-                <input class="form-control w-50" id="interest_rate" type="number" min="0" max="100" value="4.5" step=".1" onchange="carLoan();" hidden>
-                <strong>Avbetalningstid: </strong>
-                <select class="form-control w-50" id="months" onchange="carLoan();">
-                    <option value="12">12 månader</option>
-                    <option value="24">24 månader</option>
-                    <option value="36">36 månader</option>
-                    <option value="48">48 månader</option>
-                    <option value="60">60 månader</option>
-                    <option value="72">72 månader</option>
-                </select>
-                <p id="payment"></p>
             </div>
-
-
-
-
+          
             <script>
                  function carLoan() {
                  var amount = document.getElementById('amount').value;

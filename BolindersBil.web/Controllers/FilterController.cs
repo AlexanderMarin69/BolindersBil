@@ -128,7 +128,7 @@ namespace BolindersBil.web.Controllers
         public IActionResult FilterAction(FilterDataViewModel vm)
         {
 
-            var result = ctx.Vehicles.Where(x => x.Price >= Convert.ToDecimal(vm.MinPrice.Replace(".", ",")) && x.Price <= Convert.ToDecimal(vm.MaxPrice.Replace(".", ",")));
+            var result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.Price >= Convert.ToDecimal(vm.MinPrice.Replace(".", ",")) && x.Price <= Convert.ToDecimal(vm.MaxPrice.Replace(".", ",")));
             result = result.Where(x => x.Mileage >= vm.MinMileage && x.Mileage <= vm.MaxMileage);
             result = result.Where(x => x.BodyId == vm.SelectedBody);
             result = result.Where(x => x.Fuel == vm.SelectedFuel);
@@ -143,8 +143,25 @@ namespace BolindersBil.web.Controllers
 
 
             var finalResult = result.ToList();
+
+
             vm = GetFilterVm(finalResult);
             return View("index", vm);
+
+
+            //var finalResult = result.ToList();
+
+            //if (finalResult.Count() == 0)
+            //{
+            //    finalResult = ctx.Vehicles.OrderBy(x => x.Id).Take(8).ToList();
+            //    vm = GetFilterVm(finalResult);
+            //    return View("index", vm);
+            //}
+            //else
+            //{
+            //    vm = GetFilterVm(finalResult);
+            //    return View("index", vm);
+            //}
         }
 
         public IActionResult CarFilterResult()

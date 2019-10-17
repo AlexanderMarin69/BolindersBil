@@ -24,7 +24,7 @@
 
                 @if (Model.Lease == true)
                 {
-                    <strong>Pris exkl. moms:</strong> @($" {(int)Model.Price / 1.25:C0} (inkl. moms)")<br />
+                <p class="text-secondary">Pris exkl. moms: @($" {(int)Model.Price / 1.25:C0}")</p>
                 }
             </div>
 
