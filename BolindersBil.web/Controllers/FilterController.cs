@@ -30,6 +30,9 @@ namespace BolindersBil.web.Controllers
         [Route("{state}")]
         public IActionResult Index(string state)
         {
+            if (state != "nya" || state != "begagnade") return NotFound();
+
+
             //år ft, prisft, milft bränsle, växellåda
 
 
