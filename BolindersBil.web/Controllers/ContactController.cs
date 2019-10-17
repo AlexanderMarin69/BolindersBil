@@ -55,6 +55,9 @@ namespace BolindersBil.web.Controllers
         [HttpPost]
         public IActionResult Link(ShareViewModel model)
         {
+            var test = HttpContext.Request.Host.Value;
+            var test2 = HttpContext.Request.Scheme;
+            //var url = Url.Action("CarPage", "filter", new ShareViewModel );
             var msg = new MimeMessage();
 
             msg.From.Add(new MailboxAddress("kontakt@bolindersbil.se"));
@@ -74,7 +77,7 @@ namespace BolindersBil.web.Controllers
             client.Disconnect(true);
 
             //ModelState.Clear();
-            return RedirectToAction("CarPage"  + "{" + 10 + "}", "filter");
+            return RedirectToAction("CarPage", "filter", new { id = model.CarId});
            // return RedirectToAction("CarPage" + "/" + "10", "Filter");
 
         }

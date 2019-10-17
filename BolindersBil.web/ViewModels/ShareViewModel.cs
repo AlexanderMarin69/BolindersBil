@@ -9,11 +9,10 @@ namespace BolindersBil.web.ViewModels
     public class ShareViewModel
     {
 
-        public Vehicle Vehicle { get; set; }
-
+     
+        public int CarId { get; set; }
         public string Email { get; set; }
         public string Message { get; set; }
-        public string Title { get; set; }
-
+   
     }
 }
