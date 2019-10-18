@@ -30,10 +30,7 @@ namespace BolindersBil.web.Controllers
         [Route("{state}")]
         public IActionResult Index(string state)
         {
-            
-
             var result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.Used == false).OrderBy(x => x.Id).Take(1);
-
 
             if (state == "nya")
             {
@@ -41,27 +38,20 @@ namespace BolindersBil.web.Controllers
 
             }
 
-
-            if (state == "begagnade")
+            else if (state == "begagnade")
             {
                  result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.Used == true).OrderBy(x => x.Id).Take(8);
 
             }
 
-            // GIVES ERROR ON EVERY URL
-            //if (state != "nya" || state != "begagnade")
-            //{
-            //    return NotFound();
-            //}
-            
+            else if (state != "nya" || state != "begagnade")
+            {
+                return NotFound();
+            }
 
             var finalResult = result.ToList();
             var vm = GetFilterVm(finalResult);
             return View(vm);
-
-
-
-
         }
 
         public IActionResult Search(HomeViewModel vm)
