@@ -30,13 +30,13 @@
 
             <div class="form-group">
                 <label asp-for="SearchString">Sök:</label>
-                <input asp-for="SearchString" placeholder="Sök bil här..." />
+                <input asp-for="SearchString" class="form-group" placeholder="Sök bil här..." />
             </div>
             <button input type="submit">Sök</button>
         </form>
 
 
-        if (Model.VehiclesResults == null)
+        @*if (Model.VehiclesResults == null)
         {
             <p>no results</p>
         }
@@ -44,11 +44,11 @@
         {
             @foreach (var sv in Model.VehiclesResults)
             {
-                <partial name="_CarResultBlock" model="sv" />
+                <partial name="CarBlockAdmin" model="sv" />
 
 
             }
-        }
+        }*@
 
 
         <br />
@@ -56,11 +56,11 @@
         <table class="table table-striped table-bordered table-condensed">
             <tr>
                 @*<th class="text-center">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="checkAll">
-                            <label class="custom-control-label" for="checkAll">Select all</label>
-                        </div>
-                    </th>*@
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkAll">
+                    <label class="custom-control-label" for="checkAll">Select all</label>
+                </div>
+            </th>*@
 
                 <th class="text-right">Id</th>
                 <th>Model</th>
@@ -69,9 +69,16 @@
 
             </tr>
 
-            @foreach (var v in Model.Vehicles)
+            @if (Model.VehiclesResults == null)
+            {
+            <p>Sök på bilar i sökfältet ovanför</p>
+            }
+            else
+            {
+            @foreach (var v in Model.VehiclesResults)
             {
                 <partial name="_CarBlockAdmin" model="v" />
+            }
             }
         </table>
 

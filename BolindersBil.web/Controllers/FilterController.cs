@@ -44,6 +44,54 @@ namespace BolindersBil.web.Controllers
 
             }
 
+            else if (state == "wolksvagen")
+            {
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 1).OrderBy(x => x.Id).Take(8);
+
+            }
+
+            else if (state == "bmw")
+            {
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 2).OrderBy(x => x.Id).Take(8);
+
+            }
+
+            else if (state == "chevrolet")
+            {
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 1).OrderBy(x => x.Id).Take(8);
+
+            }
+
+            else if (state == "ford")
+            {
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 1).OrderBy(x => x.Id).Take(8);
+
+            }
+
+            else if (state == "honda")
+            {
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 5).OrderBy(x => x.Id).Take(8);
+
+            }
+
+            else if (state == "volvo")
+            {
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 7).OrderBy(x => x.Id).Take(8);
+
+            }
+
+            else if (state == "jaguar")
+            {
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 3).OrderBy(x => x.Id).Take(8);
+
+            }
+
+            else if (state == "Mercedes")
+            {
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 1).OrderBy(x => x.Id).Take(8);
+
+            }
+
             else if (state != "nya" || state != "begagnade")
             {
                 return NotFound();
@@ -54,6 +102,7 @@ namespace BolindersBil.web.Controllers
             return View(vm);
         }
 
+        [Route("{Search}")]
         public IActionResult Search(HomeViewModel vm)
         {
             try { 
@@ -135,6 +184,7 @@ namespace BolindersBil.web.Controllers
             return vm;
         }
 
+        [Route("{FilterAction}")]
         public IActionResult FilterAction(FilterDataViewModel vm)
         {
 
