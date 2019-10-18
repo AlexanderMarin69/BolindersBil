@@ -30,23 +30,38 @@ namespace BolindersBil.web.Controllers
         [Route("{state}")]
         public IActionResult Index(string state)
         {
-            if (state != "nya" || state != "begagnade") return NotFound();
+            
+
+            var result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.Used == false).OrderBy(x => x.Id).Take(1);
 
 
-            //år ft, prisft, milft bränsle, växellåda
+            if (state == "nya")
+            {
+                 result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.Used == false).OrderBy(x => x.Id).Take(8);
+
+            }
 
 
-            //var VehiclesFilterDataPrice = ctx.Vehicles.OrderBy(x => x.Price).Min();
-            //var VehiclesFilterDataYear = ctx.Vehicles.OrderBy(x => x.Year).Min();
-            //var VehiclesFilterDataMiles = ctx.Vehicles.OrderBy(x => x.Mileage).Min();
-            //var VehiclesFilterDataFuel = ctx.Vehicles.OrderBy(x => x.Fuel).Min();
-            //var BodiesFilterData = ctx.Bodies.OrderBy(x => x.Id);
+            if (state == "begagnade")
+            {
+                 result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.Used == true).OrderBy(x => x.Id).Take(8);
 
-            //var vm = new FilterDataViewModel { Vehicles. = vehicleList };
+            }
 
+            // GIVES ERROR ON EVERY URL
+            //if (state != "nya" || state != "begagnade")
+            //{
+            //    return NotFound();
+            //}
+            
 
-            var vm = GetFilterVm();
+            var finalResult = result.ToList();
+            var vm = GetFilterVm(finalResult);
             return View(vm);
+
+
+
+
         }
 
         public IActionResult Search(HomeViewModel vm)
