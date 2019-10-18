@@ -184,7 +184,7 @@ namespace BolindersBil.web.Controllers
             return vm;
         }
 
-        [Route("{FilterAction}")]
+        
         public IActionResult FilterAction(FilterDataViewModel vm)
         {
 
