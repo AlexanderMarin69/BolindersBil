@@ -53,20 +53,22 @@ namespace BolindersBil.web.Controllers
 
         
         [HttpPost]
-        public IActionResult Link(ShareViewModel model)
+        public IActionResult Link(ShareViewModel model, int id)
         {
-            var test = HttpContext.Request.Host.Value;
-            var test2 = HttpContext.Request.Scheme;
-            //var url = Url.Action("CarPage", "filter", new ShareViewModel );
+
+            var domain = HttpContext.Request.Host.Value; //localhos:1234
+            var protocol = HttpContext.Request.Scheme; //https
+            var url = Url.Action("CarPage", "filter", new  { id = model.CarId } );
+
             var msg = new MimeMessage();
 
             msg.From.Add(new MailboxAddress("kontakt@bolindersbil.se"));
             msg.To.Add(new MailboxAddress(model.Email));
 
-            msg.Subject = "kolla in bilen från bolindersbil";
+            msg.Subject = "En vän delat en bil från BolindersBil";
             msg.Body = new TextPart("Html")
             {
-                Text = "<strong>Här Kommer ett medelande></strong>"
+                Text = "<strong>Kolla in denna schyssta bilen som finns i vårt lager</strong>" + "<br/>"  ,ContentTransferEncoding = ContentEncoding.QuotedPrintable
             };
 
 
