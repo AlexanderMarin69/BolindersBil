@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using BolindersBil.web.DB;
 using BolindersBil.web.Models;
 using BolindersBil.web.Repositories;
@@ -261,19 +262,16 @@ namespace BolindersBil.web.Controllers
             return View(vm);
         }
     
-        //[Route("Filter/CarPage/{id:int}")]
+        [Route("{make}-{model}-{registrationNumber}-{id:int}")]
         public IActionResult CarPage(int id)
         {
             //var carElement = ctx.Brands.Where(x => x.Id.Equals(id));
-
-
+            
             var carElement = ctx.Vehicles.Include(x => x.Brand).FirstOrDefault(x => x.Id.Equals(id));
             var dealershipIdForPhoneNumber = carElement.DealerShipId;
 
             ViewBag.DealershipSpecificPhoneNumber = ctx.Dealerships.FirstOrDefault(x => x.Id == dealershipIdForPhoneNumber).Phone;
-
-
-
+            
             return View(carElement);
         }
 

@@ -1,7 +1,7 @@
 ﻿@model Vehicle
 
 
-<a asp-controller="Filter" asp-action="CarPage" asp-route-id="@Model.Id" >
+<a asp-controller="Filter" asp-action="CarPage" asp-route-make="@Model.Brand.Name" asp-route-model="@Model.Model" asp-route-registrationNumber="@Model.RegistrationNumber" asp-route-id="@Model.Id" >
 
 @*<form asp-controller="Filter" asp-action="CarPage" asp-route-id="@Model.Id" >*@
     <div class="container car-result-custom-container" style="color:black;">
