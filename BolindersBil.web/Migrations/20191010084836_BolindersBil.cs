@@ -2,7 +2,7 @@
 
 namespace BolindersBil.web.Migrations
 {
-    public partial class UpdateDB01 : Migration
+    public partial class BolindersBil : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

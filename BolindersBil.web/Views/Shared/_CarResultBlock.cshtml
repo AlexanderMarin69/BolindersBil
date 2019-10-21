@@ -1,29 +1,31 @@
 ﻿@model Vehicle
 
 
-@*<a asp-controller="Filter" asp-action="CarPage" asp-route-id="@Model.Id" >*@
+<a asp-controller="Filter" asp-action="CarPage" asp-route-id="@Model.Id" >
 
-<form asp-controller="Filter" asp-action="CarPage" asp-route-id="@Model.Id" >
-    <div class="container car-result-custom-container">
+@*<form asp-controller="Filter" asp-action="CarPage" asp-route-id="@Model.Id" >*@
+    <div class="container car-result-custom-container" style="color:black;">
         <div class="row">
             <div class="col-lg-3"><img src="~/img/CarResultPlaceholderImage.jpg" height="160" width="200" alt="Alternate Text" /></div>
             <div class="col-lg-4">
-                <div class="custom-car-result-heading">@Model.Brand</div>
+                <div class="custom-car-result-heading">@Model.Brand.Name &#8226; @Model.Model</div>
 
                 <br />
 
-                <div class="custom-car-result-subheading"> @($"{Model.Year} - {Model.Mileage} - {Model.Dealership}")</div>
+                <div class="custom-car-result-subheading">@Model.Year  &#8226; @Model.Mileage mil &#8226; @Model.Dealership.Name</div>
                 <br />
                 <br />
                 <br />
 
 
 
-                <div class="custom-car-result-heading">@Model.Price</div>
+                <div class="custom-car-result-heading">@Model.Price kr</div> 
                 <br />
-                <div class="custom-car-result-subheading">
-                    535 200 kr exkl. moms
-                </div>
+
+                @if (Model.Lease == true)
+                {
+                <p class="text-secondary">Pris exkl. moms: @($" {(int)Model.Price / 1.25:C0}")</p>
+                }
             </div>
 
 
@@ -31,6 +33,8 @@
         </div>
     </div>
 
-    <button type="submit" >skicka</button>
-</form>
-@*</a>*@
+    @*<button type="submit" >skicka</button>*@
+@*</form>*@
+</a>
+
+<br />

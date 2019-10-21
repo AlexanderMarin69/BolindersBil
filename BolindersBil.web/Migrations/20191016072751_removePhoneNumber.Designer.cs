@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BolindersBil.web.Migrations
 {
     [DbContext(typeof(BolindersBilDatabaseContext))]
-    [Migration("20191001113834_Identity")]
-    partial class Identity
+    [Migration("20191016072751_removePhoneNumber")]
+    partial class removePhoneNumber
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,19 @@ namespace BolindersBil.web.Migrations
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("BolindersBil.web.Models.Body", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BodyName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bodies");
+                });
 
             modelBuilder.Entity("BolindersBil.web.Models.Brand", b =>
                 {
@@ -33,7 +46,7 @@ namespace BolindersBil.web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brand");
+                    b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("BolindersBil.web.Models.Dealership", b =>
@@ -52,7 +65,7 @@ namespace BolindersBil.web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Dealership");
+                    b.ToTable("Dealerships");
                 });
 
             modelBuilder.Entity("BolindersBil.web.Models.FileUpload", b =>
@@ -71,7 +84,7 @@ namespace BolindersBil.web.Migrations
 
                     b.HasIndex("VehicleId");
 
-                    b.ToTable("FileUpload");
+                    b.ToTable("FileUploads");
                 });
 
             modelBuilder.Entity("BolindersBil.web.Models.Vehicle", b =>
@@ -82,8 +95,7 @@ namespace BolindersBil.web.Migrations
 
                     b.Property<string>("Attributes");
 
-                    b.Property<string>("Body")
-                        .IsRequired();
+                    b.Property<int>("BodyId");
 
                     b.Property<int>("BrandId");
 
@@ -113,9 +125,6 @@ namespace BolindersBil.web.Migrations
                     b.Property<string>("Model")
                         .IsRequired();
 
-                    b.Property<string>("ModelDescription")
-                        .IsRequired();
-
                     b.Property<decimal>("Price");
 
                     b.Property<string>("RegistrationNumber")
@@ -130,11 +139,13 @@ namespace BolindersBil.web.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BodyId");
+
                     b.HasIndex("BrandId");
 
                     b.HasIndex("DealerShipId");
 
-                    b.ToTable("Vehicle");
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -308,6 +319,11 @@ namespace BolindersBil.web.Migrations
 
             modelBuilder.Entity("BolindersBil.web.Models.Vehicle", b =>
                 {
+                    b.HasOne("BolindersBil.web.Models.Body", "Body")
+                        .WithMany()
+                        .HasForeignKey("BodyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("BolindersBil.web.Models.Brand", "Brand")
                         .WithMany()
                         .HasForeignKey("BrandId")

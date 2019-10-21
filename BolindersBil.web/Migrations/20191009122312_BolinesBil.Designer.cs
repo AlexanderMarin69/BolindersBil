@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BolindersBil.web.Migrations
 {
     [DbContext(typeof(BolindersBilDatabaseContext))]
-    [Migration("20191004094824_Identity_01")]
-    partial class Identity_01
+    [Migration("20191009122312_BolinesBil")]
+    partial class BolinesBil
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,7 +33,7 @@ namespace BolindersBil.web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brand");
+                    b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("BolindersBil.web.Models.Dealership", b =>
@@ -52,7 +52,7 @@ namespace BolindersBil.web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Dealership");
+                    b.ToTable("Dealerships");
                 });
 
             modelBuilder.Entity("BolindersBil.web.Models.FileUpload", b =>
@@ -71,7 +71,7 @@ namespace BolindersBil.web.Migrations
 
                     b.HasIndex("VehicleId");
 
-                    b.ToTable("FileUpload");
+                    b.ToTable("FileUploads");
                 });
 
             modelBuilder.Entity("BolindersBil.web.Models.Vehicle", b =>
@@ -134,7 +134,7 @@ namespace BolindersBil.web.Migrations
 
                     b.HasIndex("DealerShipId");
 
-                    b.ToTable("Vehicle");
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
