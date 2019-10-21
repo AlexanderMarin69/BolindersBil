@@ -113,7 +113,7 @@ namespace BolindersBil.web
 
             });
 
-            identitySeeder.CreateAdminAccountIFEmpty();
+            //identitySeeder.CreateAdminAccountIFEmpty();
 
 
         }

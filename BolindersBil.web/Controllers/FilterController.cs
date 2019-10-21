@@ -28,6 +28,7 @@ namespace BolindersBil.web.Controllers
         }
 
         [Route("{state}")]
+        [HttpGet]
         public IActionResult Index(string state)
         {
             var result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.Used == false).OrderBy(x => x.Id).Take(1);
@@ -102,7 +103,8 @@ namespace BolindersBil.web.Controllers
             return View(vm);
         }
 
-        [Route("{Search}")]
+        [Route("Search")]
+        [HttpPost]
         public IActionResult Search(HomeViewModel vm)
         {
             try { 
@@ -184,7 +186,7 @@ namespace BolindersBil.web.Controllers
             return vm;
         }
 
-        
+        [HttpPost]
         public IActionResult FilterAction(FilterDataViewModel vm)
         {
 
