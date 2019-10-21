@@ -81,7 +81,7 @@ namespace BolindersBil.web.Controllers
             //ModelState.Clear();
             return RedirectToAction("CarPage", "filter", new { id = model.CarId});
            // return RedirectToAction("CarPage" + "/" + "10", "Filter");
-
+           // G
         }
 
     }
