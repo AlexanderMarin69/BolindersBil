@@ -13,9 +13,13 @@ body {
     background: #fff;
     color: #444;
     font-family: 'Open Sans', sans-serif;
-   
+}
 
-
+.custom-seatch-input {
+    border-radius: 7px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
 }
 
 .custom-contact-container-car-page {
@@ -75,7 +79,7 @@ body {
 
 .car-result-custom-container {
     border: 2px solid #f7f4f4;
-    border-radius: 7px;
+    border-radius: 4px;
     background-color: white;
     padding: 5px;
     transition-duration: 2s;
@@ -88,7 +92,7 @@ body {
 
 
     .car-result-custom-container:hover {
-        background-color: #d6e7fa;
+        background-color: #f9f9f9;
         transition-duration: 1s;
     }
 

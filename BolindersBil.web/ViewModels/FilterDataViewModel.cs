@@ -9,8 +9,6 @@ namespace BolindersBil.web.ViewModels
 {
     public class FilterDataViewModel
     {
-
-       
         public Vehicle Vehicle { get; set; }
         public IEnumerable<SelectListItem> PriceDataStart { get; internal set; }
         public IEnumerable<SelectListItem> YearDataStart { get; internal set; }
@@ -28,9 +26,9 @@ namespace BolindersBil.web.ViewModels
         public int MinYear { get; set; }
         public int SelectedBody { get; set; }
         public string SelectedFuel { get; set; }
-        public string PhoneNumber { get; set; }
         public IEnumerable<Vehicle> Results { get; set; }
-
-
+        public string SearchString { get; set; }
+        public bool NewCar { get; set; }
+        public bool OldCar { get; set; }
     }
 }

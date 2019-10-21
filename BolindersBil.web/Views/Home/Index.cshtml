@@ -17,44 +17,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<!--==========================
-  Intro Section
-============================-->
 <section>
-    @*<div class="container">
 
-            <div class="front-page-header-custom">
-
-                <div class="row">
-                    <div class="col-lg-12">
-
-                        <img src="~/img/volvo-front.jpg" class="custom-test-class">
-                    </div>
-                </div>
-            </div>
-
-        </div>*@
-
-
-    <br />
-    <br />
-    <br />
-    <a asp-controller="Admin" asp-action="Index"><div class="custom-navlink-style">Administration</div></a>
-
-    
-
-
-
-    <br />
-    <br />
-
-
-
-    <hr />
-
-
-   
 
     <div class="jumbotron set-background-image">
 
@@ -66,10 +30,21 @@
                 <h1 class="display-4">Bolinders Bil AB</h1>
                 <p class="lead">Köp nya och begagnade bilar hos oss.</p>
                 <hr class="my-4">
-                <p>Klicka här för att utforska vårt sortiment.</p>
-                <p class="lead">
+                <p>Välkommen att utforska vårt sortiment.</p>
+                @*<p class="lead">
                     <a class="btn btn-primary" href="#" role="button">Hitta min bil</a>
-                </p>
+                </p>*@
+
+                <br />
+
+                <form asp-controller="Filter" asp-action="Search">
+
+                    <div class="form-group">
+                        <input asp-for="SearchString" class="custom-seatch-input" placeholder="Sök bil här..." />
+                        <button class="btn pull-right btn-outline-primary" type="submit">Sök</button>
+                    </div>
+                    
+                </form>
             </div>
         </div>
 
@@ -115,52 +90,73 @@
 
                 <div class="col-lg-3 col-md-4 col-xs-6">
                     <div class="client-logo">
-                        <img src="~/img/car-logos/Volkswagen-logo-2015-1920x1080.png" class="img-fluid" alt="">
+                        <a asp-controller="Filter" asp-action="Index" asp-route-state="wolksvagen">
+                            <img src="~/img/car-logos/Volkswagen-logo-2015-1920x1080.png" class="img-fluid" alt="">
+                        </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4 col-xs-6">
                     <div class="client-logo">
-                        <img src="~/img/car-logos/BMW-logo-2000-2048x2048.png" class="img-fluid" alt="">
+                        <a asp-controller="Filter" asp-action="Index" asp-route-state="bmw">
+                            <img src="~/img/car-logos/BMW-logo-2000-2048x2048.png" class="img-fluid" alt="">
+                        </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4 col-xs-6">
                     <div class="client-logo">
-                        <img src="~/img/car-logos/Chevrolet-logo-2013-2560x1440.png" class="img-fluid" alt="">
+                        <a asp-controller="Filter" asp-action="Index" asp-route-state="chevrolet">
+                            <img src="~/img/car-logos/Chevrolet-logo-2013-2560x1440.png" class="img-fluid" alt="">
+                        </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4 col-xs-6">
                     <div class="client-logo">
-                        <img src="~/img/car-logos/Ford-logo-2003-1366x768.png" class="img-fluid" alt="">
+                        <a asp-controller="Filter" asp-action="Index" asp-route-state="ford">
+                            <img src="~/img/car-logos/Ford-logo-2003-1366x768.png" class="img-fluid" alt="">
+                        </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4 col-xs-6">
                     <div class="client-logo">
-                        <img src="~/img/car-logos/Honda-logo-1920x1080.png" class="img-fluid" alt="">
+                        <a asp-controller="Filter" asp-action="Index" asp-route-state="honda">
+                            <img src="~/img/car-logos/Honda-logo-1920x1080.png" class="img-fluid" alt="">
+                        </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4 col-xs-6">
                     <div class="client-logo">
-                        <img src="~/img/car-logos/Volvo-logo-2006-1920x1080.png" class="img-fluid" alt="">
+                        <a asp-controller="Filter" asp-action="Index" asp-route-state="volvo">
+                            <img src="~/img/car-logos/Volvo-logo-2006-1920x1080.png" class="img-fluid" alt="">
+                        </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4 col-xs-6">
                     <div class="client-logo">
-                        <img src="~/img/car-logos/Jaguar-logo-2012-1920x1080.png" class="img-fluid" alt="">
+                        <a asp-controller="Filter" asp-action="Index" asp-route-state="jaguar">
+                            <img src="~/img/car-logos/Jaguar-logo-2012-1920x1080.png" class="img-fluid" alt="">
+                        </a>
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-4 col-xs-6">
-                    <div class="client-logo">
-                        <img src="~/img/car-logos/Mercedes-Benz-logo-2011-1920x1080.png" class="img-fluid" alt="">
-                    </div>
-                </div>
 
+
+
+               
+                        <div class="col-lg-3 col-md-4 col-xs-6">
+                            <div class="client-logo">
+                                <a asp-controller="Filter" asp-action="Index" asp-route-state="mercedes">
+                                    <img src="~/img/car-logos/Mercedes-Benz-logo-2011-1920x1080.png" class="img-fluid" alt="">
+                                    </a>
+                            </div>
+                        </div>
+                
+                
             </div>
 
         </div>

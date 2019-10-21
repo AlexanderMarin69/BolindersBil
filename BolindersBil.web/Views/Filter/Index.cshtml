@@ -9,111 +9,137 @@
 }
 
 <br /><br /><br /><br />
-<div class="container filter-wrapper-custom">
-    <br />
-    <label>Filtrera</label>
-    <br />
-    <div class="row">
-        <div class="col-lg-3">Mil</div>
-        <div class="col-lg-3">År</div>
-        <div class="col-lg-3">Pris</div>
-        <div class="col-lg-3"></div>
-    </div>
-    <form asp-controller="Filter" asp-action="FilterAction">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="form-group">
-                    <label asp-for="Vehicle.Mileage">från:</label>
-                    <select asp-items="Model.MileageDataStart" asp-for="MinMileage"></select>
-                </div>
+                  <div class="container filter-wrapper-custom">
+                      <br />
+                      <label>Filtrera</label>
+                      <br />
+                      <div class="row">
+                          <div class="col-lg-3">Mil</div>
+                          <div class="col-lg-3">År</div>
+                          <div class="col-lg-3">Pris</div>
+                          <div class="col-lg-3"></div>
+                      </div>
+                      <form asp-controller="Filter" asp-action="FilterAction">
+                          <div class="row">
+                              <div class="col-lg-3">
+                                  <div class="form-group">
+                                      <label asp-for="Vehicle.Mileage">från:</label>
+                                      <select asp-items="Model.MileageDataStart" asp-for="MinMileage"></select>
+                                  </div>
 
-            </div>
+                              </div>
 
-            <div class="col-lg-3">
-                <div class="form-group">
-                    <label asp-for="Vehicle.Year">från:</label>
-                    <select asp-items="Model.YearDataStart" asp-for="MinYear"></select>
-                </div>
-            </div>
+                              <div class="col-lg-3">
+                                  <div class="form-group">
+                                      <label asp-for="Vehicle.Year">från:</label>
+                                      <select asp-items="Model.YearDataStart" asp-for="MinYear"></select>
+                                  </div>
+                              </div>
 
-            <div class="col-lg-3">
-                <div class="form-group">
-                    <label asp-for="Vehicle.Price">från:</label>
-                    <select asp-items="Model.PriceDataStart" asp-for="MinPrice"></select>
-                </div>
-            </div>
+                              <div class="col-lg-3">
+                                  <div class="form-group">
+                                      <label asp-for="Vehicle.Price">från:</label>
+                                      <select asp-items="Model.PriceDataStart" asp-for="MinPrice"></select>
+                                  </div>
+                              </div>
 
-            <div class="col-lg-3">
-                <div class="form-group">
-                    <label asp-for="Vehicle.Body">Karoserri:</label>
-                    <select asp-items="Model.BodiesData" asp-for="SelectedBody"></select>
-                </div>
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-lg-3">Mil till</div>
-            <div class="col-lg-3">År till</div>
-            <div class="col-lg-3">Pris till</div>
-            <div class="col-lg-3"></div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="form-group">
-                    <label asp-for="Vehicle.Mileage">till:</label>
-                    <select asp-items="Model.MileageDataEnd" asp-for="MaxMileage"></select>
-                </div>
+                              <div class="col-lg-3">
+                                  <div class="form-group">
+                                      <label asp-for="Vehicle.Body">Karoserri:</label>
+                                      <select asp-items="Model.BodiesData" asp-for="SelectedBody"></select>
+                                  </div>
+                              </div>
+                          </div>
+                          <br />
+                          <div class="row">
+                              <div class="col-lg-3">Mil till</div>
+                              <div class="col-lg-3">År till</div>
+                              <div class="col-lg-3">Pris till</div>
+                              <div class="col-lg-3"></div>
+                          </div>
+                          <div class="row">
+                              <div class="col-lg-3">
+                                  <div class="form-group">
+                                      <label asp-for="Vehicle.Mileage">till:</label>
+                                      <select asp-items="Model.MileageDataEnd" asp-for="MaxMileage"></select>
+                                  </div>
 
-            </div>
+                              </div>
 
 
-            <div class="col-lg-3">
-                <div class="form-group">
-                    <label asp-for="Vehicle.Year">från:</label>
-                    <select asp-items="Model.YearDataEnd" asp-for="MaxYear"></select>
-                </div>
+                              <div class="col-lg-3">
+                                  <div class="form-group">
+                                      <label asp-for="Vehicle.Year">från:</label>
+                                      <select asp-items="Model.YearDataEnd" asp-for="MaxYear"></select>
+                                  </div>
 
-            </div>
+                              </div>
 
-            <div class="col-lg-3">
-                <div class="form-group">
-                    <label asp-for="Vehicle.Price">till:</label>
-                    <select asp-items="Model.PriceDataEnd" asp-for="MaxPrice"></select>
-                </div>
+                              <div class="col-lg-3">
+                                  <div class="form-group">
+                                      <label asp-for="Vehicle.Price">till:</label>
+                                      <select asp-items="Model.PriceDataEnd" asp-for="MaxPrice"></select>
+                                  </div>
 
-            </div>
+                              </div>
 
-            <div class="col-lg-3">
-                <div class="form-group">
-                    <label asp-for="Vehicle.Fuel">Bränsle</label>
-                    <select asp-items="Model.FuelData" asp-for="SelectedFuel"></select>
-                </div>
-            </div>
-        </div>
-        <button class="btn btn-primary">Filtrera sökning</button>
-    </form>
-    <br />
-    <label class="pure-material-checkbox">
-        <input type="checkbox">
-        <span>Nya bilar</span>
-    </label>
-
-    <label class="pure-material-checkbox">
-        <input type="checkbox">
-        <span>Begagnade bilar</span>
-    </label>
-
-    <br />
-    <br />
+                              <div class="col-lg-3">
+                                  <div class="form-group">
+                                      <label asp-for="Vehicle.Fuel">Bränsle</label>
+                                      <select asp-items="Model.FuelData" asp-for="SelectedFuel"></select>
+                                  </div>
+                              </div>
 
 
 
+                          </div>
+
+                          <div class="col-lg-2">
+                              <input type="checkbox" asp-for="NewCar">
+                              <span>Nya bilar</span>
+                          </div>
+                          <div class="col-lg-2">
+                              <input type="checkbox" asp-for="OldCar">
+                              <span>Begagnade bilar</span>
+                          </div>
 
 
-    <br />
+                          <button class="btn btn-primary @*fa-battery-full*@ right">Sök med Filter</button>
+
+                      </form>
+                      <br />
+
+                      <div class="row">
+                          <div class="col-lg-2">
+                              
+                          </div>
+                          <div class="col-lg-2">
+                             
+                          </div>
+                          <div class="col-lg-4">
+                              
+                          </div>
+                          <div class="col-lg-4">
+                              <form asp-controller="Filter" asp-action="Search">
+
+                                  <div class="form-group">
+                                      <input asp-for="SearchString" class="custom-seatch-input" placeholder="Sök bil här..." />
+                                      <button class="btn btn-outline-primary" type="submit">Fritextsökning</button>
+                                  </div>
+
+                              </form>
+                          </div>
+
+                      </div>
 
 
-</div>
+
+
+
+                      <br />
+
+
+                  </div>
 <br />
 <br /><br />
 

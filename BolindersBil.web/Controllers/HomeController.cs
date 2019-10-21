@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
 using MailKit.Net.Smtp;
+using BolindersBil.web.DB;
+using BolindersBil.web.Repositories;
+using System.Linq;
 
 namespace BolindersBil.web.Controllers
 {
@@ -16,11 +19,14 @@ namespace BolindersBil.web.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
 
-        public HomeController(NewsHelper newsHelper, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        private IVehicleRepository repo; 
+
+        public HomeController(NewsHelper newsHelper, IVehicleRepository repository, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _newsHelper = newsHelper;
             _userManager = userManager;
             _signInManager = signInManager;
+            repo = repository;
         }
 
         [AllowAnonymous]
@@ -33,8 +39,17 @@ namespace BolindersBil.web.Controllers
 
             return View("Index", vm);
 
+        }
 
+        public IActionResult Search(FilterDataViewModel vm)
+        {
 
+            var VehicleSearchResults = repo.Vehicles.Where(x => x.Model.Contains(vm.SearchString) || vm.SearchString == "").ToList();
+            
+            vm.Results = VehicleSearchResults;
+            
+            
+            return RedirectToAction("Filter", "Index", vm.Results);
         }
 
         public IActionResult Error(int? statusCode = null)
