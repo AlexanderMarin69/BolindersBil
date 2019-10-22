@@ -271,6 +271,7 @@ namespace BolindersBil.web.Controllers
             var dealershipIdForPhoneNumber = carElement.DealerShipId;
 
             ViewBag.DealershipSpecificPhoneNumber = ctx.Dealerships.FirstOrDefault(x => x.Id == dealershipIdForPhoneNumber).Phone;
+
             
             return View(carElement);
         }
