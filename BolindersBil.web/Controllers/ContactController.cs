@@ -74,7 +74,7 @@ namespace BolindersBil.web.Controllers
 
             var client = new MailKit.Net.Smtp.SmtpClient();
 
-            client.Connect("localhost", 25, false);
+            client.Connect("localhost", 2525, false);
             client.Send(msg);
             client.Disconnect(true);
 

@@ -261,7 +261,7 @@ namespace BolindersBil.web.Controllers
 
             return View(vm);
         }
-    
+
         [Route("{make}-{model}-{registrationNumber}-{id:int}")]
         public IActionResult CarPage(int id)
         {
@@ -274,7 +274,6 @@ namespace BolindersBil.web.Controllers
             
             return View(carElement);
         }
-
 
     }
 }
