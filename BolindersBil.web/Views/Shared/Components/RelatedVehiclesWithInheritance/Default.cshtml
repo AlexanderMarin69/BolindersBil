@@ -1,0 +1,10 @@
+﻿@*@page
+@model BolindersBil.web.Views.Shared.Components.RelatedVehiclesWithInheritance.DefaultModel
+@{
+}*@
+@model List<Vehicle>
+
+@foreach(var car in Model)
+{
+    <h3>@car.Price</h3>
+}
