@@ -272,7 +272,8 @@ namespace BolindersBil.web.Controllers
 
             ViewBag.DealershipSpecificPhoneNumber = ctx.Dealerships.FirstOrDefault(x => x.Id == dealershipIdForPhoneNumber).Phone;
 
-            var SendIdToRelatedCars = new RelatedVehiclesViewModel { IdForRelatedCars = carElement.Id };
+            //You don't need this. The Id of the car is alreadt in carElement.Id and is passed to the view below
+            //var SendIdToRelatedCars = new RelatedVehiclesViewModel { IdForRelatedCars = carElement.Id };
 
             return View(carElement);
         }

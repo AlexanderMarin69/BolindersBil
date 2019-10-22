@@ -18,18 +18,22 @@ namespace BolindersBil.web.Components
             ctx = context;
         }
 
-        public IViewComponentResult Invoke(bool renderOptional, RelatedVehiclesViewModel GetVehicleId)
+        public IViewComponentResult Invoke(int carId)
         {
             //GetVehicleId.IdForRelatedCar
-            var GetVehicleObject = ctx.Vehicles.Where(x => x.Id == GetVehicleId.IdForRelatedCars).FirstOrDefault();
+            var car = ctx.Vehicles.Where(x => x.Id == carId).FirstOrDefault();
 
-            var ListOfVehicles = ctx.Vehicles.Where(x => x.Price >= GetVehicleObject.Price && x.Id != GetVehicleId.IdForRelatedCars).Take(3);
+            //Algoritmen för att räkna ut vilka bilar som visas(max 4 stycken) ska
+            //titta på aktuellt bilmärke och hämta andra bilar av samma märke
+            //men de får inte vara billigare än aktuell bils pris.
+            var ListOfVehicles = ctx.Vehicles.Where(x => x.Price >= car.Price && x.Id != car.Id).Take(4);
 
             List<Vehicle> vm = new List<Vehicle>();
             vm = ListOfVehicles.ToList();
 
-            if (renderOptional)
-                return View("/Views/Shared/Components/RelatedVehiclesWithInheritance/Default.cshtml", vm);
+            //Don't need this, just for demo purpose in pptx
+            //if (renderOptional)
+            //    return View("/Views/Shared/Components/RelatedVehiclesWithInheritance/Default.cshtml", vm);
 
             return View(vm);
         }
