@@ -109,6 +109,9 @@
                 <div class="btn btn-block btn-primary custom-call-seller-link">
                     <form asp-action="Link" asp-controller="Contact" method="post">
                         <div class="form-group">
+                            <input type="hidden" name="Brand" value="@Model.Brand." />
+                            <input type="hidden" name="Model" value="@Model.Model" />
+                            <input type="hidden" name="RegistrationNumber" value="@Model.RegistrationNumber" />
                             <input type="hidden" name="CarId" value="@Model.Id" />
                             Email:<input type="text" name="Email">
                             <br />

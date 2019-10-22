@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 //using System.Net.Mail;
 using System.Threading.Tasks;
+using BolindersBil.web.Models;
 using BolindersBil.web.ViewModels;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Mvc;
@@ -53,7 +54,7 @@ namespace BolindersBil.web.Controllers
 
         
         [HttpPost]
-        public IActionResult Link(ShareViewModel model, int id)
+        public IActionResult Link(ShareViewModel model)
         {
 
             var domain = HttpContext.Request.Host.Value; //localhos:1234
@@ -68,7 +69,7 @@ namespace BolindersBil.web.Controllers
             msg.Subject = "En vän delat en bil från BolindersBil";
             msg.Body = new TextPart("Html")
             {
-                Text = "<strong>Kolla in denna schyssta bilen som finns i vårt lager</strong>" + "<br/>"  ,ContentTransferEncoding = ContentEncoding.QuotedPrintable
+                Text = "<strong>Kolla in denna schyssta bilen som finns i vårt lager</strong>" + "<br/>" + protocol + "//:" + domain + url ,ContentTransferEncoding = ContentEncoding.QuotedPrintable
             };
 
 
@@ -78,10 +79,9 @@ namespace BolindersBil.web.Controllers
             client.Send(msg);
             client.Disconnect(true);
 
-            //ModelState.Clear();
-            return RedirectToAction("CarPage", "filter", new { id = model.CarId});
-           // return RedirectToAction("CarPage" + "/" + "10", "Filter");
-           // G
+ 
+            var url2 = Url.RouteUrl("CarDetailsPage", new { make = model.Brand, model = model.Model, registrationNumber = model.RegistrationNumber, id = model.CarId });
+            return Redirect(url2);
         }
 
     }
