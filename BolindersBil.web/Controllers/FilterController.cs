@@ -261,8 +261,8 @@ namespace BolindersBil.web.Controllers
 
             return View(vm);
         }
-
-        [Route("{make}-{model}-{registrationNumber}-{id:int}")]
+    
+        [Route("{make}-{model}-{registrationNumber}-{id:int}", Name = "CarDetailsPage")]
         public IActionResult CarPage(int id)
         {
             //var carElement = ctx.Brands.Where(x => x.Id.Equals(id));
@@ -274,6 +274,7 @@ namespace BolindersBil.web.Controllers
             
             return View(carElement);
         }
+
 
     }
 }
