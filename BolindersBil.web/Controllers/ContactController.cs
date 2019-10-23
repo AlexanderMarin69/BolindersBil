@@ -67,7 +67,7 @@ namespace BolindersBil.web.Controllers
             msg.From.Add(new MailboxAddress("kontakt@bolindersbil.se"));
             msg.To.Add(new MailboxAddress(vm.Email));
 
-            msg.Subject = "En vän delat en bil från BolindersBil";
+            msg.Subject = "En vän delat bil från BolindersBil";
             msg.Body = new TextPart("Html")
             {
                 Text = "<strong>Kolla in denna schyssta bilen som finns i vårt lager</strong>" + "<br/>" +  $"<a href='{FullUrl}' target='_blank'>{FullUrl}</a>",
