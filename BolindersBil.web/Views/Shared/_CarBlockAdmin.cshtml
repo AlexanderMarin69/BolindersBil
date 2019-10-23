@@ -1,9 +1,9 @@
 ﻿@model Vehicle
 
 <tr>
-    @*<td class="custom-checkbox text-center">
+    <td class="custom-checkbox text-center">
         <input type="checkbox" class="form-check-input" id="vehiclesIdToDelete" name="vehiclesIdToDelete" value="@Model.Id">
-    </td>*@
+    </td>
     <td class="text-right">@Model.Id</td>
     <td>@Model.Model</td>
     <td class="text-right">@Model.Price.ToString("c")</td>
@@ -22,3 +22,4 @@
         </form>
     </td>
 </tr>
+        

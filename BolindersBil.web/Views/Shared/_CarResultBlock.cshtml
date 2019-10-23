@@ -1,12 +1,40 @@
 ﻿@model Vehicle
 
 
-<a asp-controller="Filter" asp-action="CarPage" asp-route-make="@Model.Brand.Name" asp-route-model="@Model.Model" asp-route-registrationNumber="@Model.RegistrationNumber" asp-route-id="@Model.Id" >
+<a asp-controller="Filter" asp-action="CarPage" asp-route-id="@Model.Id">
 
-@*<form asp-controller="Filter" asp-action="CarPage" asp-route-id="@Model.Id" >*@
+    @*<form asp-controller="Filter" asp-action="CarPage" asp-route-id="@Model.Id" >*@
     <div class="container car-result-custom-container" style="color:black;">
         <div class="row">
-            <div class="col-lg-3"><img src="~/img/CarResultPlaceholderImage.jpg" height="160" width="200" alt="Alternate Text" /></div>
+
+
+
+
+            @*Inserted by Florin*@
+            @*<div class="col-lg-4">
+            <div class="thumbnails">
+                @foreach (var image in Model.FileUpload)
+                {
+                    <a href="" data-toggle="modal" data-target="#exampleModal">
+                        <img src="@image.FilePath" class="float-left" alt="@image.FileTitle" style="width:25%;cursor:pointer;margin-left:10px;" />
+                    </a>
+                }
+            </div>
+        </div>*@
+
+
+
+            @if (@Model.ImageUrl == "" || @Model.ImageUrl == null)
+            {
+                <div class="col-lg-3"><img src="~/img/CarResultPlaceholderImage.jpg" height="160" width="200" alt="Alternate Text" /></div>
+            }
+            else
+            {
+                <div class="col-lg-3"><img src="~/Images/@Model.ImageUrl" height="160" width="200" alt="Alternate Text" /></div>
+            }
+
+
+
             <div class="col-lg-4">
                 <div class="custom-car-result-heading">@Model.Brand.Name &#8226; @Model.Model</div>
 
@@ -19,12 +47,12 @@
 
 
 
-                <div class="custom-car-result-heading">@Model.Price kr</div> 
+                <div class="custom-car-result-heading">@Model.Price kr</div>
                 <br />
 
                 @if (Model.Lease == true)
                 {
-                <p class="text-secondary">Pris exkl. moms: @($" {(int)Model.Price / 1.25:C0}")</p>
+                    <p class="text-secondary">Pris exkl. moms: @($" {(int)Model.Price / 1.25:C0}")</p>
                 }
             </div>
 
@@ -34,7 +62,9 @@
     </div>
 
     @*<button type="submit" >skicka</button>*@
-@*</form>*@
+    @*</form>*@
 </a>
 
 <br />
+
+<script src="~/js/imgGallery.js"></script>
