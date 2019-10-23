@@ -166,7 +166,7 @@ namespace BolindersBil.web.Controllers
                 {
                     Text = x.Year.ToString(),
                     Value = x.Year.ToString()
-                }),
+                }).Distinct(),
 
                 MileageDataEnd = ctx.Vehicles.OrderBy(x => x.Mileage).Select(x => new SelectListItem
                 {
