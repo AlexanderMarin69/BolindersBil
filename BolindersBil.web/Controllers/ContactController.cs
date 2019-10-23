@@ -36,6 +36,7 @@ namespace BolindersBil.web.Controllers
 
             };
 
+            
 
             message.From.Add(new MailboxAddress(contactViewModel.Email));
             message.To.Add(new MailboxAddress(contactViewModel.DealerShipMail));
