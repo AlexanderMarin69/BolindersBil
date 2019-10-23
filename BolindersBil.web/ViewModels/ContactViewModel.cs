@@ -11,7 +11,7 @@ namespace BolindersBil.web.ViewModels
         public int Id { get; set; }
         [Required(ErrorMessage = "Fyll i ditt namn.")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Fyll i din email.")]
+        [EmailAddress(ErrorMessage = "Fyll i din email.")]
         public string Email { get; set; }
         
         public string PhoneNumber { get; set; }

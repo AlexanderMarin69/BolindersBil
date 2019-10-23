@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using BolindersBil.web.DB;
@@ -7,6 +11,8 @@ using BolindersBil.web.Models;
 using BolindersBil.web.Repositories;
 using BolindersBil.web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -18,38 +24,42 @@ namespace BolindersBil.web.Controllers
         private readonly BolindersBilDatabaseContext ctx;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private IHostingEnvironment _appEnvironment;
 
 
         private IVehicleRepository repo;
 
+        public int PageLimit = 8;
 
 
-        public AdminController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, BolindersBilDatabaseContext context, IVehicleRepository repository)
+        public AdminController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, BolindersBilDatabaseContext context, IVehicleRepository repository, IHostingEnvironment appEnvironment)
         {
             ctx = context;
             repo = repository;
             _userManager = userManager;
             _signInManager = signInManager;
+            _appEnvironment = appEnvironment;
 
         }
 
 
 
         [AllowAnonymous]
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
 
             if (User.Identity.IsAuthenticated)
             {
-                var vehicleList = ctx.Vehicles.OrderBy(x => x.Id);
-                var vm = new HomeViewModel { Vehicles = vehicleList };
+                var toSkip = (page - 1) * PageLimit;
+
+                var vehicleList = ctx.Vehicles.OrderBy(x => x.Id).Skip(toSkip).Take(PageLimit);
+                var paging = new PagingInfo { CurrentPage = page, ItemsPerPage = PageLimit, TotalItems = ctx.Vehicles.Count() };
+                var vm = new HomeViewModel { Vehicles = vehicleList, Pager = paging };
                 return View(vm);
             }
             else
             {
-
                 return View();
-
             }
         }
 
@@ -149,16 +159,18 @@ namespace BolindersBil.web.Controllers
 
 
         //Florin inserted for Search function - ok
-        public IActionResult Search(HomeViewModel vm)
+        public IActionResult Search(HomeViewModel vm, int page = 1)
         {
-            //var VehicleSearchResults = repo.Vehicles.Where(x => x.Model.Equals(vm.SearchString) || vm.SearchString == null).ToList();
-            var VehicleSearchResults = repo.Vehicles.Where(x => x.Model.Contains(vm.SearchString) || vm.SearchString == "").ToList();
+            var toSkip = (page - 1) * PageLimit;
+
+            var VehicleSearchResults = ctx.Vehicles.Where(x => x.Model.Contains(vm.SearchString) || vm.SearchString == "").ToList().Skip(toSkip).Take(PageLimit);
             vm.VehiclesResults = VehicleSearchResults;
-            vm.Vehicles = ctx.Vehicles.OrderBy(x => x.Id);
+            //vm.Vehicles = ctx.Vehicles.OrderBy(x => x.Id); 
 
-            //var vm = new HomeViewModel { SearchString = searchedVehicle };
+            var pagingNew = new PagingInfo { CurrentPage = page, ItemsPerPage = PageLimit, TotalItems = VehicleSearchResults.Count() };
+            var vmNew = new HomeViewModel { Vehicles = vm.VehiclesResults, Pager = pagingNew };
 
-            return View(nameof(Index), vm);
+            return View(nameof(Index), vmNew);
         }
 
 
@@ -191,18 +203,126 @@ namespace BolindersBil.web.Controllers
             return View(vm);
         }
 
-        // Alex & Florin implemented
+        // Alex & Florin implemented Ok
+        //[HttpPost]
+        //public async Task<IActionResult> CreateNewCar(CreateCarViewModel vm)
+        //{
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        vm.Vehicle.DateAdded = DateTime.Now;
+
+        //        ctx.Vehicles.Add(vm.Vehicle);
+
+        //        await ctx.SaveChangesAsync();
+        //        return RedirectToAction("index", "Admin");
+        //    }
+        //    else
+        //    {
+        //        var vm1 = new CreateCarViewModel
+        //        {
+        //            Vehicle = new Vehicle(),
+
+        //            Brands = ctx.Brands.Select(x => new SelectListItem
+        //            {
+        //                Text = x.Name,
+        //                Value = x.Id.ToString()
+        //            }),
+
+        //            Bodies = ctx.Bodies.Select(x => new SelectListItem
+        //            {
+        //                Text = x.BodyName,
+        //                Value = x.Id.ToString()
+        //            }),
+
+        //            Dealerships = ctx.Dealerships.Select(x => new SelectListItem
+        //            {
+        //                Text = x.City,
+        //                Value = x.Id.ToString(),
+        //            })
+        //        };
+
+        //        return View(nameof(Create), vm1);
+        //    }
+        //}
+
+
         [HttpPost]
-        public async Task<IActionResult> CreateNewCar(CreateCarViewModel vm)
+        public async Task<IActionResult> CreateNewCar(CreateCarViewModel vm, ICollection<IFormFile> images)
         {
-            
-            if (ModelState.IsValid)
+
+            if (ModelState.IsValid && vm != null)
             {
+                var imageFolder = "\\Images";
+                /* Paths to save image in disk */
+                // to wwwroot
+                string rootPath = _appEnvironment.WebRootPath;
+                // to Images folder
+                string imageFolderPath = rootPath + imageFolder;
+                // to Registration folder
+                string targetFolder = imageFolderPath + "\\" + vm.Vehicle.RegistrationNumber;
+                /* Create Registration folder*/
+                Directory.CreateDirectory(targetFolder);
+
+                // Array to store each image
+                List<FileUpload> gallery = new List<FileUpload>();
+
+                string targetFileName = "";
+                foreach (var image in images)
+                {
+                    Guid uniqueGuid = Guid.NewGuid();
+                    targetFileName = uniqueGuid + image.FileName;
+                    string finalTargetFilePath = targetFolder + "\\" + targetFileName;
+                    // Replace backslash with forward slash
+                    finalTargetFilePath = finalTargetFilePath.Replace("\\", "/");
+
+
+
+                    /* Saves */
+
+                    //Save images into RegNr folder on disk
+                    if (image.Length > 0)
+                    {
+                        using (var stream = new FileStream(finalTargetFilePath, FileMode.Create))
+                        {
+                            await image.CopyToAsync(stream);
+                        }
+                    }
+
+
+                    // Resize and save the image under the correct folder. Calls on the ImageResize function.
+                    string resizedImageFolder = targetFolder + "\\Image_resized";
+                    if (!Directory.Exists(resizedImageFolder))
+                    {
+                        Directory.CreateDirectory(resizedImageFolder);
+                    }
+                    ImageResize(finalTargetFilePath, resizedImageFolder + "\\" + targetFileName, 200);
+
+
+
+                    // Dynamik saving path
+                    var imageProperty = new FileUpload
+                    {
+                       
+                        FileTitle = uniqueGuid,
+                        FilePath = imageFolder.Replace("\\", "/") + "/" + vm.Vehicle.RegistrationNumber + "/" + targetFileName
+
+                        //Example Florin
+                        //https://localhost:44356/Images/MazdaNummer3/d90cdd91-a6df-4001-89c3-6081fbf4e73dMazada3_01.jpeg
+                        //https://localhost:44356/Images/MazdaNummer10/7ae213f5-08cb-472a-aa8a-5ea90f94ad83Mazada10_01.jpeg
+                    };
+                    gallery.Add(imageProperty);
+                }
+
+                // Save information to database
+                vm.Vehicle.FileUpload = gallery;
                 vm.Vehicle.DateAdded = DateTime.Now;
+                
+                // Florin inserted ????
+                vm.Vehicle.ImageUrl = vm.Vehicle.RegistrationNumber.ToString() + "/Image_resized" + "/" + targetFileName.ToString();
 
                 ctx.Vehicles.Add(vm.Vehicle);
-
-                await ctx.SaveChangesAsync();
+                await ctx.SaveChangesAsync(); 
                 return RedirectToAction("index", "Admin");
             }
             else
@@ -234,6 +354,43 @@ namespace BolindersBil.web.Controllers
             }
         }
 
+        private void ImageResize(string inputImagePath, string outputImagePath, int newWidth)
+        {
+            const long quality = 50L;
+            Bitmap sourceBitmap = new Bitmap(inputImagePath);
+            double dblWidthOriginal = sourceBitmap.Width;
+            double dblHeigthOriginal = sourceBitmap.Height;
+            double heightWidthRelation = dblHeigthOriginal / dblWidthOriginal;
+            int newHeight = (int)(newWidth * heightWidthRelation);
+            // Create empty draw area.
+            var newDrawArea = new Bitmap(newWidth, newHeight);
+            using (var graphic_of_DrawArea = Graphics.FromImage(newDrawArea))
+            {
+                graphic_of_DrawArea.CompositingQuality = CompositingQuality.HighSpeed;
+                graphic_of_DrawArea.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphic_of_DrawArea.CompositingMode = CompositingMode.SourceCopy;
+                // Draw into placeholder.
+                // Imports the image into the drawarea.
+                graphic_of_DrawArea.DrawImage(sourceBitmap, 0, 0, newWidth, newHeight);
+                // Output as .Jpg
+                using (var output = System.IO.File.Open(outputImagePath, FileMode.Create))
+                {
+                    // Setup jpg
+                    var qualityParamId = Encoder.Quality;
+                    var encoderParameters = new EncoderParameters(1);
+                    encoderParameters.Param[0] = new EncoderParameter(qualityParamId, quality);
+                    // Save Bitmap as Jpg
+                    var codec = ImageCodecInfo.GetImageDecoders().FirstOrDefault(c => c.FormatID == ImageFormat.Jpeg.Guid);
+                    newDrawArea.Save(output, codec, encoderParameters);
+                    output.Close();
+                }
+                graphic_of_DrawArea.Dispose();
+            }
+            sourceBitmap.Dispose();
+        }
+
+
+
         // Delete Bulk - Florin implemented ????
         //[HttpPost]
         //public IActionResult DeleteBulk(string vehiclesIdToDelete)
@@ -262,7 +419,7 @@ namespace BolindersBil.web.Controllers
         //    return RedirectToAction(nameof(Index));
         //}
 
-        //// O alta metoda
+        //// Other method
         //[HttpPost]
         //public IActionResult DelSelEmp(string[] empids)
         //{

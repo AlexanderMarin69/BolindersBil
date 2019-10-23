@@ -1,5 +1,6 @@
 ﻿using BolindersBil.web.DB;
 using BolindersBil.web.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,9 @@ namespace BolindersBil.web.Repositories
             ctx = context;
         }
 
-        public IEnumerable<Vehicle> Vehicles => ctx.Vehicles;
+        //public IEnumerable<Vehicle> Vehicles => ctx.Vehicles;
+
+        public IEnumerable<Vehicle> Vehicles => ctx.Vehicles.Include(f => f.FileUpload);
 
 
         // Florin implemented - ok
@@ -69,10 +72,15 @@ namespace BolindersBil.web.Repositories
         public Vehicle DeleteVehicle(int vehicleId)
         {
             var ctxVehicle = ctx.Vehicles.FirstOrDefault(x => x.Id.Equals(vehicleId));
+            var regno = ctxVehicle.RegistrationNumber;
+
             if (ctxVehicle != null)
             {
                 ctx.Vehicles.Remove(ctxVehicle);
                 ctx.SaveChanges();
+
+
+
             }
             return ctxVehicle;
         }
