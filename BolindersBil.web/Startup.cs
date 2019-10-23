@@ -98,7 +98,15 @@ namespace BolindersBil.web
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "paginationAdminAll",
+                    template: "admin/page/{page}",
+                    defaults: new { Controller = "Admin", action = "Index" });
 
+                routes.MapRoute(
+                    name: "paginationAdminSearch",
+                    template: "admin/search/{page}",
+                    defaults: new { Controller = "Admin", action = "Search" });
 
                 routes.MapRoute(
                     name: "default",
@@ -107,10 +115,6 @@ namespace BolindersBil.web
                 routes.MapRoute(
                 name: "carResultsRoute",
                 template: "{controller=Filter}/{action=CarPage}/{id:int?}");
-                
-
-
-
             });
 
             //identitySeeder.CreateAdminAccountIFEmpty();

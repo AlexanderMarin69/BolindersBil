@@ -13,6 +13,10 @@ namespace BolindersBil.web.ViewModels
         public IEnumerable<Vehicle> Vehicles { get; set; }
         //public Dictionary<int, string> Values { get; set; }
         public IEnumerable<Vehicle> VehiclesResults { get; set; }
+
+        //Inserted by Florin
+        public PagingInfo Pager { get; set; }
+
         public string SearchString { get; set; }
         public Vehicle Vehicle { get; }
         public List<Brand> BrandsInStock { get; set; }

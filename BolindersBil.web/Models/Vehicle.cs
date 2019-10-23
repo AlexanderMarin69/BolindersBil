@@ -39,7 +39,10 @@ namespace BolindersBil.web.Models
         public virtual Brand Brand { get; set; }
         public int DealerShipId { get; set; }
         public virtual Dealership Dealership { get; set; }
+
+
         public int FileUploadId { get; set; }
+
         public virtual List<FileUpload> FileUpload { get; set; }
         public int BodyId { get; set; }
         public virtual Body Body { get; set; }

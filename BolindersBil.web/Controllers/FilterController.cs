@@ -240,7 +240,7 @@ namespace BolindersBil.web.Controllers
             //var carElement = ctx.Brands.Where(x => x.Id.Equals(id));
 
 
-            var carElement = ctx.Vehicles.Include(x => x.Brand).FirstOrDefault(x => x.Id.Equals(id));
+            var carElement = ctx.Vehicles.Include(x => x.Brand).Include(x => x.FileUpload).FirstOrDefault(x => x.Id.Equals(id));
             var dealershipIdForPhoneNumber = carElement.DealerShipId;
 
             ViewBag.DealershipSpecificPhoneNumber = ctx.Dealerships.FirstOrDefault(x => x.Id == dealershipIdForPhoneNumber).Phone;
