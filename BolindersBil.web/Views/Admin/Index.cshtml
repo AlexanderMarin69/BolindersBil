@@ -26,6 +26,7 @@
                 </div>
             </div>
         </div>
+        <br/>
         <form asp-controller="Admin" asp-action="Search">
 
             <div class="form-group">
@@ -36,7 +37,7 @@
         </form>
 
 
-        @*if (Model.VehiclesResults == null)
+        if (Model.VehiclesResults == null)
         {
             <p>no results</p>
         }
@@ -44,11 +45,11 @@
         {
             @foreach (var sv in Model.VehiclesResults)
             {
-                <partial name="CarBlockAdmin" model="sv" />
+                <partial name="_CarBlockAdmin" model="sv" />
 
 
             }
-        }*@
+        }
 
 
         <br />
@@ -69,17 +70,12 @@
 
             </tr>
 
-            @if (Model.VehiclesResults == null)
-            {
-            <p>Sök på bilar i sökfältet ovanför</p>
-            }
-            else
-            {
-            @foreach (var v in Model.VehiclesResults)
+        
+            @foreach (var v in Model.Vehicles)
             {
                 <partial name="_CarBlockAdmin" model="v" />
             }
-            }
+         
         </table>
 
 

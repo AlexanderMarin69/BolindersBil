@@ -9,6 +9,8 @@
 
 
 
+
+
 <div class="container">
     <div class="row">
         <div class="col-lg-6">
@@ -49,9 +51,57 @@
                     <a href="#">@ViewBag.DealershipSpecificPhoneNumber</a>
                 </button>
             </div>
+            <br />
+
+            <div class="col-lg-12">
+                <button class="btn btn-block btn-primary custom-call-seller-link" data-toggle="modal" data-target="#exampleModal">
+
+                    <a href="#">Dela</a>
+                </button>
+            </div>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Dela</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form asp-action="Link" asp-controller="Contact" method="post">
+                                <div class="form-group">
+                                    <input type="hidden" name="Brand" value="@Model.Brand.Name" />
+                                    <input type="hidden" name="Model" value="@Model.Model" />
+                                    <input type="hidden" name="RegistrationNumber" value="@Model.RegistrationNumber" />
+                                    <input type="hidden" name="CarId" value="@Model.Id" />
+                                    <center>
+                                        <h3>Ange e-postadress</h3>
+                                        <p>för att dela med någon.</p>
+                                        <input type="email" class="custom-form-style-login" name="Email" required>
+                                        <br />
+                                        <br />
+                                        <button type="submit" class="btn btn-primary">Skicka</button>
+                                    </center>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Avbryt</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal success -->
 
             <br />
             <br />
+
 
             <div class="container">
                 <div class="row">
@@ -73,7 +123,7 @@
                     <div class="col-lg-12">
                         <input id="amount" type="number" value="@Math.Round((int)Model.Price * 0.8)" min="0" max="10000000" step="any" onchange="carLoan();" hidden />
                         <input class="form-control w-50" id="interest_rate" type="number" min="0" max="100" value="4.5" step=".1" onchange="carLoan();" hidden>
-                    
+
                         <input id="amount" type="number" value="@Math.Round((int)Model.Price * 0.8)" min="0" max="10000000" step="any" onchange="carLoan();" hidden />
                         <input class="form-control w-50" id="interest_rate" type="number" min="0" max="100" value="4.5" step=".1" onchange="carLoan();" hidden>
                         <strong>Avbetalningstid: </strong>
@@ -90,29 +140,38 @@
                 </div>
 
             </div>
-          
+
             <script>
-                 function carLoan() {
-                 var amount = document.getElementById('amount').value;
-                 var interest_rate = document.getElementById('interest_rate').value;
-                 var months = document.getElementById('months').value;
-                 var interest = amount * (interest_rate * .01) / months;
-                 var payment = (amount / months + interest).toFixed(2);
-                 payment = payment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                 document.getElementById('payment').innerHTML = "<strong>Månadskostnad från:</strong> " + payment+ " Kr (inkl. moms)";
+                function carLoan() {
+                    var amount = document.getElementById('amount').value;
+                    var interest_rate = document.getElementById('interest_rate').value;
+                    var months = document.getElementById('months').value;
+                    var interest = amount * (interest_rate * .01) / months;
+                    var payment = (amount / months + interest).toFixed(2);
+                    payment = payment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    document.getElementById('payment').innerHTML = "<strong>Månadskostnad från:</strong> " + payment + " Kr (inkl. moms)";
                 }
             </script>
 
-
+            <!-- Modal success -->
             @*<div class="col-lg-12">
-            <button class="btn btn-block btn-primary custom-call-seller-link">
-                <form asp-action="Vehicle" asp-controller="Contact" method="post">
+            <div class="btn btn-block btn-primary custom-call-seller-link">
+                <form asp-action="Link" asp-controller="Contact" method="post">
+                    <div class="form-group">
+                        <input type="hidden" name="Brand" value="@Model.Brand.Name" />
+                        <input type="hidden" name="Model" value="@Model.Model" />
+                        <input type="hidden" name="RegistrationNumber" value="@Model.RegistrationNumber" />
+                        <input type="hidden" name="CarId" value="@Model.Id" />
+                        Email:<input type="text" name="Email">
+                        <br />
 
+                        <button type="submit" class="btn btn-primary">Skicka</button>
+                    </div>
                 </form>
-                <a href="#">Dela</a>
-            </button>
-        </div>*@
 
+            </div>
+
+        </div>*@
 
 
         </div>
@@ -215,8 +274,8 @@
     </div>
 
     <hr />
-
-    <div class="row">
+    @Model.Attributes
+    @*<div class="row">
         <div class="cl-lg-3">
             <ul>
                 <li>Alu.hjul 17\"</li>
@@ -247,120 +306,11 @@
                 <li>Blåtands handsfree</li>
                 <li>Bränslevärmare</li>
                 <li>CD/Stereo</li>
-            </ul>
-        </div>
-    </div>
+            </ul>*@
+    @*</div>
+        </div>*@
 </div>
 
 <br /><br />
 
-<div class="container related-cars-container-custom">
-
-    <div class="row">
-        <div class="col-lg-3"><h3>Relaterade bilar</h3></div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-4">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" src="~/img/caoursel-test-images/1.jpg" alt="First slide">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>BMW X3</h5>
-                            <p>2009 - 137hk</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="~/img/caoursel-test-images/2.jpg" alt="Second slide">
-
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="~/img/caoursel-test-images/3.jpg" alt="Third slide">
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="col-lg-4">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" src="~/img/caoursel-test-images/1.jpg" alt="First slide">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>BMW X3</h5>
-                            <p>2009 - 137hk</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="~/img/caoursel-test-images/2.jpg" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="~/img/caoursel-test-images/3.jpg" alt="Third slide">
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="col-lg-4">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" src="~/img/caoursel-test-images/1.jpg" alt="First slide">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>BMW X3</h5>
-                            <p>2009 - 137hk</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="~/img/caoursel-test-images/2.jpg" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="~/img/caoursel-test-images/3.jpg" alt="Third slide">
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-    </div>
-
-
-</div>
+@await Component.InvokeAsync("RelatedVehiclesWithInheritance", new { carId = Model.Id })

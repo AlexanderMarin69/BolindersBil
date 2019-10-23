@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using BolindersBil.web.DB;
 using BolindersBil.web.Models;
 using BolindersBil.web.Repositories;
@@ -33,67 +34,72 @@ namespace BolindersBil.web.Controllers
         {
             var result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.Used == false).OrderBy(x => x.Id).Take(1);
 
-            if (state == "nya")
+            if (state == "alla")
             {
-                 result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.Used == false).OrderBy(x => x.Id).Take(8);
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).OrderByDescending(Vehicle => Vehicle.DateAdded).Take(8);
+            }
+
+            else if (state == "nya")
+            {
+                 result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.Used == false).OrderByDescending(Vehicle => Vehicle.DateAdded).Take(8);
 
             }
 
             else if (state == "begagnade")
             {
-                 result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.Used == true).OrderBy(x => x.Id).Take(8);
+                 result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.Used == true).OrderByDescending(Vehicle => Vehicle.DateAdded).Take(8);
 
             }
 
             else if (state == "wolksvagen")
             {
-                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 1).OrderBy(x => x.Id).Take(8);
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 1).OrderByDescending(Vehicle => Vehicle.DateAdded).Take(8);
 
             }
 
             else if (state == "bmw")
             {
-                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 2).OrderBy(x => x.Id).Take(8);
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 2).OrderByDescending(Vehicle => Vehicle.DateAdded).Take(8);
 
             }
 
             else if (state == "chevrolet")
             {
-                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 1).OrderBy(x => x.Id).Take(8);
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 1).OrderByDescending(Vehicle => Vehicle.DateAdded).Take(8);
 
             }
 
             else if (state == "ford")
             {
-                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 1).OrderBy(x => x.Id).Take(8);
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 1).OrderByDescending(Vehicle => Vehicle.DateAdded).Take(8);
 
             }
 
             else if (state == "honda")
             {
-                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 5).OrderBy(x => x.Id).Take(8);
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 5).OrderByDescending(Vehicle => Vehicle.DateAdded).Take(8);
 
             }
 
             else if (state == "volvo")
             {
-                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 7).OrderBy(x => x.Id).Take(8);
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 7).OrderByDescending(Vehicle => Vehicle.DateAdded).Take(8);
 
             }
 
             else if (state == "jaguar")
             {
-                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 3).OrderBy(x => x.Id).Take(8);
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 3).OrderByDescending(Vehicle => Vehicle.DateAdded).Take(8);
 
             }
 
             else if (state == "Mercedes")
             {
-                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 1).OrderBy(x => x.Id).Take(8);
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Where(x => x.BrandId == 1).OrderByDescending(Vehicle => Vehicle.DateAdded).Take(8);
 
             }
 
-            else if (state != "nya" || state != "begagnade")
+            else if (state != "nya" || state != "begagnade" || state != "alla")
             {
                 return NotFound();
             }
@@ -195,20 +201,42 @@ namespace BolindersBil.web.Controllers
             result = result.Where(x => x.BodyId == vm.SelectedBody);
             result = result.Where(x => x.Fuel == vm.SelectedFuel);
             result = result.Where(x => x.Year >= vm.MinYear && x.Year <= vm.MaxYear);
+            result = result.OrderByDescending(Vehicle => Vehicle.DateAdded);
 
-            if(vm.NewCar == true)
+            if (vm.NewCar == true)
             {
-                return View();
+                result = result.Where(x => x.Used == false);
+
+                var finalResult = result.ToList();
+
+
+                vm = GetFilterVm(finalResult);
             }
-           
+
+             else if (vm.OldCar == true)
+            {
+                result = result.Where(x => x.Used == true);
+
+                var finalResult = result.ToList();
+
+
+                vm = GetFilterVm(finalResult);
+            }
+
+            else if (vm.OldCar == false || vm.NewCar == false)
+            {
+
+                var finalResult = result.ToList();
+
+
+                vm = GetFilterVm(finalResult);
+            }
 
 
 
-            var finalResult = result.ToList();
-
-
-            vm = GetFilterVm(finalResult);
             return View("index", vm);
+
+
 
 
             //var finalResult = result.ToList();
@@ -225,7 +253,7 @@ namespace BolindersBil.web.Controllers
             //    return View("index", vm);
             //}
         }
-
+        [Route("bilar")]
         public IActionResult CarFilterResult()
         {
             var carInfo = ctx.Vehicles.OrderBy(x => x.Id).Take(PageLimit);
@@ -234,19 +262,17 @@ namespace BolindersBil.web.Controllers
             return View(vm);
         }
     
-        //[Route("Filter/CarPage/{id:int}")]
+        [Route("{make}-{model}-{registrationNumber}-{id:int}", Name = "CarDetailsPage")]
         public IActionResult CarPage(int id)
         {
             //var carElement = ctx.Brands.Where(x => x.Id.Equals(id));
-
-
+            
             var carElement = ctx.Vehicles.Include(x => x.Brand).FirstOrDefault(x => x.Id.Equals(id));
             var dealershipIdForPhoneNumber = carElement.DealerShipId;
 
             ViewBag.DealershipSpecificPhoneNumber = ctx.Dealerships.FirstOrDefault(x => x.Id == dealershipIdForPhoneNumber).Phone;
 
-
-
+            
             return View(carElement);
         }
 

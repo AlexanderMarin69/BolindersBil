@@ -11,19 +11,16 @@
 <br /><br /><br /><br />
                   <div class="container filter-wrapper-custom">
                       <br />
-                      <label>Filtrera</label>
+                      <h3>
+                      Filtrera
+                      </h3>
                       <br />
-                      <div class="row">
-                          <div class="col-lg-3">Mil</div>
-                          <div class="col-lg-3">År</div>
-                          <div class="col-lg-3">Pris</div>
-                          <div class="col-lg-3"></div>
-                      </div>
+                    
                       <form asp-controller="Filter" asp-action="FilterAction">
                           <div class="row">
                               <div class="col-lg-3">
                                   <div class="form-group">
-                                      <label asp-for="Vehicle.Mileage">från:</label>
+                                      <label asp-for="Vehicle.Mileage">Mil från:</label>
                                       <select asp-items="Model.MileageDataStart" asp-for="MinMileage"></select>
                                   </div>
 
@@ -31,14 +28,14 @@
 
                               <div class="col-lg-3">
                                   <div class="form-group">
-                                      <label asp-for="Vehicle.Year">från:</label>
+                                      <label asp-for="Vehicle.Year">År från:</label>
                                       <select asp-items="Model.YearDataStart" asp-for="MinYear"></select>
                                   </div>
                               </div>
 
                               <div class="col-lg-3">
                                   <div class="form-group">
-                                      <label asp-for="Vehicle.Price">från:</label>
+                                      <label asp-for="Vehicle.Price">Pris från:</label>
                                       <select asp-items="Model.PriceDataStart" asp-for="MinPrice"></select>
                                   </div>
                               </div>
@@ -51,16 +48,11 @@
                               </div>
                           </div>
                           <br />
-                          <div class="row">
-                              <div class="col-lg-3">Mil till</div>
-                              <div class="col-lg-3">År till</div>
-                              <div class="col-lg-3">Pris till</div>
-                              <div class="col-lg-3"></div>
-                          </div>
+                         
                           <div class="row">
                               <div class="col-lg-3">
                                   <div class="form-group">
-                                      <label asp-for="Vehicle.Mileage">till:</label>
+                                      <label asp-for="Vehicle.Mileage">Mil till:</label>
                                       <select asp-items="Model.MileageDataEnd" asp-for="MaxMileage"></select>
                                   </div>
 
@@ -69,7 +61,7 @@
 
                               <div class="col-lg-3">
                                   <div class="form-group">
-                                      <label asp-for="Vehicle.Year">från:</label>
+                                      <label asp-for="Vehicle.Year">År från:</label>
                                       <select asp-items="Model.YearDataEnd" asp-for="MaxYear"></select>
                                   </div>
 
@@ -77,7 +69,7 @@
 
                               <div class="col-lg-3">
                                   <div class="form-group">
-                                      <label asp-for="Vehicle.Price">till:</label>
+                                      <label asp-for="Vehicle.Price">Pris till:</label>
                                       <select asp-items="Model.PriceDataEnd" asp-for="MaxPrice"></select>
                                   </div>
 
@@ -102,11 +94,12 @@
                               <input type="checkbox" asp-for="OldCar">
                               <span>Begagnade bilar</span>
                           </div>
-
+                          <br />
 
                           <button class="btn btn-primary @*fa-battery-full*@ right">Sök med Filter</button>
 
                       </form>
+                      <br />
                       <br />
 
                       <div class="row">
