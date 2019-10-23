@@ -24,8 +24,8 @@ namespace BolindersBil.web.Controllers
         public IActionResult SendForm(ContactViewModel contactViewModel)
         {
             //här ska jag få med namn, tele nr och meddelande.
-            var theBody = $"<strong>Namn: </strong> {contactViewModel.Name} <br> " +
-                $"<strong>Telefonnummer: </strong> {contactViewModel.PhoneNumber} <br> " +
+            var theBody = $"<strong>Namn: </strong> {contactViewModel.Name} <br/> " +
+                $"<strong>Telefonnummer: </strong> {contactViewModel.PhoneNumber} <br/> " + 
                 $"<strong>Meddelande: </strong> { contactViewModel.Message}";
 
             var message = new MimeMessage

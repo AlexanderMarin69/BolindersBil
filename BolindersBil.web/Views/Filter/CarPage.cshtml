@@ -51,9 +51,57 @@
                     <a href="#">@ViewBag.DealershipSpecificPhoneNumber</a>
                 </button>
             </div>
+            <br />
+
+            <div class="col-lg-12">
+                <button class="btn btn-block btn-primary custom-call-seller-link" data-toggle="modal" data-target="#exampleModal">
+
+                    <a href="#">Dela</a>
+                </button>
+            </div>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Dela</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form asp-action="Link" asp-controller="Contact" method="post">
+                                <div class="form-group">
+                                    <input type="hidden" name="Brand" value="@Model.Brand.Name" />
+                                    <input type="hidden" name="Model" value="@Model.Model" />
+                                    <input type="hidden" name="RegistrationNumber" value="@Model.RegistrationNumber" />
+                                    <input type="hidden" name="CarId" value="@Model.Id" />
+                                    <center>
+                                        <h3>Ange e-postadress</h3>
+                                        <p>för att dela med någon.</p>
+                                        <input type="email" class="custom-form-style-login" name="Email" required>
+                                        <br />
+                                        <br />
+                                        <button type="submit" class="btn btn-primary">Skicka</button>
+                                    </center>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Avbryt</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal success -->
 
             <br />
             <br />
+
 
             <div class="container">
                 <div class="row">
@@ -105,13 +153,7 @@
                 }
             </script>
 
-            <div class="col-lg-12">
-                <button class="btn btn-block btn-primary custom-call-seller-link" data-toggle="modal" data-target="#exampleModal">
-
-                    <a href="#">Dela</a>
-                </button>
-            </div>
-
+            <!-- Modal success -->
             @*<div class="col-lg-12">
             <div class="btn btn-block btn-primary custom-call-seller-link">
                 <form asp-action="Link" asp-controller="Contact" method="post">
@@ -130,56 +172,6 @@
             </div>
 
         </div>*@
-
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Dela</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form asp-action="Link" asp-controller="Contact" method="post">
-                                <div class="form-group">
-                                    <input type="hidden" name="Brand" value="@Model.Brand.Name" />
-                                    <input type="hidden" name="Model" value="@Model.Model" />
-                                    <input type="hidden" name="RegistrationNumber" value="@Model.RegistrationNumber" />
-                                    <input type="hidden" name="CarId" value="@Model.Id" />
-                                    <center>
-                                        <h3>Ange e-postadress</h3>
-                                        <p>för att dela med någon.</p>
-                                        <input type="text" class="custom-form-style-login" name="Email">
-                                        <br />
-                                        <br />
-                                        <button type="submit" class="btn btn-primary">Skicka</button>
-                                    </center>
-
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Avbryt</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal success -->
-          
-
-
-
-
-
-
-
-
-
-
 
 
         </div>
