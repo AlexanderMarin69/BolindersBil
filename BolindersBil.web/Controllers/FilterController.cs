@@ -141,26 +141,26 @@ namespace BolindersBil.web.Controllers
                 {
                     Text = x.Price.ToString(),
                     Value = x.Price.ToString()
-                }),
+                }).Distinct(),
 
 
                 YearDataStart = ctx.Vehicles.OrderBy(x => x.Year).Select(x => new SelectListItem
                 {
                     Text = x.Year.ToString(),
                     Value = x.Year.ToString()
-                }),
+                }).Distinct(),
 
                 MileageDataStart = ctx.Vehicles.OrderBy(x => x.Mileage).Select(x => new SelectListItem
                 {
                     Text = x.Mileage.ToString(),
                     Value = x.Mileage.ToString()
-                }),
+                }).Distinct(),
 
                 PriceDataEnd = ctx.Vehicles.OrderBy(x => x.Price).Select(x => new SelectListItem
                 {
                     Text = x.Price.ToString(),
                     Value = x.Price.ToString()
-                })/*.OrderBy(x => x.Value)*/,
+                }).Distinct(),
 
                 YearDataEnd = ctx.Vehicles.OrderBy(x => x.Year).Select(x => new SelectListItem
                 {
@@ -172,7 +172,7 @@ namespace BolindersBil.web.Controllers
                 {
                     Text = x.Mileage.ToString(),
                     Value = x.Mileage.ToString()
-                }),
+                }).Distinct(),
 
                 FuelData = ctx.Vehicles.Select(x => new SelectListItem
                 {
