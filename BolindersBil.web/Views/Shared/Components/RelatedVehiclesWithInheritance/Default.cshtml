@@ -9,49 +9,43 @@
         <div class="col-lg-3"><h3>Relaterade bilar</h3></div>
     </div>
 
-    @foreach (var car in Model)
-    {
-        
+  
 
-        <div class="row">
-            <div class="col-lg-4">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="~/img/caoursel-test-images/1.jpg" alt="First slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>@car.Brand.Name - @car.Model</h5>
-                                <p>@car.Year - @car.Horsepower hk- @car.Price kr</p>
-                                
+    <div class="row">
+
+        @foreach (var car in Model)
+        {
+                <div class="col-lg-3">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <a asp-controller="Filter" asp-action="CarPage" asp-route-make="@car.Model" asp-route-model="@car.Brand.Name" asp-route-registrationNumber="@car.RegistrationNumber" asp-route-id="@car.Id">
+
+                            <ol class="carousel-indicators"></ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    @if (car.ImageUrl == "" || car.ImageUrl == null)
+                                    {
+                                        <div class="col-lg-3"><img src="~/img/CarResultPlaceholderImage.jpg" height="160" width="200" alt="Alternate Text" /></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-lg-3"><img src="~/Images/@car.ImageUrl" height="160" width="200" alt="Alternate Text" /></div>
+                                    }
+
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>@car.Brand.Name - @car.Model</h5>
+                                        <p>@car.Year - @car.Horsepower hk- @car.Price kr</p>
+
+                                    </div>
+                                </div>
+
                             </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="~/img/caoursel-test-images/2.jpg" alt="Second slide">
+                        </a>
 
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="~/img/caoursel-test-images/3.jpg" alt="Third slide">
-                        </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
             </div>
-
-
-        </div>
-    }
+        }
+    </div>
+   
 
 
 

@@ -1,7 +1,6 @@
 ﻿@model Vehicle
 
-
-<a asp-controller="Filter" asp-action="CarPage" asp-route-id="@Model.Id">
+<a asp-controller="Filter" asp-action="CarPage" asp-route-make="@Model.Model" asp-route-model="@Model.Brand.Name" asp-route-registrationNumber="@Model.RegistrationNumber" asp-route-id="@Model.Id">
 
     @*<form asp-controller="Filter" asp-action="CarPage" asp-route-id="@Model.Id" >*@
     <div class="container car-result-custom-container" style="color:black;">
@@ -12,15 +11,15 @@
 
             @*Inserted by Florin*@
             @*<div class="col-lg-4">
-            <div class="thumbnails">
-                @foreach (var image in Model.FileUpload)
-                {
-                    <a href="" data-toggle="modal" data-target="#exampleModal">
-                        <img src="@image.FilePath" class="float-left" alt="@image.FileTitle" style="width:25%;cursor:pointer;margin-left:10px;" />
-                    </a>
-                }
-            </div>
-        </div>*@
+                    <div class="thumbnails">
+                        @foreach (var image in Model.FileUpload)
+                        {
+                            <a href="" data-toggle="modal" data-target="#exampleModal">
+                                <img src="@image.FilePath" class="float-left" alt="@image.FileTitle" style="width:25%;cursor:pointer;margin-left:10px;" />
+                            </a>
+                        }
+                    </div>
+                </div>*@
 
 
 
