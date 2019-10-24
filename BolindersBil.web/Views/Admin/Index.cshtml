@@ -83,12 +83,16 @@
 
 
         </table>
-        
-        <form id="bulkDeleteForm" asp-controller="Admin" asp-action="DeleteBulk" onsubmit="return confirm('Do you want to delete all cars?')" method="post">
-            <input type="hidden" id="vehiclesIdToDelete" name="vehiclesIdToDelete" value="" />
-            &nbsp;&nbsp;
-            <button type="submit" class="btn btn-danger" id="deleteBulk">Delete selected cars</button>
-        </form>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <form id="bulkDeleteForm" asp-controller="Admin" asp-action="DeleteBulk" onsubmit="return confirm('Do you want to delete all cars?')" method="post">
+                        <input type="hidden" id="vehiclesIdToDelete" name="vehiclesIdToDelete" value="" />
+                        <button type="submit" class="btn btn-danger" id="deleteBulk">Delete selected cars</button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <center>
             <div page-model="@Model.Pager" page-action="Index"

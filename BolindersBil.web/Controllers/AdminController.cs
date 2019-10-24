@@ -29,7 +29,7 @@ namespace BolindersBil.web.Controllers
 
         private IVehicleRepository repo;
 
-        public int PageLimit = 8;
+        public int PageLimit = 2;
 
 
         public AdminController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, BolindersBilDatabaseContext context, IVehicleRepository repository, IHostingEnvironment appEnvironment)
@@ -392,20 +392,20 @@ namespace BolindersBil.web.Controllers
 
 
         // Delete Bulk - Florin implemented ????
-        //[HttpPost]
-        //public IActionResult DeleteBulk(string vehiclesIdToDelete)
-        //{
-        //    if (vehiclesIdToDelete != null)
-        //    {
-        //        int[] vehiclesIdToDeleteArray = Array.ConvertAll(vehiclesIdToDelete.Split(','), int.Parse);
+        [HttpPost]
+        public IActionResult DeleteBulk(string vehiclesIdToDelete)
+        {
+            if (vehiclesIdToDelete != null)
+            {
+                int[] vehiclesIdToDeleteArray = Array.ConvertAll(vehiclesIdToDelete.Split(','), int.Parse);
 
-        //        foreach (var item in vehiclesIdToDeleteArray)
-        //        {
-        //            //Delete(item);
-        //        }
-        //    }
-        //    return RedirectToAction(nameof(Index));
-        //}
+                foreach (var item in vehiclesIdToDeleteArray)
+                {
+                    Delete(item);
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
 
 
         //public IActionResult DeleteBulk(IEnumerable<int> carIdToDelete)

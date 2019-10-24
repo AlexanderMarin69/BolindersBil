@@ -13,7 +13,7 @@
         var chkArray = [];
 
         /* look for all checkboxes in .cards and check if they are checked, and then take their values and push into an array */
-        $(".flo input:checked").each(function () {
+        $("input.flo:checked").each(function () {
             chkArray.push($(this).val());
         });
 
@@ -24,9 +24,9 @@
         /* add selected value to hidden fields if it contains values */
         if (selected.length > 0) {
             $("#vehiclesIdToDelete").val(selected);
-            console.log(selected);
+            //console.log(selected);
             var value = $("#vehiclesIdToDelete").val();
-            console.log(value);
+            //console.log(value);
             //$("#bulkDeleteForm").submit();
         } else {
             alert("Select at least one vehicle");

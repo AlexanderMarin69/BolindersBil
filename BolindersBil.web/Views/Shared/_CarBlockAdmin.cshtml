@@ -2,14 +2,14 @@
 
 <tr>
     <td class="custom-checkbox text-center">
-        <input type="checkbox" class="form-check-input" id="vehiclesIdToDelete" name="vehiclesIdToDelete" value="@Model.Id">
+        <input type="checkbox" class="form-check-input flo" value="@Model.Id">
     </td>
     <td class="text-right">@Model.Id</td>
     <td>@Model.Model</td>
     <td class="text-right">@Model.Price.ToString("c")</td>
     <td class="text-center">
 
-        <form asp-action="Delete" onsubmit="return confirm('Vill du verkligen ta bort fordonet?')" method="post">
+        <form asp-action="Delete" method="post">
             <a asp-action="Edit" class="btn btn-sm btn-warning"
                asp-route-productId="@Model.Id">
                 Redigera
@@ -22,4 +22,3 @@
         </form>
     </td>
 </tr>
-        
