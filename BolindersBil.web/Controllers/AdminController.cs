@@ -29,7 +29,7 @@ namespace BolindersBil.web.Controllers
 
         private IVehicleRepository repo;
 
-        public int PageLimit = 8;
+        public int PageLimit = 4;
 
 
         public AdminController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, BolindersBilDatabaseContext context, IVehicleRepository repository, IHostingEnvironment appEnvironment)
@@ -163,7 +163,9 @@ namespace BolindersBil.web.Controllers
         {
             var toSkip = (page - 1) * PageLimit;
 
-            var VehicleSearchResults = ctx.Vehicles.Where(x => x.Model.Contains(vm.SearchString) || vm.SearchString == "").ToList().Skip(toSkip).Take(PageLimit);
+            var VehicleSearchResults = ctx.Vehicles
+                .Where(x => x.Model.Contains(vm.SearchString, StringComparison.InvariantCultureIgnoreCase) || x.Brand.Name.Contains(vm.SearchString, StringComparison.InvariantCultureIgnoreCase))
+                .ToList().Skip(toSkip).Take(PageLimit);
             vm.VehiclesResults = VehicleSearchResults;
             //vm.Vehicles = ctx.Vehicles.OrderBy(x => x.Id); 
 
@@ -392,20 +394,20 @@ namespace BolindersBil.web.Controllers
 
 
         // Delete Bulk - Florin implemented ????
-        //[HttpPost]
-        //public IActionResult DeleteBulk(string vehiclesIdToDelete)
-        //{
-        //    if (vehiclesIdToDelete != null)
-        //    {
-        //        int[] vehiclesIdToDeleteArray = Array.ConvertAll(vehiclesIdToDelete.Split(','), int.Parse);
+        [HttpPost]
+        public IActionResult DeleteBulk(string vehiclesIdToDelete)
+        {
+            if (vehiclesIdToDelete != null)
+            {
+                int[] vehiclesIdToDeleteArray = Array.ConvertAll(vehiclesIdToDelete.Split(','), int.Parse);
 
-        //        foreach (var item in vehiclesIdToDeleteArray)
-        //        {
-        //            //Delete(item);
-        //        }
-        //    }
-        //    return RedirectToAction(nameof(Index));
-        //}
+                foreach (var item in vehiclesIdToDeleteArray)
+                {
+                    //Delete(item);
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
 
 
         //public IActionResult DeleteBulk(IEnumerable<int> carIdToDelete)
