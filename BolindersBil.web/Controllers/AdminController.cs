@@ -161,15 +161,18 @@ namespace BolindersBil.web.Controllers
         //Florin inserted for Search function - ok
         public IActionResult Search(HomeViewModel vm, int page = 1)
         {
+            if (HttpContext.Request.Method == "POST")
+                page = 1;
             var toSkip = (page - 1) * PageLimit;
 
-            var VehicleSearchResults = ctx.Vehicles
+            var vehicleSearchResults = ctx.Vehicles
                 .Where(x => x.Model.Contains(vm.SearchString, StringComparison.InvariantCultureIgnoreCase) || x.Brand.Name.Contains(vm.SearchString, StringComparison.InvariantCultureIgnoreCase))
-                .ToList().Skip(toSkip).Take(PageLimit);
-            vm.VehiclesResults = VehicleSearchResults;
+                .ToList();
+            var toShow = vehicleSearchResults.Skip(toSkip).Take(PageLimit);
+            vm.VehiclesResults = toShow;
             //vm.Vehicles = ctx.Vehicles.OrderBy(x => x.Id); 
 
-            var pagingNew = new PagingInfo { CurrentPage = page, ItemsPerPage = PageLimit, TotalItems = VehicleSearchResults.Count() };
+            var pagingNew = new PagingInfo { CurrentPage = page, ItemsPerPage = PageLimit, TotalItems = vehicleSearchResults.Count() };
             var vmNew = new HomeViewModel { Vehicles = vm.VehiclesResults, Pager = pagingNew };
 
             return View(nameof(Index), vmNew);
