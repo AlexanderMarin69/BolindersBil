@@ -21,105 +21,140 @@
         <div asp-validation-summary="All"></div>
 
 
-        <div class="form-group">
-            <label asp-for="Vehicle.Model">Model:</label>
-            <input class="form-control" asp-for="Vehicle.Model" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Vehicle.RegistrationNumber">RegistrationNumber:</label>
-            <input class="form-control" asp-for="Vehicle.RegistrationNumber" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Vehicle.Year">Year:</label>
-            <input asp-items="Model.Year" asp-for="Vehicle.Year" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Vehicle.Body">Body:</label>
-            <select asp-items="Model.Bodies" asp-for="Vehicle.BodyId"></select>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Vehicle.Brand">Brand:</label>
-            <select asp-items="Model.Brands" asp-for="Vehicle.BrandId"></select>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Vehicle.Mileage">Mileage :</label>
-            <input class="form-control" asp-for="Vehicle.Mileage" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Vehicle.Price">Price:</label>
-            <input class="form-control" asp-for="Vehicle.Price" />
-        </div>
-
-        @*<div class="form-group">
-            <label asp-for="Vehicle.Body">Body:</label>
-            <input class="form-control" asp-for="Vehicle.Body" />
-        </div>*@
-
-        <div class="form-group">
-            <label asp-for="Vehicle.Color">Color:</label>
-            <input class="form-control" asp-for="Vehicle.Color" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Vehicle.Transmission">Transmission:</label>
-            <input class="form-control" asp-for="Vehicle.Transmission" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Vehicle.Fuel">Fuel:</label>
-            <input class="form-control" asp-for="Vehicle.Fuel" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Vehicle.Horsepower">Horsepower:</label>
-            <input class="form-control" asp-for="Vehicle.Horsepower" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Vehicle.Lease">Lease:</label>
-            <input class="form-control checkbox-custom" asp-for="Vehicle.Lease" />
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Vehicle.Attributes">Attributes:</label>
-            <input class="form-control" asp-for="Vehicle.Attributes" />
-        </div>
-
-
-        <div class="form-group">
-            <label asp-for="Vehicle.Dealership">Dealership:</label>
-            <select asp-items="Model.Dealerships" asp-for="Vehicle.DealerShipId"></select>
-        </div>
-
-
-
-        @*<div class="form-group">
-            <label asp-for="FileUpload">FileUpload:</label>
-            <input class="form-control" asp-for="FileUpload" />
-        </div>*@
-
-
-        @*<label for="FileUpload">Upload Image:</label>
-        <input type="file" name="FileUpload" id="FileUpload" /><br><br>
-        <input type="submit" value="Upload Image" />*@
-
-        <br><br>
-
-        <div class="form-group">
-            <label for="images">Ladda upp bild:</label><br />
-            <input type="file" name="images" id="images" multiple />
-        </div>
-
         <br />
+        <center>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
 
-        <button class="btn btn-primary" type="submit">Lägg till ny bil</button>
-        <a asp-action="Index" class="btn btn-danger">Avbryt</a>
+                        <b> <label asp-for="Vehicle.Model">Modell</label></b></b>
+                        <input class="form-control" asp-for="Vehicle.Model" />
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group col-md-12">
+                        <b> <label asp-for="Vehicle.RegistrationNumber">Nummerplåt</label></b>
+                        <input class="form-control" asp-for="Vehicle.RegistrationNumber" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <b> <label asp-for="Vehicle.Year">År</label></b>
+                        <input asp-items="Model.Year" asp-for="Vehicle.Year" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <b> <label asp-for="Vehicle.Body">Karoserri</label></b>
+                        <select asp-items="Model.Bodies" asp-for="Vehicle.BodyId"></select>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <b> <label asp-for="Vehicle.Brand">Märke</label></b>
+                        <select asp-items="Model.Brands" asp-for="Vehicle.BrandId"></select>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <b> <label asp-for="Vehicle.Mileage">Mil</label></b>
+                        <input class="form-control" asp-for="Vehicle.Mileage" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <b> <label asp-for="Vehicle.Price">Pris</label></b>
+                        <input class="form-control" asp-for="Vehicle.Price" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <b> <label asp-for="Vehicle.Color">Färg</label></b>
+                        <input class="form-control" asp-for="Vehicle.Color" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <b> <label asp-for="Vehicle.Transmission">Växellåda</label></b>
+                        <input class="form-control" asp-for="Vehicle.Transmission" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <b> <label asp-for="Vehicle.Fuel">Bränsle</label></b>
+                        <input class="form-control" asp-for="Vehicle.Fuel" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <b> <label asp-for="Vehicle.Horsepower">Hästkrafter</label></b>
+                        <input class="form-control" asp-for="Vehicle.Horsepower" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <b> <label asp-for="Vehicle.Lease">Lease</label></b>
+                        <input class="form-control checkbox-custom" asp-for="Vehicle.Lease" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <b> <label asp-for="Vehicle.Attributes">Egenskaper</label></b>
+                        <input class="form-control" asp-for="Vehicle.Attributes" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <b> <label asp-for="Vehicle.Dealership">Anläggning</label></b>
+                        <br />
+                        <select asp-items="Model.Dealerships" asp-for="Vehicle.DealerShipId"></select>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="images">Ladda upp bild:</label><br />
+                        <input type="file" name="images" id="images" multiple />
+                    </div>
+                </div>
+            </div>
+
+           
+
+            <br />
+            <div class="row">
+                <div class="col-lg-2">
+                    <button class="btn btn-primary" type="submit">Lägg till ny bil</button>
+
+                </div>
+                <div class="col-lg-1">
+                    <a asp-action="Index" class="btn btn-danger">Avbryt</a>
+
+                </div>
+            </div>
     </form>
 </div>
+<br />
+<br />
 
