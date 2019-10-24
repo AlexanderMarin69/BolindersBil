@@ -34,55 +34,61 @@ namespace BolindersBil.web.Repositories
                 var ctxVehicle = ctx.Vehicles.FirstOrDefault(x => x.Id.Equals(v.Id));
                 if (ctxVehicle != null)
                 {
-                    var ctxBrand = ctx.Brands.FirstOrDefault(x => x.Id.Equals(v.BrandId));
-                    if (ctxBrand != null)
+                    var ctxBody = ctx.Bodies.FirstOrDefault(x => x.Id.Equals(v.BodyId));
+                    if (ctxVehicle != null)
                     {
-                        var ctxDealership = ctx.Dealerships.FirstOrDefault(x => x.Id.Equals(v.DealerShipId));
-                        if (ctxDealership != null)
+                        var ctxBrand = ctx.Brands.FirstOrDefault(x => x.Id.Equals(v.BrandId));
+                        if (ctxBrand != null)
                         {
-                            ctxVehicle.Model = v.Model;
-                            //ctxVehicle.ModelDescription = v.ModelDescription;
-                            ctxVehicle.RegistrationNumber = v.RegistrationNumber;
-                            ctxVehicle.Year = v.Year;
-                            ctxVehicle.Mileage = v.Mileage;
-                            ctxVehicle.Price = v.Price;
-                            ctxVehicle.Body = v.Body;
-                            ctxVehicle.Color = v.Color;
-                            ctxVehicle.Transmission = v.Transmission;
-                            ctxVehicle.Fuel = v.Fuel;
-                            ctxVehicle.Horsepower = v.Horsepower;
-                            ctxVehicle.Used = v.Used;
-                            ctxVehicle.Lease = v.Lease;
-                            ctxVehicle.ImageUrl = v.ImageUrl;
-                            ctxVehicle.Attributes = v.Attributes;
-                            ctxVehicle.DateUpdated = DateTime.Now;
+                            var ctxDealership = ctx.Dealerships.FirstOrDefault(x => x.Id.Equals(v.DealerShipId));
+                            if (ctxDealership != null)
+                            {
+                                ctxVehicle.Model = v.Model;
+                                //ctxVehicle.ModelDescription = v.ModelDescription;
+                                ctxVehicle.RegistrationNumber = v.RegistrationNumber;
+                                ctxVehicle.Year = v.Year;
+                                ctxVehicle.Mileage = v.Mileage;
+                                ctxVehicle.Price = v.Price;
+                                ctxVehicle.Body = v.Body;
+                                ctxVehicle.Color = v.Color;
+                                ctxVehicle.Transmission = v.Transmission;
+                                ctxVehicle.Fuel = v.Fuel;
+                                ctxVehicle.Horsepower = v.Horsepower;
+                                ctxVehicle.Used = v.Used;
+                                ctxVehicle.Lease = v.Lease;
+                                ctxVehicle.ImageUrl = v.ImageUrl;
+                                ctxVehicle.Attributes = v.Attributes;
+                                ctxVehicle.DateUpdated = DateTime.Now;
 
-                            ctxVehicle.Dealership = ctxDealership;
-                            ctxVehicle.Brand = ctxBrand;
+                                ctxVehicle.Body = ctxBody;
+                                ctxVehicle.Dealership = ctxDealership;
+                                ctxVehicle.Brand = ctxBrand;
+                            }
                         }
                     }
                 }
-                ctx.SaveChanges();
+                    ctx.SaveChanges();
+                }
             }
-        }
 
 
 
-        // Florin implemented
-        public Vehicle DeleteVehicle(int vehicleId)
-        {
-            var ctxVehicle = ctx.Vehicles.FirstOrDefault(x => x.Id.Equals(vehicleId));
-            var regno = ctxVehicle.RegistrationNumber;
 
-            if (ctxVehicle != null)
+            // Florin implemented
+            public Vehicle DeleteVehicle(int vehicleId)
             {
-                ctx.Vehicles.Remove(ctxVehicle);
-                ctx.SaveChanges();
+                var ctxVehicle = ctx.Vehicles.FirstOrDefault(x => x.Id.Equals(vehicleId));
+                var regno = ctxVehicle.RegistrationNumber;
+
+                if (ctxVehicle != null)
+                {
+                    ctx.Vehicles.Remove(ctxVehicle);
+                    ctx.SaveChanges();
 
 
 
+                }
+                return ctxVehicle;
             }
-            return ctxVehicle;
         }
     }
-}

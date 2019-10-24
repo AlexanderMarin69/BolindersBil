@@ -20,6 +20,7 @@
 
         <div asp-validation-summary="All"></div>
 
+
         <div class="form-group">
             <label asp-for="Vehicle.Model">Model:</label>
             <input class="form-control" asp-for="Vehicle.Model" />
@@ -118,9 +119,7 @@
         <br />
 
         <button class="btn btn-primary" type="submit">Lägg till ny bil</button>
-
-
+        <a asp-action="Index" class="btn btn-danger">Avbryt</a>
     </form>
-
 </div>
 
