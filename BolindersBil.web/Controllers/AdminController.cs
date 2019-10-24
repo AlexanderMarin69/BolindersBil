@@ -29,7 +29,7 @@ namespace BolindersBil.web.Controllers
 
         private IVehicleRepository repo;
 
-        public int PageLimit = 2;
+        public int PageLimit = 8;
 
 
         public AdminController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, BolindersBilDatabaseContext context, IVehicleRepository repository, IHostingEnvironment appEnvironment)
