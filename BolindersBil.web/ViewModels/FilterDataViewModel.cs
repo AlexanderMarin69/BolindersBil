@@ -30,5 +30,6 @@ namespace BolindersBil.web.ViewModels
         public string SearchString { get; set; }
         public bool NewCar { get; set; }
         public bool OldCar { get; set; }
+        public PagingInfo Pager { get; set; }
     }
 }

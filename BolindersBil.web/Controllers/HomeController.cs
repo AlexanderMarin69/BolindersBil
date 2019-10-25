@@ -10,6 +10,7 @@ using MailKit.Net.Smtp;
 using BolindersBil.web.DB;
 using BolindersBil.web.Repositories;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace BolindersBil.web.Controllers
 {
@@ -18,15 +19,17 @@ namespace BolindersBil.web.Controllers
         private readonly NewsHelper _newsHelper;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly BolindersBilDatabaseContext ctx;
 
         private IVehicleRepository repo; 
 
-        public HomeController(NewsHelper newsHelper, IVehicleRepository repository, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public HomeController(NewsHelper newsHelper, IVehicleRepository repository, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, BolindersBilDatabaseContext ctx)
         {
             _newsHelper = newsHelper;
             _userManager = userManager;
             _signInManager = signInManager;
             repo = repository;
+            this.ctx = ctx;
         }
 
         [AllowAnonymous]
@@ -35,6 +38,8 @@ namespace BolindersBil.web.Controllers
 
             var response = _newsHelper.GetNews();
             var vm = new HomeViewModel();
+            var uniqueVehicleBrands = ctx.Vehicles.Include(x => x.Brand).Select(x => x.Brand).Distinct();
+            vm.BrandsInStock = uniqueVehicleBrands.ToList();
             vm.ArticlesResults = response;
 
             return View("Index", vm);
