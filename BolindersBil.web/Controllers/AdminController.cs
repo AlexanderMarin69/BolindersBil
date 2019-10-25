@@ -123,7 +123,6 @@ namespace BolindersBil.web.Controllers
         }
 
 
-        // Florin implemented - ok
         [HttpPost]
         public IActionResult Edit(EditVehicleViewModel vm)
         {
@@ -140,7 +139,6 @@ namespace BolindersBil.web.Controllers
         }
 
 
-        // Florin implemented - Ok
         [HttpPost]
         public IActionResult Delete(int vehicleId)
         {
@@ -158,7 +156,6 @@ namespace BolindersBil.web.Controllers
         }
 
 
-        //Florin inserted for Search function - ok
         public IActionResult Search(HomeViewModel vm, int page = 1)
         {
             var toSkip = (page - 1) * PageLimit;
@@ -174,7 +171,6 @@ namespace BolindersBil.web.Controllers
         }
 
 
-        // Alex & Florin implemented
         public IActionResult Create()
         {
             var vm = new CreateCarViewModel
@@ -203,7 +199,6 @@ namespace BolindersBil.web.Controllers
             return View(vm);
         }
 
-        // Alex & Florin implemented Ok
         //[HttpPost]
         //public async Task<IActionResult> CreateNewCar(CreateCarViewModel vm)
         //{
@@ -307,7 +302,7 @@ namespace BolindersBil.web.Controllers
                         FileTitle = uniqueGuid,
                         FilePath = imageFolder.Replace("\\", "/") + "/" + vm.Vehicle.RegistrationNumber + "/" + targetFileName
 
-                        //Example Florin
+                        //Example URL
                         //https://localhost:44356/Images/MazdaNummer3/d90cdd91-a6df-4001-89c3-6081fbf4e73dMazada3_01.jpeg
                         //https://localhost:44356/Images/MazdaNummer10/7ae213f5-08cb-472a-aa8a-5ea90f94ad83Mazada10_01.jpeg
                     };
@@ -318,7 +313,7 @@ namespace BolindersBil.web.Controllers
                 vm.Vehicle.FileUpload = gallery;
                 vm.Vehicle.DateAdded = DateTime.Now;
                 
-                // Florin inserted ????
+                // Take URL
                 vm.Vehicle.ImageUrl = vm.Vehicle.RegistrationNumber.ToString() + "/Image_resized" + "/" + targetFileName.ToString();
 
                 ctx.Vehicles.Add(vm.Vehicle);
