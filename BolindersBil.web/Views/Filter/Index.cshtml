@@ -147,7 +147,21 @@
 
  @if (!Model.Results.Any())
         {
-            <p>no results</p>
+      <div class="alert alert-primary" role="alert">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-2"><i class="fa fa-3x fa-exclamation-circle"></i></div>
+                  <div class="col-lg-8">
+                      <h4>Inga fordon matchade sökningen!</h4>
+                      <br />
+                      <p> Kanske valde du en ovanlig kombination av filter, eller så är din önskebil väldigt populär! Du kanske kan bredda sökningen något?</p>
+                  </div>
+              </div>
+          </div>
+         
+          
+      </div>
+      <br/>
         }
          else
          {
