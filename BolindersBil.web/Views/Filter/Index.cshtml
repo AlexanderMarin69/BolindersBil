@@ -9,131 +9,131 @@
 }
 
 <br /><br /><br /><br />
-                  <div class="container filter-wrapper-custom">
-                      <br />
-                      <h3>
-                      Filtrera
-                      </h3>
-                      <br />
-                    
-                      <form asp-controller="Filter" asp-action="FilterAction">
-                          <div class="row">
-                              <div class="col-lg-3">
-                                  <div class="form-group">
-                                      <label asp-for="Vehicle.Mileage">Mil från:</label>
-                                      <select asp-items="Model.MileageDataStart" asp-for="MinMileage"></select>
-                                  </div>
+<div class="container filter-wrapper-custom">
+    <br />
+    <h3>
+        Filtrera
+    </h3>
+    <br />
 
-                              </div>
+    <form asp-controller="Filter" asp-action="FilterAction">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label asp-for="Vehicle.Mileage">Mil från:</label>
+                    <select asp-items="Model.MileageDataStart" asp-for="MinMileage"></select>
+                </div>
 
-                              <div class="col-lg-3">
-                                  <div class="form-group">
-                                      <label asp-for="Vehicle.Year">År från:</label>
-                                      <select asp-items="Model.YearDataStart" asp-for="MinYear"></select>
-                                  </div>
-                              </div>
+            </div>
 
-                              <div class="col-lg-3">
-                                  <div class="form-group">
-                                      <label asp-for="Vehicle.Price">Pris från:</label>
-                                      <select asp-items="Model.PriceDataStart" asp-for="MinPrice"></select>
-                                  </div>
-                              </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label asp-for="Vehicle.Year">År från:</label>
+                    <select asp-items="Model.YearDataStart" asp-for="MinYear"></select>
+                </div>
+            </div>
 
-                              <div class="col-lg-3">
-                                  <div class="form-group">
-                                      <label asp-for="Vehicle.Body">Karoserri:</label>
-                                      <select asp-items="Model.BodiesData" asp-for="SelectedBody"></select>
-                                  </div>
-                              </div>
-                          </div>
-                          <br />
-                         
-                          <div class="row">
-                              <div class="col-lg-3">
-                                  <div class="form-group">
-                                      <label asp-for="Vehicle.Mileage">Mil till:</label>
-                                      <select asp-items="Model.MileageDataEnd" asp-for="MaxMileage"></select>
-                                  </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label asp-for="Vehicle.Price">Pris från:</label>
+                    <select asp-items="Model.PriceDataStart" asp-for="MinPrice"></select>
+                </div>
+            </div>
 
-                              </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label asp-for="Vehicle.Body">Karoserri:</label>
+                    <select asp-items="Model.BodiesData" asp-for="SelectedBody"></select>
+                </div>
+            </div>
+        </div>
+        <br />
 
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label asp-for="Vehicle.Mileage">Mil till:</label>
+                    <select asp-items="Model.MileageDataEnd" asp-for="MaxMileage"></select>
+                </div>
 
-                              <div class="col-lg-3">
-                                  <div class="form-group">
-                                      <label asp-for="Vehicle.Year">År från:</label>
-                                      <select asp-items="Model.YearDataEnd" asp-for="MaxYear"></select>
-                                  </div>
-
-                              </div>
-
-                              <div class="col-lg-3">
-                                  <div class="form-group">
-                                      <label asp-for="Vehicle.Price">Pris till:</label>
-                                      <select asp-items="Model.PriceDataEnd" asp-for="MaxPrice"></select>
-                                  </div>
-
-                              </div>
-
-                              <div class="col-lg-3">
-                                  <div class="form-group">
-                                      <label asp-for="Vehicle.Fuel">Bränsle</label>
-                                      <select asp-items="Model.FuelData" asp-for="SelectedFuel"></select>
-                                  </div>
-                              </div>
+            </div>
 
 
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label asp-for="Vehicle.Year">År från:</label>
+                    <select asp-items="Model.YearDataEnd" asp-for="MaxYear"></select>
+                </div>
 
-                          </div>
+            </div>
 
-                          <div class="col-lg-2">
-                              <input type="checkbox" asp-for="NewCar">
-                              <span>Nya bilar</span>
-                          </div>
-                          <div class="col-lg-2">
-                              <input type="checkbox" asp-for="OldCar">
-                              <span>Begagnade bilar</span>
-                          </div>
-                          <br />
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label asp-for="Vehicle.Price">Pris till:</label>
+                    <select asp-items="Model.PriceDataEnd" asp-for="MaxPrice"></select>
+                </div>
 
-                          <button class="btn btn-primary @*fa-battery-full*@ right">Sök med Filter</button>
+            </div>
 
-                      </form>
-                      <br />
-                      <br />
-
-                      <div class="row">
-                          <div class="col-lg-2">
-                              
-                          </div>
-                          <div class="col-lg-2">
-                             
-                          </div>
-                          <div class="col-lg-4">
-                              
-                          </div>
-                          <div class="col-lg-4">
-                              <form asp-controller="Filter" asp-action="Search">
-
-                                  <div class="form-group">
-                                      <input asp-for="SearchString" class="custom-seatch-input" placeholder="Sök bil här..." />
-
-                                      <button class="btn btn-outline-primary" type="submit">Fritextsökning</button>
-                                  </div>
-
-                              </form>
-                          </div>
-
-                      </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label asp-for="Vehicle.Fuel">Bränsle</label>
+                    <select asp-items="Model.FuelData" asp-for="SelectedFuel"></select>
+                </div>
+            </div>
 
 
 
+        </div>
+
+        <div class="col-lg-2">
+            <input type="checkbox" asp-for="NewCar">
+            <span>Nya bilar</span>
+        </div>
+        <div class="col-lg-2">
+            <input type="checkbox" asp-for="OldCar">
+            <span>Begagnade bilar</span>
+        </div>
+        <br />
+
+        <button class="btn btn-primary @*fa-battery-full*@ right">Sök med Filter</button>
+
+    </form>
+    <br />
+    <br />
+
+    <div class="row">
+        <div class="col-lg-2">
+
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+        <div class="col-lg-4">
+
+        </div>
+        <div class="col-lg-4">
+            <form asp-controller="Filter" asp-action="Search">
+
+                <div class="form-group">
+                    <input asp-for="SearchString" class="custom-seatch-input" placeholder="Sök bil här..." />
+
+                    <button class="btn btn-outline-primary" type="submit">Fritextsökning</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
 
 
-                      <br />
 
 
-                  </div>
+
+    <br />
+
+
+</div>
 <br />
 <br /><br />
 
@@ -145,31 +145,40 @@
     }
 *@
 
- @if (!Model.Results.Any())
-        {
-      <div class="alert alert-primary" role="alert">
-          <div class="container">
-              <div class="row">
-                  <div class="col-lg-2"><i class="fa fa-3x fa-exclamation-circle"></i></div>
-                  <div class="col-lg-8">
-                      <h4>Inga fordon matchade sökningen!</h4>
-                      <br />
-                      <p> Kanske valde du en ovanlig kombination av filter, eller så är din önskebil väldigt populär! Du kanske kan bredda sökningen något?</p>
-                  </div>
-              </div>
-          </div>
-         
-          
-      </div>
-      <br/>
-        }
-         else
-         {
-                @foreach (var resultItem in Model.Results)
-                {
-                <partial name="_CarResultBlock" model="resultItem" />
-                 }
-        }
+@if (!Model.Results.Any())
+{
+    <div class="alert alert-primary" role="alert">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2"><i class="fa fa-3x fa-exclamation-circle"></i></div>
+                <div class="col-lg-8">
+                    <h4>Inga fordon matchade sökningen!</h4>
+                    <br />
+                    <p> Kanske valde du en ovanlig kombination av filter, eller så är din önskebil väldigt populär! Du kanske kan bredda sökningen något?</p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <br />
+}
+else
+{
+    @foreach (var resultItem in Model.Results)
+    {
+        <partial name="_CarResultBlock" model="resultItem" />
+    }
+    <center>
+        <div page-model="@Model.Pager" page-action="Index"
+             enable-page-classes="true"
+             page-class="btn"
+             page-class-normal="btn-default"
+             page-class-selected="btn-primary"
+             class="btn-group text-right">
+        </div>
+    </center>
+}
 
 
 
