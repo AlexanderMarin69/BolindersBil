@@ -44,7 +44,7 @@ namespace BolindersBil.web.Controllers
             }
             else if (state.Equals("alla", StringComparison.InvariantCultureIgnoreCase))
             {
-                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).OrderByDescending(Vehicle => Vehicle.DateAdded).Take(8);
+                result = ctx.Vehicles.Include(x => x.Brand).Include(x => x.Dealership).Include(x => x.FileUpload).OrderByDescending(Vehicle => Vehicle.DateAdded).Take(8);
             }
             else
             {
